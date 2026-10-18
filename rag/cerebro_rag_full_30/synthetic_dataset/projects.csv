@@ -1,0 +1,7 @@
+project_id,name,domain,complexity,completed,outcome,illustrative_budget_usd,planned_weeks,actual_weeks,technologies
+PRJ-001,Souk Nova Online Marketplace Storefront,ecommerce,medium,2024-06,success,38000,16,17,Angular;TypeScript;Spring Boot;PostgreSQL;Redis;Docker;GitHub Actions
+PRJ-002,TaskBridge Freelance Marketplace,marketplace,high,2025-02,partial,61000,20,26,Angular;TypeScript;NgRx;Spring Boot;Spring Security;PostgreSQL;Docker
+PRJ-003,ShopSense Product Recommendation Engine,ai,medium,2024-11,partial,24000,10,12,Python;scikit-learn;PyTorch;Spring Boot;PostgreSQL
+PRJ-004,DocuPilot RAG Knowledge Assistant,ai,high,2025-09,success,42000,12,13,Python;FastAPI;ChromaDB;Spring Boot;Spring Security;Docker;GitHub Actions
+PRJ-005,LaunchPad Cloud Deployment Platform,cloud,medium,2025-05,partial,21000,8,10,Docker;Kubernetes;Terraform;AWS;GitHub Actions;Prometheus;Grafana
+PRJ-006,RoamLite Mobile Travel Companion,mobile,medium,2025-12,partial,33000,14,17,Flutter;Dart;SQLite;Firebase Cloud Messaging;Spring Boot;PostgreSQL

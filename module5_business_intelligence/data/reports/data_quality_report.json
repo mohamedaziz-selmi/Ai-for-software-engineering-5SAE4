@@ -1,0 +1,87 @@
+{
+  "sales_forecasting": {
+    "dataset": "Store Sales - Time Series Forecasting",
+    "status": "pass",
+    "checks": [
+      {
+        "check": "schema",
+        "result": "pass",
+        "detail": "All six files contain the expected columns and parse with the %Y-%m-%d date format."
+      },
+      {
+        "check": "duplicate_business_keys",
+        "result": "pass",
+        "detail": "0 duplicate (date, store_nbr, family) keys."
+      },
+      {
+        "check": "negative_sales",
+        "result": "pass",
+        "detail": "0 negative sales rows."
+      },
+      {
+        "check": "missing_dates",
+        "result": "warn",
+        "detail": "4 dates absent for all stores (25 December closures)."
+      },
+      {
+        "check": "oil_missing",
+        "result": "warn",
+        "detail": "43 missing oil prices, forward-filled only."
+      }
+    ],
+    "before": {
+      "rows": 3000888,
+      "missing_values": 0,
+      "duplicate_rows": 0
+    },
+    "after": {
+      "rows": 3000888,
+      "missing_values": 0,
+      "duplicate_rows": 0,
+      "daily_rows": 1688
+    }
+  },
+  "updated_at": "2026-10-17T23:17:59+00:00",
+  "customer_segmentation": {
+    "dataset": "UCI Online Retail",
+    "status": "pass",
+    "checks": [
+      {
+        "check": "schema",
+        "result": "pass",
+        "detail": "All 8 expected columns present; dates and numbers parse without failures."
+      },
+      {
+        "check": "duplicate_lines",
+        "result": "warn",
+        "detail": "5268 exact duplicate lines removed."
+      },
+      {
+        "check": "missing_customer_id",
+        "result": "warn",
+        "detail": "135080 lines (24.9%) without CustomerID, excluded from segmentation only."
+      },
+      {
+        "check": "cancellations",
+        "result": "info",
+        "detail": "9288 cancellation lines in 3836 invoices, deducted from customer spending."
+      },
+      {
+        "check": "duplicate_customer_ids",
+        "result": "pass",
+        "detail": "0 duplicate customer rows in customer_rfm.csv."
+      }
+    ],
+    "before": {
+      "rows": 541909,
+      "missing_values": 136534,
+      "duplicate_rows": 5268
+    },
+    "after": {
+      "rows": 536641,
+      "missing_values": 136491,
+      "duplicate_rows": 0,
+      "eligible_customers": 4322
+    }
+  }
+}

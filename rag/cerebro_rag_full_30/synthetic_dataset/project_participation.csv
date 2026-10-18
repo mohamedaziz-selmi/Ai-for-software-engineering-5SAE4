@@ -1,0 +1,16 @@
+project_id,freelancer_id,role,contribution
+PRJ-001,FRE-001,contributor,Checkout and account modules in Angular; catalog service in Spring Boot; catalog schema and Flyway migrations.
+PRJ-001,FRE-002,contributor,"Product filtering, pagination and search-as-you-type components in Angular with their unit tests."
+PRJ-001,FRE-003,lead,Order and inventory services in Spring Boot; Redis caching; PostgreSQL index rewrite for the order-list query.
+PRJ-001,FRE-005,contributor,GitHub Actions CI/CD pipeline and Docker image build; staging deployment scripts.
+PRJ-002,FRE-001,contributor,Job-posting wizard in Angular and job services in Spring Boot.
+PRJ-002,FRE-002,contributor,Freelancer proposals dashboard in Angular using NgRx; accessibility fixes.
+PRJ-002,FRE-003,lead,"Proposal service, escrow ledger, JWT security and integration tests."
+PRJ-003,FRE-004,lead,"Data preparation, collaborative-filtering baseline, offline evaluation and the PyTorch ranking experiment."
+PRJ-003,FRE-003,contributor,Spring Boot gateway that calls the recommender service and logs impressions.
+PRJ-004,FRE-004,lead,"Ingestion pipeline, chunking, hybrid retrieval, answer endpoint with citations, evaluation set."
+PRJ-004,FRE-003,contributor,Spring Boot admin API with JWT authentication for document management.
+PRJ-004,FRE-005,contributor,Containerized deployment and CI/CD for the pipeline and admin API.
+PRJ-005,FRE-005,lead,"Terraform modules, AWS accounts, GitHub Actions pipelines, staging Kubernetes cluster and monitoring."
+PRJ-006,FRE-006,lead,"Flutter application: itinerary, map and booking screens, offline storage, push notifications."
+PRJ-006,FRE-001,contributor,"Spring Boot itinerary API, PostgreSQL schema and OpenAPI contract."

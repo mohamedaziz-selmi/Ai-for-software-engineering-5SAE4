@@ -1,0 +1,43 @@
+{
+  "feature_columns": [
+    "day_of_week",
+    "day_of_month",
+    "month",
+    "quarter",
+    "year",
+    "day_of_year",
+    "is_weekend",
+    "is_payday",
+    "is_new_year",
+    "is_closure_day",
+    "is_national_holiday",
+    "is_national_event",
+    "is_work_day",
+    "lag_1",
+    "lag_7",
+    "lag_14",
+    "lag_28",
+    "roll_mean_7",
+    "roll_mean_14",
+    "roll_mean_28",
+    "roll_std_7",
+    "roll_std_28"
+  ],
+  "target": "sales",
+  "calendar_flag_columns": [
+    "is_closure_day",
+    "is_national_holiday",
+    "is_national_event",
+    "is_work_day"
+  ],
+  "calendar_file": "data/processed/sales_calendar.csv",
+  "history_file": "data/processed/daily_sales.csv",
+  "calendar_known_until": "2017-12-26",
+  "max_horizon_days": 28,
+  "lags": [
+    1,
+    7,
+    14,
+    28
+  ]
+}

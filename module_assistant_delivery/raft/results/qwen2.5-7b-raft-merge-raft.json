@@ -1,0 +1,11 @@
+{
+  "mode": "raft",
+  "tag": "assistant-raft:qwen2.5-7b",
+  "source": "unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+  "out": "raft\\outputs\\qwen2.5-7b-raft\\merged-raft-bf16",
+  "quantize": "int4",
+  "lora_modules": 196,
+  "lora_scale": 1.0,
+  "merged_lora_modules": 196,
+  "merge_s": 37.2
+}

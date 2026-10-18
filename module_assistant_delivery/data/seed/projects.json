@@ -1,0 +1,94 @@
+{
+  "_notice": "Synthetic demo records. Not real people, not authentication. The platform has no users or projects yet (docs/AUDIT.md).",
+  "users": [
+    {
+      "id": "demo-freelancer-a",
+      "display_name": "Freelancer A (demo)",
+      "role": "freelancer"
+    },
+    {
+      "id": "demo-client-b",
+      "display_name": "Client B (demo)",
+      "role": "client"
+    },
+    {
+      "id": "demo-freelancer-c",
+      "display_name": "Freelancer C (demo, other project only)",
+      "role": "freelancer"
+    },
+    {
+      "id": "demo-admin",
+      "display_name": "Platform admin (demo)",
+      "role": "admin"
+    }
+  ],
+  "projects": [
+    {
+      "id": "PRJ-DEMO-001",
+      "name": "Atelier Lumière: online ordering web app",
+      "members": {
+        "demo-freelancer-a": "freelancer",
+        "demo-client-b": "client"
+      },
+      "documents": [
+        "PRJ-DEMO-001_cahier_des_charges.md"
+      ],
+      "milestones": [
+        {
+          "id": "M1",
+          "name": "M1: prototype and data model"
+        },
+        {
+          "id": "M2",
+          "name": "M2: customer ordering flow on staging"
+        },
+        {
+          "id": "M3",
+          "name": "M3: back-office, emails, accessibility report"
+        },
+        {
+          "id": "FINAL",
+          "name": "Final: production and handover"
+        }
+      ]
+    },
+    {
+      "id": "PRJ-DEMO-002",
+      "name": "Clinique Horizon: appointment reminder service",
+      "members": {
+        "demo-freelancer-c": "freelancer",
+        "demo-client-b": "client"
+      },
+      "documents": [
+        "PRJ-DEMO-002_project_brief.md"
+      ],
+      "milestones": [
+        {
+          "id": "M1",
+          "name": "M1: import and SMS sending"
+        },
+        {
+          "id": "M2",
+          "name": "M2: dashboard"
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does the assistant give legal advice?",
+      "answer": "No. It quotes the agreed project documents; the document text prevails. Ask a lawyer for legal advice.",
+      "language": "en"
+    },
+    {
+      "question": "L'assistant donne-t-il des conseils juridiques ?",
+      "answer": "Non. Il cite les documents du projet ; le texte des documents fait foi.",
+      "language": "fr"
+    },
+    {
+      "question": "Who decides whether a delivery is accepted?",
+      "answer": "The client. Review findings are advisory and never change the delivery status.",
+      "language": "en"
+    }
+  ]
+}

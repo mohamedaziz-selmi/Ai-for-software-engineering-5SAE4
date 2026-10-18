@@ -1,0 +1,257 @@
+{
+  "sales_forecasting": {
+    "input": "data/processed after cleaning: one row per calendar day",
+    "aggregation": "daily_sales = sum(sales over all stores and product families for each date)",
+    "closure_days": "25 December inserted with sales = 0 and is_closure_day = 1 (verified absent for every store).",
+    "leakage_controls": [
+      "lag_k = sales.shift(k) with k >= 1",
+      "rolling statistics computed on sales.shift(1), so day t is never included",
+      "no future actuals: multi-step forecasts feed predictions back recursively",
+      "transactions and row id excluded; oil and promotions only in the advanced model (lagged / known in advance)"
+    ],
+    "warmup_rows_without_full_lags": 28,
+    "feature_dictionary": [
+      {
+        "feature": "day_of_week",
+        "dtype": "int",
+        "transformation": "date.dayofweek (Monday = 0)",
+        "purpose": "Weekly shopping cycle."
+      },
+      {
+        "feature": "day_of_month",
+        "dtype": "int",
+        "transformation": "date.day",
+        "purpose": "Within-month pattern (salary timing)."
+      },
+      {
+        "feature": "month",
+        "dtype": "int",
+        "transformation": "date.month",
+        "purpose": "Annual seasonality."
+      },
+      {
+        "feature": "quarter",
+        "dtype": "int",
+        "transformation": "date.quarter",
+        "purpose": "Coarse annual seasonality."
+      },
+      {
+        "feature": "year",
+        "dtype": "int",
+        "transformation": "date.year",
+        "purpose": "Long-term trend level."
+      },
+      {
+        "feature": "day_of_year",
+        "dtype": "int",
+        "transformation": "date.dayofyear",
+        "purpose": "Position in the year for holiday seasons."
+      },
+      {
+        "feature": "is_weekend",
+        "dtype": "binary",
+        "transformation": "1 when day_of_week >= 5",
+        "purpose": "Weekend demand uplift."
+      },
+      {
+        "feature": "is_payday",
+        "dtype": "binary",
+        "transformation": "1 on the 15th and the last day of the month",
+        "purpose": "Public-sector wages in Ecuador are paid on these days."
+      },
+      {
+        "feature": "is_new_year",
+        "dtype": "binary",
+        "transformation": "1 on 1 January",
+        "purpose": "Most stores are closed or nearly closed."
+      },
+      {
+        "feature": "is_closure_day",
+        "dtype": "binary",
+        "transformation": "1 on 25 December (absent from every store)",
+        "purpose": "Known store closure."
+      },
+      {
+        "feature": "is_national_holiday",
+        "dtype": "binary",
+        "transformation": "National Holiday/Transfer/Additional/Bridge day, not transferred",
+        "purpose": "Holiday calendar published in advance."
+      },
+      {
+        "feature": "is_national_event",
+        "dtype": "binary",
+        "transformation": "National Event in holidays_events.csv",
+        "purpose": "Events such as Black Friday, Cyber Monday, Mother's Day."
+      },
+      {
+        "feature": "is_work_day",
+        "dtype": "binary",
+        "transformation": "National compensatory Work Day",
+        "purpose": "Weekend days that become working days."
+      },
+      {
+        "feature": "lag_1",
+        "dtype": "float",
+        "transformation": "daily sales shifted by 1 day(s)",
+        "purpose": "Recent demand level; only past values."
+      },
+      {
+        "feature": "lag_7",
+        "dtype": "float",
+        "transformation": "daily sales shifted by 7 day(s)",
+        "purpose": "Recent demand level; only past values."
+      },
+      {
+        "feature": "lag_14",
+        "dtype": "float",
+        "transformation": "daily sales shifted by 14 day(s)",
+        "purpose": "Recent demand level; only past values."
+      },
+      {
+        "feature": "lag_28",
+        "dtype": "float",
+        "transformation": "daily sales shifted by 28 day(s)",
+        "purpose": "Recent demand level; only past values."
+      },
+      {
+        "feature": "roll_mean_7",
+        "dtype": "float",
+        "transformation": "mean of sales over days t-7..t-1 (shift(1).rolling(7))",
+        "purpose": "Smoothed recent level, excludes day t."
+      },
+      {
+        "feature": "roll_mean_14",
+        "dtype": "float",
+        "transformation": "mean of sales over days t-14..t-1 (shift(1).rolling(14))",
+        "purpose": "Smoothed recent level, excludes day t."
+      },
+      {
+        "feature": "roll_mean_28",
+        "dtype": "float",
+        "transformation": "mean of sales over days t-28..t-1 (shift(1).rolling(28))",
+        "purpose": "Smoothed recent level, excludes day t."
+      },
+      {
+        "feature": "roll_std_7",
+        "dtype": "float",
+        "transformation": "std of sales over days t-7..t-1",
+        "purpose": "Recent volatility, excludes day t."
+      },
+      {
+        "feature": "roll_std_28",
+        "dtype": "float",
+        "transformation": "std of sales over days t-28..t-1",
+        "purpose": "Recent volatility, excludes day t."
+      }
+    ],
+    "output": "data/processed/daily_sales.csv"
+  },
+  "updated_at": "2026-10-17T23:19:11+00:00",
+  "customer_segmentation": {
+    "input": "data/processed/retail_clean.csv.gz (record_type = purchase / cancellation, CustomerID present)",
+    "reference_date": "2011-12-10",
+    "reference_date_rule": "Day after the latest InvoiceDate in the dataset; fixed for both experiments.",
+    "feature_dictionary": [
+      {
+        "feature": "recency_days",
+        "unit": "days",
+        "definition": "Days between the reference date and the customer's latest valid purchase (calendar dates)."
+      },
+      {
+        "feature": "frequency",
+        "unit": "invoices",
+        "definition": "Number of distinct valid purchase invoices."
+      },
+      {
+        "feature": "monetary",
+        "unit": "GBP",
+        "definition": "Net merchandise spending: purchase revenue minus cancelled revenue."
+      },
+      {
+        "feature": "gross_revenue",
+        "unit": "GBP",
+        "definition": "Revenue of valid purchase lines before cancellations."
+      },
+      {
+        "feature": "cancelled_revenue",
+        "unit": "GBP",
+        "definition": "Absolute revenue of the customer's cancellation lines."
+      },
+      {
+        "feature": "avg_order_value",
+        "unit": "GBP per invoice",
+        "definition": "gross_revenue / frequency."
+      },
+      {
+        "feature": "avg_quantity_per_order",
+        "unit": "units per invoice",
+        "definition": "Purchased units / frequency."
+      },
+      {
+        "feature": "unique_products",
+        "unit": "products",
+        "definition": "Distinct StockCodes purchased."
+      },
+      {
+        "feature": "active_months",
+        "unit": "months",
+        "definition": "Distinct calendar months with at least one purchase."
+      },
+      {
+        "feature": "tenure_days",
+        "unit": "days",
+        "definition": "Days between the first valid purchase and the reference date."
+      }
+    ],
+    "operations": [
+      {
+        "operation": "deduplicate customer rows",
+        "result": "0 duplicates found"
+      },
+      {
+        "operation": "missing / infinite values",
+        "result": "missing {'recency_days': 0, 'frequency': 0, 'monetary': 0}, infinite {'recency_days': 0, 'frequency': 0, 'monetary': 0}; median imputation configured for inference"
+      },
+      {
+        "operation": "extreme values",
+        "result": {
+          "recency_days": 153,
+          "frequency": 278,
+          "monetary": 410
+        },
+        "decision": "Kept: extreme spenders are real customers; log1p limits their influence."
+      },
+      {
+        "operation": "negative monetary",
+        "result": "Excluded before modelling (net spending <= 0); clip-to-zero guard before log1p."
+      },
+      {
+        "operation": "log1p",
+        "features": [
+          "recency_days",
+          "frequency",
+          "monetary"
+        ],
+        "skewness_before": {
+          "recency_days": 1.2451277158335008,
+          "frequency": 11.937912246315063,
+          "monetary": 21.54846922612767
+        }
+      },
+      {
+        "operation": "StandardScaler",
+        "fitted_on": "4322 eligible customers (the reference population)"
+      }
+    ],
+    "skewness_after_transform": {
+      "recency_days": -0.32492956268005446,
+      "frequency": 1.2110238921591419,
+      "monetary": 0.29991734500547723
+    },
+    "outputs": [
+      "data/processed/customer_rfm.csv",
+      "data/processed/customer_features_processed.csv",
+      "data/processed/customer_segments.csv"
+    ]
+  }
+}

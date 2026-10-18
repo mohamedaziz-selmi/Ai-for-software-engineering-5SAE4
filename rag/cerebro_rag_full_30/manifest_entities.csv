@@ -1,0 +1,109 @@
+entity_or_document_id,pdf_id,pdf_filename,category,title_or_name
+CR-04,CR-04,CR-04_Requirements_Specification_Writing_Guide.pdf,Client requirements,CR-04 Requirements Specification Writing Guide
+CR-05,CR-05,CR-05_Acceptance_Criteria_Catalogue.pdf,Client requirements,CR-05 Acceptance Criteria Catalogue and Verification Methods
+CR-06,CR-06,CR-06_Clarification_QA_JOB-001_to_JOB-005.pdf,Client requirements,CR-06 Client Clarification Q&A: JOB-001 to JOB-005
+CR-07,CR-07,CR-07_Clarification_QA_JOB-006_to_JOB-010.pdf,Client requirements,CR-07 Client Clarification Q&A: JOB-006 to JOB-010
+CR-08,CR-08,CR-08_Client_Evaluation_Priorities_and_Weights.pdf,Client requirements,CR-08 Client Evaluation Priorities and Weight Profiles
+EK-05,EK-05,EK-05_Scoring_Rubric_Reference_Card.pdf,Evaluation knowledge base,EK-05 Scoring Rubric Reference Card
+EK-06,EK-06,EK-06_Worked_Scoring_Examples_Library.pdf,Evaluation knowledge base,EK-06 Worked Scoring Examples Library
+EK-07,EK-07,EK-07_Explanation_Templates_and_Citation_Style.pdf,Evaluation knowledge base,EK-07 Explanation Templates and Citation Style
+EK-08,EK-08,EK-08_Skill_Taxonomy_and_Synonyms.pdf,Evaluation knowledge base,"EK-08 Skill Taxonomy, Synonyms and Related Skills"
+EK-09,EK-09,EK-09_Budget_Estimation_Reference_Ranges.pdf,Evaluation knowledge base,EK-09 Budget Estimation Reference Ranges (Illustrative)
+EK-10,EK-10,EK-10_Time_Estimation_and_Capacity_Planning.pdf,Evaluation knowledge base,EK-10 Time Estimation and Capacity Planning Reference
+EK-11,EK-11,EK-11_Risk_Register_and_Proposal_Flags.pdf,Evaluation knowledge base,EK-11 Risk Register Catalogue and Proposal Flags
+EK-12,EK-12,EK-12_Fairness_Bias_and_Audit_Guidelines.pdf,Evaluation knowledge base,"EK-12 Fairness, Bias and Audit Guidelines"
+EK-13,EK-13,EK-13_RAG_Retrieval_and_Citation_Guide.pdf,Evaluation knowledge base,"EK-13 RAG Retrieval, Chunking and Citation Guide"
+EK-14,EK-14,EK-14_Glossary_FAQ_and_Edge_Cases.pdf,Evaluation knowledge base,"EK-14 Glossary, FAQ and Edge Cases"
+EST-001,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-001 Web Project Estimation Guide
+EST-002,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-002 Mobile Project Estimation Guide
+EST-003,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-003 AI Project Estimation Guide
+EST-004,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-004 Cloud and DevOps Estimation Guide
+EST-005,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-005 Project Deadline Risk Guide
+EST-006,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EST-006 Scope Change Management Guide
+EVA-001,EK-01,EK-01_Scoring_Criteria_and_Skill_Matching.pdf,Evaluation knowledge base,EVA-001 Skill Matching Methodology
+EVA-002,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EVA-002 Budget Compatibility Methodology
+EVA-003,EK-02,EK-02_Budget_and_Time_Estimation.pdf,Evaluation knowledge base,EVA-003 Deadline Compatibility Methodology
+EVA-004,EK-01,EK-01_Scoring_Criteria_and_Skill_Matching.pdf,Evaluation knowledge base,EVA-004 Experience Relevance Methodology
+EVA-005,EK-01,EK-01_Scoring_Criteria_and_Skill_Matching.pdf,Evaluation knowledge base,EVA-005 Evidence-Based Recommendation and Overall Scoring
+EVA-006,EK-03,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Evaluation knowledge base,EVA-006 Proposal Risk and Fairness Methodology
+EVA-007,EK-03,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Evaluation knowledge base,EVA-007 Proposal Quality Criteria
+FP-04,FP-04,FP-04_Estimation_Examples_JOB-001_to_JOB-005.pdf,Freelancer proposals,FP-04 Estimation Examples by Job: JOB-001 to JOB-005
+FP-05,FP-05,FP-05_Estimation_Examples_JOB-006_to_JOB-010.pdf,Freelancer proposals,FP-05 Estimation Examples by Job: JOB-006 to JOB-010
+FP-06,FP-06,FP-06_Milestone_Plan_and_Payment_Schedule_Examples.pdf,Freelancer proposals,FP-06 Milestone Plan and Payment Schedule Examples
+FP-07,FP-07,FP-07_Technical_Approach_and_Reference_Architectures.pdf,Freelancer proposals,FP-07 Technical Approach and Reference Architectures by Job
+FP-08,FP-08,FP-08_Freelancer_Availability_and_Workload_Plans.pdf,Freelancer proposals,"FP-08 Freelancer Availability, Workload and Capacity Plans"
+FRE-001,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Lina Haddad
+FRE-002,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Omar Belkacem
+FRE-003,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Sofia Marenko
+FRE-004,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Daniel Okafor
+FRE-005,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Priya Raman
+FRE-006,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Mateo Alvarez
+JOB-001,CR-01,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Client requirements,JOB-001 Project Brief: B2B ordering portal (Angular + Spring Boot)
+JOB-001-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-001 Requirements Specification and Acceptance Criteria
+JOB-002,CR-01,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Client requirements,JOB-002 Project Brief: Analytics dashboard front end
+JOB-002-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-002 Requirements Specification and Acceptance Criteria
+JOB-003,CR-01,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Client requirements,JOB-003 Project Brief: RAG assistant for company documents
+JOB-003-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-003 Requirements Specification and Acceptance Criteria
+JOB-004,CR-01,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Client requirements,JOB-004 Project Brief: Kubernetes migration with CI/CD
+JOB-004-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-004 Requirements Specification and Acceptance Criteria
+JOB-005,CR-01,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Client requirements,JOB-005 Project Brief: Flutter fitness booking app
+JOB-005-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-005 Requirements Specification and Acceptance Criteria
+JOB-006,CR-02,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf,Client requirements,JOB-006 Project Brief: Retail recommendation engine
+JOB-006-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-006 Requirements Specification and Acceptance Criteria
+JOB-007,CR-02,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf,Client requirements,JOB-007 Project Brief: Marketplace platform MVP
+JOB-007-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-007 Requirements Specification and Acceptance Criteria
+JOB-008,CR-02,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf,Client requirements,JOB-008 Project Brief: API performance and database tuning
+JOB-008-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-008 Requirements Specification and Acceptance Criteria
+JOB-009,CR-02,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf,Client requirements,JOB-009 Project Brief: E-commerce storefront refresh
+JOB-009-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-009 Requirements Specification and Acceptance Criteria
+JOB-010,CR-02,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf,Client requirements,JOB-010 Project Brief: CI/CD pipeline and container hardening
+JOB-010-SPEC,CR-03,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Client requirements,JOB-010 Requirements Specification and Acceptance Criteria
+PORT-001,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PORT-001 Freelancer Portfolios and Evidence Summaries (FRE-001 to FRE-006)
+PRJ-001,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,Souk Nova Online Marketplace Storefront
+PRJ-002,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,TaskBridge Freelance Marketplace
+PRJ-003,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,ShopSense Product Recommendation Engine
+PRJ-004,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,DocuPilot RAG Knowledge Assistant
+PRJ-005,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,LaunchPad Cloud Deployment Platform
+PRJ-006,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,RoamLite Mobile Travel Companion
+PRP-001,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-001 Proposal by FRE-001 for JOB-001
+PRP-002,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-002 Proposal by FRE-003 for JOB-001
+PRP-003,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-003 Proposal by FRE-002 for JOB-001
+PRP-004,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-004 Proposal by FRE-006 for JOB-001
+PRP-005,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-005 Proposal by FRE-002 for JOB-002
+PRP-006,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-006 Proposal by FRE-001 for JOB-002
+PRP-007,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-007 Proposal by FRE-003 for JOB-002
+PRP-008,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-008 Proposal by FRE-006 for JOB-002
+PRP-009,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-009 Proposal by FRE-004 for JOB-003
+PRP-010,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-010 Proposal by FRE-003 for JOB-003
+PRP-011,FP-01,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Freelancer proposals,PRP-011 Proposal by FRE-005 for JOB-003
+PRP-012,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-012 Proposal by FRE-005 for JOB-004
+PRP-013,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-013 Proposal by FRE-001 for JOB-004
+PRP-014,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-014 Proposal by FRE-003 for JOB-004
+PRP-015,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-015 Proposal by FRE-006 for JOB-005
+PRP-016,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-016 Proposal by FRE-002 for JOB-005
+PRP-017,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-017 Proposal by FRE-001 for JOB-005
+PRP-018,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-018 Proposal by FRE-004 for JOB-006
+PRP-019,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-019 Proposal by FRE-003 for JOB-006
+PRP-020,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-020 Proposal by FRE-001 for JOB-007
+PRP-021,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-021 Proposal by FRE-003 for JOB-007
+PRP-022,FP-02,FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf,Freelancer proposals,PRP-022 Proposal by FRE-002 for JOB-007
+PRP-023,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-023 Proposal by FRE-003 for JOB-008
+PRP-024,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-024 Proposal by FRE-001 for JOB-008
+PRP-025,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-025 Proposal by FRE-005 for JOB-008
+PRP-026,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-026 Proposal by FRE-002 for JOB-009
+PRP-027,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-027 Proposal by FRE-001 for JOB-009
+PRP-028,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-028 Proposal by FRE-005 for JOB-010
+PRP-029,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-029 Proposal by FRE-001 for JOB-010
+PRP-030,FP-03,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Freelancer proposals,PRP-030 Proposal by FRE-004 for JOB-010
+QUA-001,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,QUA-001 Code Quality and Maintainability Indicators
+QUA-002,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,"QUA-002 Testing, Defect Handling and Reliability Indicators"
+QUA-003,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,QUA-003 Communication and Collaboration Indicators
+QUA-004,EK-03,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Evaluation knowledge base,QUA-004 Client Review Interpretation Guide
+QUA-005,EK-03,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Evaluation knowledge base,QUA-005 Delivery and Deadline Performance Indicators
+QUA-006,EK-03,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Evaluation knowledge base,QUA-006 Professional Conduct and Collaboration Standards
+TEC-001,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-001 Frontend Engineering Competency Guide
+TEC-002,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-002 Backend and API Engineering Competency Guide
+TEC-003,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-003 Database Design Competency Guide
+TEC-004,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-004 AI and Machine Learning Engineering Competency Guide
+TEC-005,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-005 DevOps and Cloud Engineering Competency Guide
+TEC-006,EK-04,EK-04_Technical_Competency_and_Quality_Standards.pdf,Evaluation knowledge base,TEC-006 Mobile Engineering Competency Guide

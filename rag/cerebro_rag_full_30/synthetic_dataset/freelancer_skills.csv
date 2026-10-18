@@ -1,0 +1,48 @@
+freelancer_id,skill,level,level_label,evidence_status,project_ids,evidence
+FRE-001,Angular,3,L3 Proficient,verified,PRJ-001;PRJ-002,Built the checkout and account modules in PRJ-001 with 14 component tests; built the job-posting wizard in PRJ-002.
+FRE-001,TypeScript,3,L3 Proficient,verified,PRJ-001;PRJ-002,Typed models and service layer for the PRJ-001 checkout module; strict mode enabled in PRJ-002.
+FRE-001,Spring Boot,3,L3 Proficient,verified,PRJ-001;PRJ-002;PRJ-006,"Implemented the catalog service in PRJ-001, job services in PRJ-002 and the itinerary API in PRJ-006."
+FRE-001,REST API design,3,L3 Proficient,verified,PRJ-001;PRJ-006,Published OpenAPI specifications for the catalog service (PRJ-001) and itinerary API (PRJ-006).
+FRE-001,PostgreSQL,3,L3 Proficient,verified,PRJ-001;PRJ-002;PRJ-006,Designed the catalog schema and Flyway migrations in PRJ-001; documented indexing choices in PRJ-002.
+FRE-001,Docker,2,L2 Working,verified,PRJ-001,Wrote the docker-compose development environment in PRJ-001; no production container evidence.
+FRE-001,Unit testing,2,L2 Working,verified,PRJ-001,Wrote 14 Angular component tests in PRJ-001; backend test coverage in PRJ-002 not documented.
+FRE-001,Kubernetes,2,L2 Working,claimed,,Listed on her profile; no project evidence exists in the dataset.
+FRE-001,CI/CD,1,L1 Familiar,claimed,,"Mentions pipelines on her profile; PRJ-001 pipeline was built by FRE-005, not FRE-001."
+FRE-002,Angular,4,L4 Advanced,verified,PRJ-001;PRJ-002,"Implemented product filtering, pagination and unit tests in PRJ-001; built the freelancer dashboard with lazy-loaded modules in PRJ-002."
+FRE-002,TypeScript,4,L4 Advanced,verified,PRJ-001;PRJ-002,Defined shared typed contracts used by PRJ-002 dashboard components.
+FRE-002,RxJS,3,L3 Proficient,verified,PRJ-001;PRJ-002,Used debounced RxJS streams for PRJ-001 search-as-you-type and for PRJ-002 dashboard polling.
+FRE-002,NgRx,3,L3 Proficient,verified,PRJ-002,"Introduced NgRx store, effects and selectors for the PRJ-002 proposals dashboard."
+FRE-002,Unit testing,3,L3 Proficient,verified,PRJ-001;PRJ-002,Jasmine/Karma tests for the PRJ-001 filtering component and 31 tests for PRJ-002 selectors and effects.
+FRE-002,Accessibility,2,L2 Working,verified,PRJ-002,Fixed keyboard navigation and label issues found in a partial PRJ-002 audit; no full WCAG audit documented.
+FRE-002,Integration testing,2,L2 Working,claimed,,End-to-end (Cypress) experience is claimed; no test artifacts exist in the dataset.
+FRE-003,Spring Boot,4,L4 Advanced,verified,PRJ-001;PRJ-002;PRJ-003;PRJ-004,"Implemented the order and inventory services in PRJ-001, the proposal and escrow ledger services in PRJ-002, the gateway in PRJ-003 and the admin API in PRJ-004."
+FRE-003,Spring Security,3,L3 Proficient,verified,PRJ-002;PRJ-004,Implemented JWT authentication and role checks in PRJ-002 and PRJ-004.
+FRE-003,REST API design,4,L4 Advanced,verified,PRJ-001;PRJ-002;PRJ-004,Versioned APIs with documented error contracts in PRJ-002.
+FRE-003,PostgreSQL,4,L4 Advanced,verified,PRJ-001;PRJ-002,Rewrote indexes for the PRJ-001 order-list query; illustrative latency fell from 1.8 s to 0.4 s.
+FRE-003,Redis,2,L2 Working,verified,PRJ-001,Added session and catalog caching in PRJ-001; no cluster or eviction tuning documented.
+FRE-003,Unit testing,3,L3 Proficient,verified,PRJ-002;PRJ-004,JUnit tests for ledger rules in PRJ-002.
+FRE-003,Integration testing,3,L3 Proficient,verified,PRJ-002;PRJ-004,Testcontainers-based PostgreSQL integration tests in PRJ-002 and PRJ-004.
+FRE-003,Docker,2,L2 Working,verified,PRJ-004,Wrote the Dockerfile for the PRJ-004 admin API; deployment was done by FRE-005.
+FRE-003,Apache Kafka,2,L2 Working,claimed,,Event streaming is claimed; no artifact exists in the dataset.
+FRE-004,Python,4,L4 Advanced,verified,PRJ-003;PRJ-004,"Implemented data preparation, training and API code in PRJ-003 and the ingestion pipeline in PRJ-004."
+FRE-004,scikit-learn,3,L3 Proficient,verified,PRJ-003,Built the collaborative-filtering baseline and offline evaluation in PRJ-003.
+FRE-004,PyTorch,2,L2 Working,verified,PRJ-003,Ran a neural ranking experiment in PRJ-003; it was not deployed.
+FRE-004,FastAPI,3,L3 Proficient,verified,PRJ-004,Built the retrieval and answer endpoints of PRJ-004.
+FRE-004,Vector search,3,L3 Proficient,verified,PRJ-004,Configured ChromaDB collections and metadata filters in PRJ-004.
+FRE-004,RAG pipeline,3,L3 Proficient,verified,PRJ-004,"Implemented chunking, hybrid retrieval and citation output in PRJ-004."
+FRE-004,LLM evaluation,2,L2 Working,verified,PRJ-004,Built a 60-question evaluation set in PRJ-004; no automated regression gate.
+FRE-004,Docker,2,L2 Working,verified,PRJ-004,Containerized the PRJ-004 pipeline for local use; deployment was done by FRE-005.
+FRE-004,Monitoring,2,L2 Working,claimed,,Model monitoring is claimed; no dashboards exist in the dataset.
+FRE-005,Docker,4,L4 Advanced,verified,PRJ-001;PRJ-004;PRJ-005,"Multi-stage images and image scanning gates across PRJ-001, PRJ-004 and PRJ-005."
+FRE-005,Kubernetes,3,L3 Proficient,verified,PRJ-005,Migrated services to a staging cluster in PRJ-005; production migration unresolved.
+FRE-005,CI/CD,4,L4 Advanced,verified,PRJ-001;PRJ-005,Authored the GitHub Actions pipelines for PRJ-001 and PRJ-005.
+FRE-005,Terraform,3,L3 Proficient,verified,PRJ-005,Provisioned networking and compute modules for PRJ-005.
+FRE-005,AWS,3,L3 Proficient,verified,PRJ-005,Designed the PRJ-005 environment on AWS with separate staging and production accounts.
+FRE-005,Monitoring,3,L3 Proficient,verified,PRJ-005,Prometheus and Grafana dashboards with alert rules for PRJ-005.
+FRE-005,Security scanning,2,L2 Working,claimed,,Security scanning in pipelines is claimed; PRJ-001 scan reports are not in the dataset.
+FRE-006,Flutter,3,L3 Proficient,verified,PRJ-006,"Built the itinerary, map and booking screens in PRJ-006 and published an Android internal-testing build."
+FRE-006,Dart,3,L3 Proficient,verified,PRJ-006,Wrote the Dart domain layer and repositories for PRJ-006.
+FRE-006,Offline storage,2,L2 Working,verified,PRJ-006,Local SQLite storage for itineraries in PRJ-006; sync conflicts were not fully resolved.
+FRE-006,Firebase push,2,L2 Working,verified,PRJ-006,Implemented Firebase Cloud Messaging notifications for itinerary changes in PRJ-006.
+FRE-006,Unit testing,2,L2 Working,verified,PRJ-006,Widget and unit tests for the PRJ-006 booking flow; coverage figure not documented.
+FRE-006,Native mobile,2,L2 Working,claimed,,Native Android/iOS module experience is claimed; no artifact exists in the dataset.

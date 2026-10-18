@@ -1,0 +1,146 @@
+{
+  "features": [
+    "recency_days",
+    "frequency",
+    "monetary"
+  ],
+  "feature_order": [
+    "recency_days",
+    "frequency",
+    "monetary"
+  ],
+  "imputation": {
+    "strategy": "median of reference population",
+    "values": {
+      "recency_days": 51.0,
+      "frequency": 2.0,
+      "monetary": 649.5550000000001
+    }
+  },
+  "negative_monetary_policy": "clip to 0 before log1p (only eligible customers with net spending > 0 are modelled)",
+  "skew_threshold": 1.0,
+  "skewness_before_log": {
+    "recency_days": 1.2451277158335008,
+    "frequency": 11.937912246315063,
+    "monetary": 21.54846922612767
+  },
+  "log1p_features": [
+    "recency_days",
+    "frequency",
+    "monetary"
+  ],
+  "scaler": {
+    "type": "StandardScaler",
+    "mean": [
+      3.8565741435187904,
+      1.3432519469102737,
+      6.552368956269202
+    ],
+    "scale": [
+      1.3076196181625952,
+      0.6819149073479293,
+      1.2569891837146152
+    ]
+  },
+  "selected_k": 4,
+  "reference_date": "2011-12-10",
+  "label_rules": [
+    {
+      "label": "High-value customers",
+      "all": {
+        "monetary_pct": [
+          ">=",
+          0.8
+        ],
+        "frequency_pct": [
+          ">=",
+          0.75
+        ],
+        "recency_pct": [
+          "<=",
+          0.5
+        ]
+      }
+    },
+    {
+      "label": "Loyal customers",
+      "all": {
+        "frequency_pct": [
+          ">=",
+          0.6
+        ],
+        "recency_pct": [
+          "<=",
+          0.5
+        ]
+      }
+    },
+    {
+      "label": "At-risk customers",
+      "all": {
+        "monetary_pct": [
+          ">=",
+          0.5
+        ],
+        "recency_pct": [
+          ">=",
+          0.6
+        ]
+      }
+    },
+    {
+      "label": "Inactive customers",
+      "all": {
+        "recency_pct": [
+          ">=",
+          0.7
+        ],
+        "frequency_pct": [
+          "<",
+          0.5
+        ]
+      }
+    },
+    {
+      "label": "Recent occasional customers",
+      "all": {
+        "recency_pct": [
+          "<=",
+          0.4
+        ],
+        "frequency_pct": [
+          "<",
+          0.5
+        ]
+      }
+    },
+    {
+      "label": "Occasional customers",
+      "all": {
+        "frequency_pct": [
+          "<",
+          0.5
+        ]
+      }
+    },
+    {
+      "label": "Regular customers",
+      "all": {}
+    }
+  ],
+  "segment_actions": {
+    "High-value customers": "Protect: VIP loyalty rewards, early access, and account management; monitor for any drop in order frequency.",
+    "Loyal customers": "Grow: loyalty points, cross-sell related product ranges, and referral incentives.",
+    "At-risk customers": "Win back: personalised re-engagement offers based on past purchases before they lapse.",
+    "Inactive customers": "Reactivate cheaply: low-cost reminder campaigns; suppress from expensive channels if they stay inactive.",
+    "Recent occasional customers": "Nurture: onboarding sequence and a second-purchase incentive to build frequency.",
+    "Occasional customers": "Develop: seasonal promotions and bundles to increase order frequency.",
+    "Regular customers": "Maintain: standard newsletters and periodic offers; test upsell to higher order values."
+  },
+  "cluster_labels": {
+    "0": "Regular customers",
+    "1": "Recent occasional customers",
+    "2": "Inactive customers",
+    "3": "High-value customers"
+  }
+}

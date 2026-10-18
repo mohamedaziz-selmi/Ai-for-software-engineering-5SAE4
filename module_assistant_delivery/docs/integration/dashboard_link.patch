@@ -1,0 +1,79 @@
+diff --git a/src/App.jsx b/src/App.jsx
+index 1fbaafc..3dd5d4f 100644
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -4,6 +4,7 @@ import BusinessIntelligenceWorkspace from "./BusinessIntelligence.jsx";
+ import brandLogo from "../logo.png";
+ import chatPreview from "./chat-preview.svg";
+ import biPreview from "./bi-preview.svg";
++import assistantPreview from "../module_assistant_delivery/frontend/tile-preview.svg";
+ 
+ const projects = [
+ 	{
+@@ -75,6 +76,12 @@ const galleryProjects = [
+ 		name: "Cerebro AI",
+ 		images: [chatPreview],
+ 	},
++	{
++		id: "assistant-delivery",
++		name: "AI Assistant & Delivery Review",
++		images: [assistantPreview],
++		href: "/assistant/",
++	},
+ 	{ ...projects[0], id: "bee-tickets-copy-2" },
+ ];
+ 
+@@ -1123,6 +1130,10 @@ export default function App() {
+ 			suppressClick.current = false;
+ 			return;
+ 		}
++		if (project.href) {
++			window.location.assign(project.href);
++			return;
++		}
+ 		setActiveProject(project);
+ 	}, []);
+ 	const handleProjectHover = useCallback((project) => setHoveredProject(project), []);
+@@ -1191,7 +1202,7 @@ export default function App() {
+ 					/>
+ 					<div className="project-accessibility-list" aria-label="Project list">
+ 						{galleryProjects.map((project) => (
+-							<button key={project.id} onClick={() => setActiveProject(project)}>
++							<button key={project.id} onClick={() => project.href ? window.location.assign(project.href) : setActiveProject(project)}>
+ 								Open {project.name}
+ 							</button>
+ 						))}
+diff --git a/vite.config.js b/vite.config.js
+index 680af7d..53d7989 100644
+--- a/vite.config.js
++++ b/vite.config.js
+@@ -23,6 +23,11 @@ const module5Proxy = {
+ 	changeOrigin: true,
+ };
+ 
++const assistantProxy = {
++	target: "http://127.0.0.1:8003",
++	changeOrigin: true,
++};
++
+ export default defineConfig({
+ 	publicDir: "cerebro/_next/static/media",
+ 	server: {
+@@ -34,6 +39,8 @@ export default defineConfig({
+ 			"/rag-api": ragProxy,
+ 			"/sentiment-api": sentimentProxy,
+ 			"/api/module5": module5Proxy,
++			"/api/ai": assistantProxy,
++			"/assistant": assistantProxy,
+ 		},
+ 	},
+ 	preview: {
+@@ -42,6 +49,8 @@ export default defineConfig({
+ 			"/rag-api": ragProxy,
+ 			"/sentiment-api": sentimentProxy,
+ 			"/api/module5": module5Proxy,
++			"/api/ai": assistantProxy,
++			"/assistant": assistantProxy,
+ 		},
+ 	},
+ });

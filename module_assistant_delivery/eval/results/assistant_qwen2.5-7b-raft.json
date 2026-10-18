@@ -1,0 +1,1182 @@
+{
+  "summary": {
+    "label": "qwen2.5-7b-raft",
+    "model": "assistant-raft:qwen2.5-7b",
+    "embedding_model": "intfloat/multilingual-e5-base",
+    "top_k": 5,
+    "questions": 33,
+    "errors": 0,
+    "keyword_correct_answerable": "20/24",
+    "answered_with_gold_section_citation": "21/24",
+    "abstained_when_unsupported": "9/9",
+    "scope_verdict_ok": "3/5",
+    "json_valid_first_try": "33/33",
+    "answers_with_dropped_citations": "1/22",
+    "withheld_after_verification": 2,
+    "latency_ms_p50": 1897,
+    "latency_ms_p95": 6952,
+    "gpu_memory_used_mib_after_warmup": 6313,
+    "ran_at": "2026-10-18T15:14:22+00:00"
+  },
+  "records": [
+    {
+      "id": "Q01",
+      "type": "fact",
+      "lang": "en",
+      "question": "What are the non-negotiable requirements of this project?",
+      "error": null,
+      "wall_ms": 7020,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The non-negotiable requirements are: at most 20 orders per 15-minute pickup slot; WCAG 2.1 level AA; servers in Tunisia or the European Union; passwords hashed with Argon2id or bcrypt and two-factor authentication for staff; LCP under 2.5 s on 4G.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "a shop accepts at most 20 orders per 15-minute pickup slot, and booking for a slot closes 2 hours before the slot starts"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer-facing pages meet WCAG 2.1 level AA"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer personal data is stored only on servers located in Tunisia or the European Union"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "passwords are hashed with Argon2id or bcrypt"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "every staff back-office account uses two-factor authentication"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "the catalogue page reaches Largest Contentful Paint in under 2.5 seconds on a simulated 4G connection"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 6952,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q02",
+      "type": "fact",
+      "lang": "en",
+      "question": "How many orders can a shop accept per pickup slot?",
+      "error": null,
+      "wall_ms": 2193,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: at most 20 orders per 15-minute pickup slot.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "a shop accepts at most 20 orders per 15-minute pickup slot"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2062,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q03",
+      "type": "fact",
+      "lang": "en",
+      "question": "When does booking for a pickup slot close?",
+      "error": null,
+      "wall_ms": 2073,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: at most 2 hours before the slot starts.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C2",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "booking for a slot closes 2 hours before the slot starts"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1993,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q04",
+      "type": "fact",
+      "lang": "en",
+      "question": "Which accessibility standard must the customer pages meet?",
+      "error": null,
+      "wall_ms": 1787,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: WCAG 2.1 level AA.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer-facing pages meet WCAG 2.1 level AA"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1711,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q05",
+      "type": "fact",
+      "lang": "en",
+      "question": "How must user passwords be stored?",
+      "error": null,
+      "wall_ms": 1704,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: passwords hashed with Argon2id or bcrypt.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C2",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "passwords are hashed with Argon2id or bcrypt"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1673,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q06",
+      "type": "fact",
+      "lang": "en",
+      "question": "What is the fixed price of the project?",
+      "error": null,
+      "wall_ms": 2018,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The fixed price is 18,000 TND excluding VAT.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+          "quote": "Fixed price: 18,000 TND excluding VAT"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1955,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q07",
+      "type": "fact",
+      "lang": "en",
+      "question": "How is the payment split across the milestones?",
+      "error": null,
+      "wall_ms": 8875,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "M1 is due at the end of week 3 (clickable prototype, data model, deployment plan), and 20% is paid then; M2 is due at the end of week 7 (working ordering flow on staging, slot capacity rule, automated tests), and 30% is paid then; M3 is due at the end of week 10 (staff back-office, email notifications, accessibility audit report), and 30% is paid then; the final milestone is due at the end of week 12 (production deployment, handover documentation, source code), and 20% is paid then.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+          "quote": "Clickable prototype of the customer flow, data model, deployment plan"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+          "quote": "Customer ordering flow working on staging, with the slot capacity rule and automated tests"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+          "quote": "Staff back-office, email notifications, accessibility audit report"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+          "quote": "Production deployment, handover documentation, source code"
+        }
+      ],
+      "dropped": [
+        {
+          "label": "C1",
+          "quote": "M1 Due: End of week 3",
+          "reason": "quote_not_in_chunk"
+        },
+        {
+          "label": "C1",
+          "quote": "M2 Due: End of week 7",
+          "reason": "quote_not_in_chunk"
+        },
+        {
+          "label": "C1",
+          "quote": "M3 Due: End of week 10",
+          "reason": "quote_not_in_chunk"
+        },
+        {
+          "label": "C1",
+          "quote": "Final Due: End of week 12",
+          "reason": "quote_not_in_chunk"
+        }
+      ],
+      "latency_ms": 8816,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q08",
+      "type": "fact",
+      "lang": "en",
+      "question": "What must be delivered at milestone M2?",
+      "error": null,
+      "wall_ms": 3160,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found_after_verification",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [
+        {
+          "label": "C1",
+          "quote": "M2 Due: End of week 7; Deliverables: Customer ordering flow working on staging, with the slot capacity rule and automated tests; Payment: 30%",
+          "reason": "quote_not_in_chunk"
+        }
+      ],
+      "latency_ms": 3122,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": false,
+      "correct": false
+    },
+    {
+      "id": "Q09",
+      "type": "fact",
+      "lang": "en",
+      "question": "How many days does the client have to review a milestone?",
+      "error": null,
+      "wall_ms": 1902,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The client has 5 business days to review each milestone.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+          "quote": "The client has 5 business days to review each milestone"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1868,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q10",
+      "type": "fact",
+      "lang": "en",
+      "question": "How many rounds of revisions are included per milestone?",
+      "error": null,
+      "wall_ms": 1932,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Each milestone includes up to 2 rounds of revisions.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+          "quote": "Each milestone includes up to 2 rounds of revisions"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1862,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q11",
+      "type": "fact",
+      "lang": "en",
+      "question": "How long is the warranty after final acceptance?",
+      "error": null,
+      "wall_ms": 2243,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Defects reported within 60 days after final acceptance are fixed at no extra cost.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C2",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+          "quote": "the freelancer fixes defects reported within 60 days after final acceptance at no extra cost"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2193,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q12",
+      "type": "fact",
+      "lang": "en",
+      "question": "When does intellectual property on the application transfer to the client?",
+      "error": null,
+      "wall_ms": 1869,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Intellectual property transfers to the client after the final payment.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+          "quote": "Intellectual property on the delivered application transfers to the client after the final payment"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1818,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q13",
+      "type": "fact",
+      "lang": "en",
+      "question": "How much notice is needed to terminate the contract?",
+      "error": null,
+      "wall_ms": 1845,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Either party may terminate with 15 days of written notice.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+          "quote": "either party may terminate with 15 days of written notice"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1799,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q14",
+      "type": "fact",
+      "lang": "en",
+      "question": "How quickly must the customer receive the order confirmation email?",
+      "error": null,
+      "wall_ms": 2318,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: within 1 minute of placing the order.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C3",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+          "quote": "A customer receives an email confirmation with the order number, pickup shop and slot within 1 minute of placing the order"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2240,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q15",
+      "type": "fact",
+      "lang": "en",
+      "question": "Until when can a customer cancel an order?",
+      "error": null,
+      "wall_ms": 2095,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: cancellations up to 3 hours before the pickup slot.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+          "quote": "A customer can cancel an order up to 3 hours before the pickup slot"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2015,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "Q16",
+      "type": "fact",
+      "lang": "en",
+      "question": "Where may customer personal data be stored?",
+      "error": null,
+      "wall_ms": 1768,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "The requirement is: servers in Tunisia or the European Union.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer personal data is stored only on servers located in Tunisia or the European Union"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1735,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 1. Context and objectives"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "S01",
+      "type": "scope",
+      "lang": "en",
+      "question": "The client now wants customers to pay online by card. Is that in scope?",
+      "error": null,
+      "wall_ms": 2740,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "No. Online card payment is not listed in the in-scope features, so it is a change request: the freelancer sends an estimate and work starts only after written approval.",
+      "scope_verdict": "out_of_scope",
+      "citations": [
+        {
+          "label": "C3",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+          "quote": "Any feature that is not listed in section 3.1 is a change request"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2666,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 1. Context and objectives",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": false,
+      "correct": false,
+      "scope_ok": true
+    },
+    {
+      "id": "S02",
+      "type": "scope",
+      "lang": "en",
+      "question": "The client asks for a dark mode. Is that in scope?",
+      "error": null,
+      "wall_ms": 2568,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "No. Dark mode is not listed in the in-scope features, so it is a change request: the freelancer sends an estimate and work starts only after written approval.",
+      "scope_verdict": "out_of_scope",
+      "citations": [
+        {
+          "label": "C2",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+          "quote": "Any feature that is not listed in section 3.1 is a change request"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2528,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true,
+      "scope_ok": true
+    },
+    {
+      "id": "S03",
+      "type": "scope",
+      "lang": "en",
+      "question": "Is exporting the daily order list as CSV part of the project?",
+      "error": null,
+      "wall_ms": 2171,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found_after_verification",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [
+        {
+          "label": "C4",
+          "quote": "export the daily order list as a CSV file",
+          "reason": "quote_not_in_chunk"
+        }
+      ],
+      "latency_ms": 2107,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.1 In scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": false,
+      "correct": false,
+      "scope_ok": false
+    },
+    {
+      "id": "S04",
+      "type": "scope",
+      "lang": "en",
+      "question": "Is a native Android app included in the project?",
+      "error": null,
+      "wall_ms": 2165,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "No, it is out of scope: section 3.2 lists \"native mobile applications for iOS or Android\" as excluded.",
+      "scope_verdict": "out_of_scope",
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+          "quote": "Native mobile applications for iOS or Android"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2122,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true,
+      "scope_ok": true
+    },
+    {
+      "id": "F01",
+      "type": "fact",
+      "lang": "fr",
+      "question": "Quelle est la durée de la garantie après la réception finale ?",
+      "error": null,
+      "wall_ms": 2236,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Les défauts signalés dans les 60 jours suivant la réception finale sont corrigés sans frais.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C2",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+          "quote": "the freelancer fixes defects reported within 60 days after final acceptance at no extra cost"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2193,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "F02",
+      "type": "fact",
+      "lang": "fr",
+      "question": "Quelles sont les exigences non négociables du projet ?",
+      "error": null,
+      "wall_ms": 7219,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Les exigences non négociables sont : au maximum 20 commandes par créneau de retrait de 15 minutes ; WCAG 2.1 niveau AA ; des serveurs situés en Tunisie ou dans l'Union européenne ; mots de passe hachés avec Argon2id ou bcrypt, et authentification à deux facteurs pour les administrateurs ; LCP inférieur à 2,5 s en 4G.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "a shop accepts at most 20 orders per 15-minute pickup slot"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer-facing pages meet WCAG 2.1 level AA"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "customer personal data is stored only on servers located in Tunisia or the European Union"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "passwords are hashed with Argon2id or bcrypt"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "every staff back-office account uses two-factor authentication"
+        },
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+          "quote": "the catalogue page reaches Largest Contentful Paint in under 2.5 seconds on a simulated 4G connection"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 7182,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "F03",
+      "type": "scope",
+      "lang": "fr",
+      "question": "La livraison à domicile est-elle incluse dans le périmètre du projet ?",
+      "error": null,
+      "wall_ms": 2079,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Oui, c'est inclus : les fonctionnalités prévues comprennent « home delivery to customer addresses ».",
+      "scope_verdict": "in_scope",
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+          "quote": "Home delivery to customer addresses"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 2022,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.2 Out of scope",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": false,
+      "scope_ok": false
+    },
+    {
+      "id": "F04",
+      "type": "fact",
+      "lang": "fr",
+      "question": "Combien de jours ouvrables le client a-t-il pour valider un jalon ?",
+      "error": null,
+      "wall_ms": 1978,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "answered",
+      "answer": "Le client dispose de 5 jours ouvrables pour valider chaque jalon.",
+      "scope_verdict": null,
+      "citations": [
+        {
+          "label": "C1",
+          "section": "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+          "quote": "The client has 5 business days to review each milestone"
+        }
+      ],
+      "dropped": [],
+      "latency_ms": 1897,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication"
+      ],
+      "gold_retrieved": true,
+      "cites_gold": true,
+      "correct": true
+    },
+    {
+      "id": "U01",
+      "type": "unanswerable",
+      "lang": "en",
+      "question": "What is the hosting budget for the second year?",
+      "error": null,
+      "wall_ms": 1193,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1137,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "U02",
+      "type": "unanswerable",
+      "lang": "en",
+      "question": "Which cloud provider will host the production environment?",
+      "error": null,
+      "wall_ms": 1325,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1288,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "U03",
+      "type": "unanswerable",
+      "lang": "en",
+      "question": "What is the name of the client's lawyer?",
+      "error": null,
+      "wall_ms": 1197,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1134,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "U04",
+      "type": "unanswerable",
+      "lang": "en",
+      "question": "How many developers will the freelancer subcontract?",
+      "error": null,
+      "wall_ms": 1123,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1073,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 2. Parties and roles",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "U05",
+      "type": "unanswerable",
+      "lang": "fr",
+      "question": "Quel est le budget marketing prévu pour le lancement ?",
+      "error": null,
+      "wall_ms": 1316,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "Cette information ne figure pas dans les documents du projet.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1279,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 6. Technical constraints",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "U06",
+      "type": "unanswerable",
+      "lang": "en",
+      "question": "What hourly rate applies to change requests?",
+      "error": null,
+      "wall_ms": 1235,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1185,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 8. Acceptance and review"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "I01",
+      "type": "isolation",
+      "lang": "en",
+      "question": "What is the fixed price of the Clinique Horizon appointment reminder service?",
+      "error": null,
+      "wall_ms": 1260,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "This is not covered in the project documents.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1209,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 3. Scope > 3.3 Change requests"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "O01",
+      "type": "offtopic",
+      "lang": "en",
+      "question": "What will the weather be in Tunis tomorrow?",
+      "error": null,
+      "wall_ms": 1469,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "I can only help with this project's documents: requirements, scope, deliverables, milestones and contract terms.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1433,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 5. Functional requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 9. Contract terms",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 1. Context and objectives",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    },
+    {
+      "id": "O02",
+      "type": "offtopic",
+      "lang": "en",
+      "question": "Write me a short poem about croissants.",
+      "error": null,
+      "wall_ms": 1621,
+      "json_first_try_ok": true,
+      "llm_calls": [
+        "ok"
+      ],
+      "status": "not_found",
+      "answer": "I can only help with this project's documents: requirements, scope, deliverables, milestones and contract terms.",
+      "scope_verdict": null,
+      "citations": [],
+      "dropped": [],
+      "latency_ms": 1535,
+      "retrieved_sections": [
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 1. Context and objectives",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 4. Non-negotiable requirements",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 7. Milestones and deliverables",
+        "Project Specification (Cahier des charges): Atelier Lumière Online Ordering > 10. Communication"
+      ],
+      "gold_retrieved": null,
+      "cites_gold": null,
+      "abstained": true
+    }
+  ]
+}

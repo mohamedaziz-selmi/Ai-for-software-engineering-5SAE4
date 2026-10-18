@@ -1,0 +1,232 @@
+{
+  "sales_forecasting": {
+    "dataset": "Store Sales - Time Series Forecasting",
+    "steps": [
+      {
+        "step": "drop_exact_duplicates",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Identical rows add no information.",
+        "policy": "Remove exact duplicate rows only after counting them."
+      },
+      {
+        "step": "check_business_key_duplicates",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Investigation only: conflicting rows for the same (date, store_nbr, family) would be reported, not silently dropped.",
+        "duplicate_key_rows": 0
+      },
+      {
+        "step": "drop_invalid_sales",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Sales must be a finite number.",
+        "invalid_rows": 0
+      },
+      {
+        "step": "inspect_negative_sales",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Negative sales would represent returns; the forecasting target is gross demand, so negatives would be clipped to zero.",
+        "policy": "Clip negative sales to 0 and report them.",
+        "negative_rows": 0
+      },
+      {
+        "step": "validate_store_ids",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Every store must exist in stores.csv.",
+        "unknown_store_rows": 0
+      },
+      {
+        "step": "validate_product_families",
+        "rows_before": 3000888,
+        "rows_after": 3000888,
+        "rows_removed": 0,
+        "reason": "Product family must be a non-empty label.",
+        "blank_family_rows": 0,
+        "n_families": 33
+      },
+      {
+        "step": "insert_closure_days",
+        "rows_before": 1684,
+        "rows_after": 1688,
+        "rows_removed": -4,
+        "reason": "Calendar dates missing for every store (25 December) are inserted with zero sales and is_closure_day = 1.",
+        "policy": "Insert closure days explicitly so lag features keep a regular daily frequency.",
+        "inserted": 4
+      },
+      {
+        "step": "flag_outliers",
+        "rows_before": 1688,
+        "rows_after": 1688,
+        "rows_removed": 0,
+        "reason": "Unusual daily totals are flagged, never deleted: low totals are New Year's Day and closures, high totals are genuine demand spikes.",
+        "flagged_days": 5
+      }
+    ],
+    "zero_sales_analysis": {
+      "zero_sales_rows": 939130,
+      "store_family_series_never_sold": 53,
+      "stores_opening_after_start": {
+        "20": "2015-02-13",
+        "21": "2015-07-24",
+        "22": "2015-10-09",
+        "29": "2015-03-20",
+        "36": "2013-05-09",
+        "42": "2015-08-21",
+        "52": "2017-04-20",
+        "53": "2014-05-29"
+      },
+      "dates_absent_from_all_stores": [
+        "2013-12-25",
+        "2014-12-25",
+        "2015-12-25",
+        "2016-12-25"
+      ],
+      "interpretation": "Recorded zeros are genuine zero sales: the panel is complete for every recorded date, zeros cluster in store/family series that are never sold and in stores before their opening date. Dates absent for every store are 25 December, when stores are closed; they are treated as closure days with zero sales, not as data gaps to interpolate."
+    },
+    "oil_missing_values": {
+      "policy": "Reindex to calendar days, forward-fill only (never backward-fill) so each day uses the latest past price.",
+      "missing_before": 529,
+      "missing_after": 1,
+      "leading_missing_kept_as_nan": [
+        "2013-01-01"
+      ]
+    },
+    "holiday_policy": "National holidays: types Holiday/Transfer/Additional/Bridge with locale National and transferred = False. Holidays marked transferred=True are moved to their Transfer date and are not treated as days off. Holiday calendars are published in advance, so they are valid inputs for future dates.",
+    "transactions_policy": "Daily transaction totals are kept for reporting only; they are not available at prediction time.",
+    "raw_rows": 3000888,
+    "clean_rows": 3000888,
+    "daily_rows": 1688
+  },
+  "updated_at": "2026-10-17T23:17:57+00:00",
+  "customer_segmentation": {
+    "dataset": "UCI Online Retail",
+    "steps": [
+      {
+        "step": "normalize_types_and_identifiers",
+        "rows_before": 541909,
+        "rows_after": 541909,
+        "rows_removed": 0,
+        "reason": "Parse InvoiceDate, coerce Quantity/UnitPrice to numbers, upper-case and trim InvoiceNo/StockCode, store CustomerID as an integer string.",
+        "coercion_issues": {
+          "Quantity_not_numeric": 0,
+          "UnitPrice_not_numeric": 0,
+          "InvoiceDate_unparseable": 0,
+          "CustomerID_non_integer": 0
+        }
+      },
+      {
+        "step": "drop_unparseable_lines",
+        "rows_before": 541909,
+        "rows_after": 541909,
+        "rows_removed": 0,
+        "reason": "Lines without a valid date, quantity, or price cannot be used."
+      },
+      {
+        "step": "drop_exact_duplicate_lines",
+        "rows_before": 541909,
+        "rows_after": 536641,
+        "rows_removed": 5268,
+        "reason": "Lines identical in every column (same invoice, product, quantity, price, and timestamp) are treated as double-recorded entries; the first copy is kept.",
+        "duplicate_revenue": 21740.98
+      },
+      {
+        "step": "classify_records",
+        "rows_before": 536641,
+        "rows_after": 536641,
+        "rows_removed": 0,
+        "reason": "Each line labelled purchase, cancellation, accounting_adjustment, non_merchandise, stock_adjustment, or zero_price.",
+        "record_type_counts": {
+          "purchase": 522537,
+          "cancellation": 8668,
+          "non_merchandise": 2941,
+          "stock_adjustment": 1336,
+          "zero_price": 1156,
+          "accounting_adjustment": 3
+        }
+      },
+      {
+        "step": "inspect_missing_descriptions",
+        "rows_before": 536641,
+        "rows_after": 536641,
+        "rows_removed": 0,
+        "reason": "Missing descriptions are not treated as invalid on their own; they are classified by quantity and price like every other line.",
+        "missing_description_lines": 1454,
+        "missing_description_by_type": {
+          "stock_adjustment": 862,
+          "zero_price": 584,
+          "non_merchandise": 8
+        }
+      },
+      {
+        "step": "separate_missing_customer_id",
+        "rows_before": 536641,
+        "rows_after": 536641,
+        "rows_removed": 0,
+        "reason": "Lines without CustomerID stay in retail_clean.csv.gz for revenue reporting but cannot be attributed to a customer and are excluded from segmentation.",
+        "lines_without_customer": 135037,
+        "purchase_revenue_without_customer": 1509991.6800000002
+      }
+    ],
+    "record_types": {
+      "purchase": "Positive quantity and positive unit price on a regular invoice.",
+      "cancellation": "Invoice number starts with 'C'. The dataset does not separate cancellations from returns/refunds, so both are handled here.",
+      "accounting_adjustment": "Invoice number starts with 'A' (bad-debt adjustments), not customer activity.",
+      "non_merchandise": "Postage, carriage, fees, discounts, samples, manual lines, and gift vouchers.",
+      "stock_adjustment": "Non-positive quantity on a regular invoice (damaged, lost, or stock corrections).",
+      "zero_price": "Positive quantity with unit price <= 0 on a regular invoice (free items or price-less corrections)."
+    },
+    "record_type_counts": {
+      "purchase": 522537,
+      "cancellation": 8668,
+      "non_merchandise": 2941,
+      "stock_adjustment": 1336,
+      "zero_price": 1156,
+      "accounting_adjustment": 3
+    },
+    "revenue_policy": "LineRevenue = Quantity x UnitPrice. Customer Monetary = net merchandise spending: revenue of the customer's purchase lines minus the absolute value of their cancellation lines. Non-merchandise lines (postage, fees, discounts, vouchers) and adjustments are excluded. Customers whose net spending is <= 0 (cancellations refer to purchases before the data window) are not eligible for segmentation.",
+    "missing_values_after": {
+      "InvoiceNo": {
+        "missing": 0,
+        "missing_pct": 0.0
+      },
+      "StockCode": {
+        "missing": 0,
+        "missing_pct": 0.0
+      },
+      "Description": {
+        "missing": 1454,
+        "missing_pct": 0.2709446352403189
+      },
+      "Quantity": {
+        "missing": 0,
+        "missing_pct": 0.0
+      },
+      "InvoiceDate": {
+        "missing": 0,
+        "missing_pct": 0.0
+      },
+      "UnitPrice": {
+        "missing": 0,
+        "missing_pct": 0.0
+      },
+      "CustomerID": {
+        "missing": 135037,
+        "missing_pct": 25.163377378918124
+      },
+      "Country": {
+        "missing": 0,
+        "missing_pct": 0.0
+      }
+    },
+    "raw_rows": 541909,
+    "clean_rows": 536641
+  }
+}

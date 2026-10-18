@@ -1,0 +1,38 @@
+question_id,question,expected_relevant_document_ids,expected_pdf_files,expected_answer
+Q-001,What is the hard budget limit and deadline type for JOB-003?,JOB-003,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,"Hard limit USD 15,000; soft deadline of 10 weeks"
+Q-002,Which skills are mandatory for JOB-004?,JOB-004,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Docker and Kubernetes
+Q-003,Which requirements and acceptance criteria apply to the order confirmation email in JOB-001?,JOB-001-SPEC,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,REQ-001-03 and AC-001-03: email within 2 minutes in staging
+Q-004,What does the client of JOB-002 accept as proof of keyboard accessibility?,JOB-002-SPEC,CR-03_Requirements_Specs_and_Acceptance_Criteria.pdf,Keyboard-only walkthrough of all controls succeeds
+Q-005,Which job has a hard deadline tied to a conference date?,JOB-002,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,"JOB-002 (6 weeks, hard)"
+Q-006,Which preferences can be traded off in JOB-005?,JOB-005,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf,Firebase push experience and unit tests
+Q-007,What price and duration does PRP-001 offer for JOB-001?,PRP-001;JOB-001,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf;FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,"USD 9,800 in 13 weeks"
+Q-008,Which proposals exclude testing?,PRP-003;PRP-004;PRP-017;PRP-027,FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf;FP-02_Freelancer_Proposals_JOB-004_to_JOB-007.pdf;FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Proposals that exclude testing or offer it only as an add-on
+Q-009,What milestone plan does the proposal for JOB-008 by FRE-003 offer?,PRP-023,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,Four milestones with payment shares
+Q-010,Which freelancer has documented experience with Spring Boot and PostgreSQL?,PORT-001;FRE-003;FRE-001,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,FRE-003 (L4) and FRE-001 (L3)
+Q-011,Does FRE-001 have project evidence for Kubernetes?,PORT-001;FRE-001,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,"No; claimed only, indirect credit via Docker"
+Q-012,Did FRE-005 complete the production Kubernetes migration in PRJ-005?,PORT-001;PRJ-005,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,No; staging only
+Q-013,Who built the RAG pipeline with ChromaDB in PRJ-004?,PORT-001;FRE-004,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf,FRE-004
+Q-014,How is the budget score computed above the preferred maximum?,EVA-002,EK-02_Budget_and_Time_Estimation.pdf,Linear from 100 to 50 at the hard limit
+Q-015,What happens when a price exceeds the hard budget limit?,EVA-002;EVA-005,EK-01_Scoring_Criteria_and_Skill_Matching.pdf;EK-02_Budget_and_Time_Estimation.pdf,Ineligible regardless of weighted score
+Q-016,How is a missing review criterion handled?,QUA-004;EVA-005,EK-01_Scoring_Criteria_and_Skill_Matching.pdf;EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,Excluded and weights renormalized; not zero
+Q-017,What is the default weight of technical skill match?,EVA-005,EK-01_Scoring_Criteria_and_Skill_Matching.pdf,30 percent
+Q-018,What credit does an unsupported skill claim receive?,EVA-001,EK-01_Scoring_Criteria_and_Skill_Matching.pdf,0.25
+Q-019,When is delivery promise flagged as unsupported fast delivery?,EVA-003;EST-005,EK-02_Budget_and_Time_Estimation.pdf,Duration below 60 percent of reference
+Q-020,What items does the proposal completeness checklist contain?,EVA-007,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,"8 items: scope, exclusions, testing, handover, milestones, assumptions, portfolio, risks"
+Q-021,Why is the lowest bid not automatically best value?,EST-001;EVA-002,EK-02_Budget_and_Time_Estimation.pdf,"Exclusions, scope, inexperience; adjusted price and flags"
+Q-022,Which protected characteristics must not be used in evaluation?,EVA-006;QUA-006,EK-03_Risk_Analysis_Reviews_and_Proposal_Quality.pdf,"Nationality, gender, age, religion, appearance and similar"
+Q-023,What distinguishes superficial Angular familiarity from practical experience?,TEC-001,EK-04_Technical_Competency_and_Quality_Standards.pdf,"Features, tests and decisions, not technology lists"
+Q-024,Which proposal ranks first for JOB-001 under default weights?,PRP-001;JOB-001,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf;FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,PRP-001 (see expected_rankings.csv)
+Q-025,"Is the 5,000-dollar budget of JOB-002 flexible?",CR-06;JOB-002,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf;CR-06_Clarification_QA_JOB-001_to_JOB-005.pdf,No: hard limit; see QA-002-01
+Q-026,When will the client provide the data export for JOB-006?,CR-07;JOB-006,CR-02_Project_Briefs_JOB-006_to_JOB-010.pdf;CR-07_Clarification_QA_JOB-006_to_JOB-010.pdf,Dependency answered in QA-006-03
+Q-027,How do rankings for JOB-001 change when the client prioritizes budget?,CR-08,CR-08_Client_Evaluation_Priorities_and_Weights.pdf,See sensitivity table
+Q-028,What is the median price of the proposals for JOB-004?,FP-04;JOB-004,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf;FP-04_Estimation_Examples_JOB-001_to_JOB-005.pdf,Computed in FP-04
+Q-029,Which proposals have an upfront payment above 50 percent?,FP-06,FP-06_Milestone_Plan_and_Payment_Schedule_Examples.pdf,Listed in FP-06
+Q-030,How many hours per week does FRE-003 commit across all proposals?,FP-08;FRE-003,FP-03_Proposals_JOB-008_to_JOB-010_and_Portfolios.pdf;FP-08_Freelancer_Availability_and_Workload_Plans.pdf,Summed in FP-08
+Q-031,How was the score of PRP-006 calculated?,EK-06;PRP-006,EK-06_Worked_Scoring_Examples_Library.pdf;FP-01_Freelancer_Proposals_JOB-001_to_JOB-003.pdf,Hard deadline exceeded; ineligible
+Q-032,Which weights apply to JOB-002?,CR-08;JOB-002,CR-01_Project_Briefs_JOB-001_to_JOB-005.pdf;CR-08_Client_Evaluation_Priorities_and_Weights.pdf,Custom: deadline 35 percent
+Q-033,Which skills are related to Kubernetes for indirect evidence?,EK-08;EVA-001,EK-01_Scoring_Criteria_and_Skill_Matching.pdf;EK-08_Skill_Taxonomy_and_Synonyms.pdf,Docker
+Q-034,What is the capacity needed to support a 420-hour job?,EK-10;EVA-003,EK-02_Budget_and_Time_Estimation.pdf;EK-10_Time_Estimation_and_Capacity_Planning.pdf,At least 80 percent of effort
+Q-035,What is reciprocal rank fusion?,EK-13,EK-13_RAG_Retrieval_and_Citation_Guide.pdf,Fuses ranked lists with 1/(60+rank)
+Q-036,What should the assistant do if all proposals are ineligible?,EK-14,EK-14_Glossary_FAQ_and_Edge_Cases.pdf,Report reasons and suggest relaxing a constraint
+Q-037,Which risk ID covers a capacity shortfall?,EK-11,EK-11_Risk_Register_and_Proposal_Flags.pdf,RSK-D02

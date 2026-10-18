@@ -1,0 +1,19 @@
+review_id,freelancer_id,project_id,rating,date,type,text
+REV-001,FRE-001,PRJ-001,5,2024-07-02,specific,Delivered the checkout flow with clear component tests and explained schema decisions in writing.
+REV-002,FRE-001,PRJ-002,4,2025-03-10,specific,Job-posting wizard worked as specified; two validation edge cases were fixed after review.
+REV-003,FRE-001,PRJ-006,4,2026-01-12,mixed,Itinerary API contract was clear. Response times varied during the second month.
+REV-004,FRE-002,PRJ-001,5,2024-07-02,specific,Filtering component handled combined filters smoothly and shipped with unit tests.
+REV-005,FRE-002,PRJ-002,5,2025-03-11,specific,Dashboard state handling with NgRx was easy to extend; keyboard navigation issues were fixed quickly.
+REV-006,FRE-002,PRJ-002,3,2025-03-12,vague,Good developer but communication style was not my favourite.
+REV-007,FRE-003,PRJ-001,5,2024-07-03,specific,"Order list query dropped from about 1.8 s to 0.4 s after the index change, documented in a short note."
+REV-008,FRE-003,PRJ-002,4,2025-03-10,mixed,Ledger rules were well tested; the 0.4 percent reconciliation mismatch was still open at handover.
+REV-009,FRE-003,PRJ-004,5,2025-10-05,specific,Admin API with JWT roles was delivered on schedule with integration tests.
+REV-010,FRE-004,PRJ-003,3,2024-12-01,mixed,Baseline beat the popularity baseline offline; cold-start results were weaker than hoped.
+REV-011,FRE-004,PRJ-004,5,2025-10-05,specific,Citations traced to the right passages in 58 of 60 evaluation questions and the evaluation set was documented.
+REV-012,FRE-004,PRJ-004,4,2025-10-07,specific,Chunking fix for tables made a visible difference; wished for an automated regression check.
+REV-013,FRE-005,PRJ-001,4,2024-07-02,specific,Pipeline built and deployed to staging on the first day of the sprint; image scan reports were not shared.
+REV-014,FRE-005,PRJ-004,5,2025-10-06,specific,Deployment runbook was clear and a rollback was rehearsed once.
+REV-015,FRE-005,PRJ-005,3,2025-06-02,mixed,"Staging migration was solid, but the production cut-over was deferred and we needed a follow-up contract."
+REV-016,FRE-006,PRJ-006,4,2026-01-13,specific,Android build installed cleanly and notifications arrived within seconds in testing.
+REV-017,FRE-006,PRJ-006,3,2026-01-14,mixed,Offline conflicts still lose edits in rare cases; the conflict banner is helpful but not a fix.
+REV-018,FRE-006,PRJ-006,2,2026-01-20,vague,Not what I imagined. Felt slow.

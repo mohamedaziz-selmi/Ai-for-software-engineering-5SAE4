@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520">
+	<defs>
+		<linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#eeeaf5"/>
+			<stop offset="1" stop-color="#d8d0e5"/>
+		</linearGradient>
+		<linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#d9d0f5"/>
+			<stop offset="1" stop-color="#9b8bcf"/>
+		</linearGradient>
+	</defs>
+	<rect width="720" height="520" fill="url(#background)"/>
+	<rect x="24" y="24" width="672" height="472" rx="20" fill="#fbfaff" stroke="#645b75" stroke-opacity=".2"/>
+	<path d="M24 88h672" stroke="#645b75" stroke-opacity=".2"/>
+	<circle cx="56" cy="56" r="17" fill="url(#accent)"/>
+	<path d="M49 57l6 6 10-14" fill="none" stroke="#17151e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+	<text x="86" y="53" fill="#302b39" font-family="Arial,sans-serif" font-size="20" font-weight="700">Cerebro AI</text>
+	<text x="86" y="72" fill="#625c6e" font-family="Arial,sans-serif" font-size="11">LOCAL ASSISTANT</text>
+	<circle cx="645" cy="56" r="5" fill="#4c9a6a"/>
+	<text x="659" y="60" fill="#625c6e" font-family="Arial,sans-serif" font-size="11">LOCAL MODEL</text>
+	<circle cx="67" cy="143" r="15" fill="url(#accent)"/>
+	<path d="M62 144l5 5 7-10" fill="none" stroke="#17151e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<rect x="94" y="119" width="340" height="64" rx="14" fill="#eae6f1"/>
+	<rect x="111" y="137" width="260" height="7" rx="4" fill="#625c6e" fill-opacity=".75"/>
+	<rect x="111" y="153" width="293" height="7" rx="4" fill="#91899d" fill-opacity=".63"/>
+	<rect x="300" y="209" width="332" height="55" rx="14" fill="#ded6ee"/>
+	<rect x="320" y="229" width="245" height="7" rx="4" fill="#625c6e" fill-opacity=".75"/>
+	<circle cx="67" cy="303" r="15" fill="url(#accent)"/>
+	<path d="M62 304l5 5 7-10" fill="none" stroke="#17151e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	<rect x="94" y="280" width="385" height="64" rx="14" fill="#eae6f1"/>
+	<rect x="111" y="298" width="307" height="7" rx="4" fill="#625c6e" fill-opacity=".75"/>
+	<rect x="111" y="314" width="274" height="7" rx="4" fill="#91899d" fill-opacity=".63"/>
+	<rect x="50" y="408" width="620" height="58" rx="16" fill="#fff" stroke="#645b75" stroke-opacity=".28"/>
+	<text x="74" y="443" fill="#625c6e" font-family="Arial,sans-serif" font-size="15">Ask Cerebro anything...</text>
+	<rect x="572" y="418" width="82" height="38" rx="11" fill="url(#accent)"/>
+	<path d="M600 437h24m-8-8 8 8-8 8" fill="none" stroke="#201d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

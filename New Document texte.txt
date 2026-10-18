@@ -1,0 +1,2 @@
+cd E:\sites\freelance2\freelance2
+npm.cmd run dev

@@ -1,0 +1,24 @@
+Column,Data Type,Description,Example
+review_id,String,Unique identifier assigned to each review,REV000001
+user_id,String,Unique identifier assigned to the reviewer,USR123456
+username,String,Randomly generated username of the reviewer,john_smith245
+review_title,String,Short title summarizing the review,Excellent Product
+review,String,Full customer review text,I have been using this laptop for two months and it performs exceptionally well.
+sentiment,String,Sentiment label assigned to the review (Positive, Negative, Neutral),Positive
+category,String,Product or service category,Electronics
+product,String,Specific product or service being reviewed,Wireless Headphones
+rating,Integer,Customer rating on a scale of 1 to 5,5
+verified_purchase,String,Whether the reviewer verified the purchase,Yes
+helpful_votes,Integer,Number of users who marked the review as helpful,124
+review_length,Integer,Total number of words in the review,28
+purchase_date,Date,Date when the product or service was purchased,2024-01-18
+review_date,Date,Date when the review was posted,2024-01-25
+country,String,Country of the reviewer,Canada
+language,String,Language in which the review is written,English
+source,String,Platform where the review was posted,Amazon
+device,String,Device used to submit the review,Mobile
+review_type,String,Length category of the review (Short, Medium, Long),Medium
+writing_style,String,Writing style used in the review,Formal
+emotion,String,Dominant emotion associated with the review,Joy
+recommendation_score,Integer,Likelihood of recommending the product on a scale of 1 to 10,9
+company_response,String,Example response from the company to the review,Thank you for your valuable feedback. We appreciate your support.

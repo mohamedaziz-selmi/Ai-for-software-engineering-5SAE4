@@ -1,0 +1,125 @@
+{
+  "created_at": "2026-10-17T23:16:33+00:00",
+  "datasets": [
+    {
+      "title": "Online Retail (UCI Machine Learning Repository, id 352)",
+      "source_url": "https://archive.ics.uci.edu/dataset/352/online+retail",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+      "citation": "Chen, D. (2015). Online Retail [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33",
+      "local_origin": "Rayen/Customer Segmentation/dataset/Online Retail.xlsx",
+      "download_date": "unknown (original archive timestamp 2023-05-22; copied into the project 2026-10-17)",
+      "files": [
+        {
+          "file_name": "Rayen/Customer Segmentation/dataset/Online Retail.xlsx",
+          "size_bytes": 23715344,
+          "sha256": "43465a06f2ccf7c8b5bd2892bc7defb52f97487934fe93b16ae4c3936424676d",
+          "row_count": 541909,
+          "column_names": [
+            "InvoiceNo",
+            "StockCode",
+            "Description",
+            "Quantity",
+            "InvoiceDate",
+            "UnitPrice",
+            "CustomerID",
+            "Country"
+          ],
+          "local_copy_date": "2026-10-17"
+        }
+      ]
+    },
+    {
+      "title": "Store Sales - Time Series Forecasting (Kaggle competition, Corporación Favorita)",
+      "source_url": "https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data",
+      "license": "Kaggle competition rules: data may be used for the competition and non-commercial, academic or educational purposes; redistribution is not permitted.",
+      "citation": "Alexis Cook, DanB, inversion, Ryan Holbrook. Store Sales - Time Series Forecasting. Kaggle, 2021.",
+      "local_origin": "Rayen/Sales Forecasting/Dataset/",
+      "download_date": "unknown (original archive timestamp 2021-11-22; copied into the project 2026-10-17)",
+      "files": [
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/train.csv",
+          "size_bytes": 121800373,
+          "sha256": "99a1b7f4241821df10fa71f23abdd71c634f71f901e3cab1400c0f0c583f862c",
+          "row_count": 3000888,
+          "column_names": [
+            "id",
+            "date",
+            "store_nbr",
+            "family",
+            "sales",
+            "onpromotion"
+          ],
+          "local_copy_date": "2026-10-17"
+        },
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/test.csv",
+          "size_bytes": 1022269,
+          "sha256": "087ec1ecec76dbba9ea2adb48b8b2fd527c7c59adb82b0dfb9f6f82739400d26",
+          "row_count": 28512,
+          "column_names": [
+            "id",
+            "date",
+            "store_nbr",
+            "family",
+            "onpromotion"
+          ],
+          "local_copy_date": "2026-10-17"
+        },
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/stores.csv",
+          "size_bytes": 1387,
+          "sha256": "af503b2bce11d7906d249f81cc0598f10e2addcc9f6c59aa2d95c9f2652c296b",
+          "row_count": 54,
+          "column_names": [
+            "store_nbr",
+            "city",
+            "state",
+            "type",
+            "cluster"
+          ],
+          "local_copy_date": "2026-10-17"
+        },
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/transactions.csv",
+          "size_bytes": 1552637,
+          "sha256": "e116384a6981af74932832436aa2f6a43121f77ca81accc44e3a5160158ca03c",
+          "row_count": 83488,
+          "column_names": [
+            "date",
+            "store_nbr",
+            "transactions"
+          ],
+          "local_copy_date": "2026-10-17"
+        },
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/oil.csv",
+          "size_bytes": 20580,
+          "sha256": "944b23b857580f9d804399346fd3ed69bffcb7facfd98c55fdb408b8d057cca7",
+          "row_count": 1218,
+          "column_names": [
+            "date",
+            "dcoilwtico"
+          ],
+          "local_copy_date": "2026-10-17"
+        },
+        {
+          "file_name": "Rayen/Sales Forecasting/Dataset/holidays_events.csv",
+          "size_bytes": 22309,
+          "sha256": "81a183d6c4d691b57f84a0fde6bbf734a5b3c36a74b97378bf33a592648e2999",
+          "row_count": 350,
+          "column_names": [
+            "date",
+            "type",
+            "locale",
+            "locale_name",
+            "description",
+            "transferred"
+          ],
+          "local_copy_date": "2026-10-17"
+        }
+      ]
+    }
+  ],
+  "missing_files": [],
+  "policy": "Raw files are read-only inputs; pipelines write only to data/processed, data/reports, models and reports."
+}

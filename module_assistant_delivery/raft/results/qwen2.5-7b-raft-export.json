@@ -1,0 +1,10 @@
+{
+  "run": "qwen2.5-7b-raft",
+  "tag": "assistant-raft:qwen2.5-7b",
+  "base_tag": "qwen2.5:7b-instruct",
+  "adapter": "raft\\outputs\\qwen2.5-7b-raft\\adapter",
+  "method": "safetensors_adapter",
+  "returncode": 1,
+  "output_tail": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[?25h\u001b[?2026l\nError: LoRA adapters are no longer supported",
+  "show": null
+}

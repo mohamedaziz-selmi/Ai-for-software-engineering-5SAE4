@@ -1,0 +1,11 @@
+{
+  "name": "freelance-platform-gateway",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start:gateway": "node --env-file-if-exists=.env run.mjs gateway",
+    "start:legacy": "node --env-file-if-exists=.env run.mjs legacy",
+    "test": "node --test test/gateway.test.mjs"
+  }
+}

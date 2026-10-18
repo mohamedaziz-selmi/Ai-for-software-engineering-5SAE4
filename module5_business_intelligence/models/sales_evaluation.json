@@ -1,0 +1,2485 @@
+{
+  "created_at": "2026-10-17T23:19:10+00:00",
+  "target": "Total daily unit sales across all stores and product families (sum of train.csv 'sales').",
+  "protocol": "Chronological split, no shuffling. Hyperparameters chosen by rolling-origin CV inside the training period. Validation: model fit on the training period only. Test: untouched final period, model refit on training + validation. All models are scored on exactly the same dates and target. One-step-ahead rows use actual sales up to the previous day; the multi-step section forecasts recursively in 16-day blocks without any actuals after each block origin.",
+  "metric_definitions": {
+    "mae": "mean(|actual - predicted|), in units sold",
+    "rmse": "sqrt(mean((actual - predicted)^2)), in units sold",
+    "wape": "sum(|actual - predicted|) / sum(|actual|) * 100; null when sum(|actual|) = 0",
+    "r2": "1 - SSE/SST, descriptive only"
+  },
+  "baselines": {
+    "seasonal_naive": "prediction(t) = actual_sales(t - 7 days)",
+    "historical_mean": "mean daily sales of the fitting period"
+  },
+  "warmup_rows_dropped": 28,
+  "validation": {
+    "period": {
+      "start": "2017-03-01",
+      "end": "2017-05-31",
+      "n_days": 92
+    },
+    "fit_period": {
+      "start": "2013-01-29",
+      "end": "2017-02-28",
+      "n_days": 1492
+    },
+    "metrics": {
+      "seasonal_naive": {
+        "mae": 102681.19121956633,
+        "rmse": 152708.2725986372,
+        "wape": 11.880933439367098,
+        "r2": 0.21436559015813272,
+        "n_observations": 92
+      },
+      "historical_mean": {
+        "mae": 247968.14814489367,
+        "rmse": 301945.336993773,
+        "wape": 28.691652562667308,
+        "r2": -2.0715106243386403,
+        "n_observations": 92
+      },
+      "random_forest": {
+        "mae": 62169.58505744723,
+        "rmse": 93572.99343381231,
+        "wape": 7.193456691023004,
+        "r2": 0.705017390249117,
+        "n_observations": 92
+      }
+    },
+    "improvement_vs_seasonal_naive": {
+      "mae": {
+        "absolute_reduction": 40511.606162119104,
+        "percent_reduction": 39.45377501074359
+      },
+      "rmse": {
+        "absolute_reduction": 59135.2791648249,
+        "percent_reduction": 38.72434555019165
+      },
+      "wape": {
+        "absolute_reduction": 4.6874767483440944,
+        "percent_reduction": 39.453775010743584
+      }
+    },
+    "improvement_vs_historical_mean": {
+      "mae": {
+        "absolute_reduction": 185798.56308744644,
+        "percent_reduction": 74.92839885987289
+      },
+      "rmse": {
+        "absolute_reduction": 208372.3435599607,
+        "percent_reduction": 69.00995578688402
+      },
+      "wape": {
+        "absolute_reduction": 21.498195871644306,
+        "percent_reduction": 74.9283988598729
+      }
+    },
+    "series": [
+      {
+        "date": "2017-03-01",
+        "actual": 1008521.709962,
+        "seasonal_naive": 739388.0344027,
+        "random_forest": 850418.0804891053
+      },
+      {
+        "date": "2017-03-02",
+        "actual": 836225.179072,
+        "seasonal_naive": 675578.500156,
+        "random_forest": 830436.5730471202
+      },
+      {
+        "date": "2017-03-03",
+        "actual": 882639.776274,
+        "seasonal_naive": 816197.498952,
+        "random_forest": 859858.277858662
+      },
+      {
+        "date": "2017-03-04",
+        "actual": 1125736.3470592,
+        "seasonal_naive": 1026011.2228075,
+        "random_forest": 1104811.6326867174
+      },
+      {
+        "date": "2017-03-05",
+        "actual": 1196983.690104,
+        "seasonal_naive": 775708.987978,
+        "random_forest": 984499.1111013279
+      },
+      {
+        "date": "2017-03-06",
+        "actual": 790143.2410905,
+        "seasonal_naive": 744956.948138,
+        "random_forest": 856490.5070251542
+      },
+      {
+        "date": "2017-03-07",
+        "actual": 761866.729975,
+        "seasonal_naive": 949366.8290505,
+        "random_forest": 758240.2498559852
+      },
+      {
+        "date": "2017-03-08",
+        "actual": 781046.6619577,
+        "seasonal_naive": 1008521.709962,
+        "random_forest": 773018.8579721457
+      },
+      {
+        "date": "2017-03-09",
+        "actual": 653901.1919827,
+        "seasonal_naive": 836225.179072,
+        "random_forest": 713144.7560434887
+      },
+      {
+        "date": "2017-03-10",
+        "actual": 773855.30685,
+        "seasonal_naive": 882639.776274,
+        "random_forest": 781573.9308938496
+      },
+      {
+        "date": "2017-03-11",
+        "actual": 1001174.4340065,
+        "seasonal_naive": 1125736.3470592,
+        "random_forest": 981666.1725514744
+      },
+      {
+        "date": "2017-03-12",
+        "actual": 1146006.826973,
+        "seasonal_naive": 1196983.690104,
+        "random_forest": 1010672.5044865209
+      },
+      {
+        "date": "2017-03-13",
+        "actual": 754390.380036,
+        "seasonal_naive": 790143.2410905,
+        "random_forest": 799862.2374394209
+      },
+      {
+        "date": "2017-03-14",
+        "actual": 700998.0346447,
+        "seasonal_naive": 761866.729975,
+        "random_forest": 735296.9714919379
+      },
+      {
+        "date": "2017-03-15",
+        "actual": 815621.887369,
+        "seasonal_naive": 781046.6619577,
+        "random_forest": 768249.018235947
+      },
+      {
+        "date": "2017-03-16",
+        "actual": 699108.166824,
+        "seasonal_naive": 653901.1919827,
+        "random_forest": 717816.5155574706
+      },
+      {
+        "date": "2017-03-17",
+        "actual": 812306.77427,
+        "seasonal_naive": 773855.30685,
+        "random_forest": 752170.0097309875
+      },
+      {
+        "date": "2017-03-18",
+        "actual": 1038906.566154,
+        "seasonal_naive": 1001174.4340065,
+        "random_forest": 1028877.4248924331
+      },
+      {
+        "date": "2017-03-19",
+        "actual": 1157140.638587,
+        "seasonal_naive": 1146006.826973,
+        "random_forest": 1051346.6946624324
+      },
+      {
+        "date": "2017-03-20",
+        "actual": 826428.90991,
+        "seasonal_naive": 754390.380036,
+        "random_forest": 839472.0294617953
+      },
+      {
+        "date": "2017-03-21",
+        "actual": 746620.926177,
+        "seasonal_naive": 700998.0346447,
+        "random_forest": 729557.3709900052
+      },
+      {
+        "date": "2017-03-22",
+        "actual": 767880.804934,
+        "seasonal_naive": 815621.887369,
+        "random_forest": 757066.7081224619
+      },
+      {
+        "date": "2017-03-23",
+        "actual": 670848.010029,
+        "seasonal_naive": 699108.166824,
+        "random_forest": 716356.9754213595
+      },
+      {
+        "date": "2017-03-24",
+        "actual": 787914.125515,
+        "seasonal_naive": 812306.77427,
+        "random_forest": 758891.6550981456
+      },
+      {
+        "date": "2017-03-25",
+        "actual": 1038139.316887,
+        "seasonal_naive": 1038906.566154,
+        "random_forest": 996239.0634901043
+      },
+      {
+        "date": "2017-03-26",
+        "actual": 1101557.476706,
+        "seasonal_naive": 1157140.638587,
+        "random_forest": 1041303.3669632842
+      },
+      {
+        "date": "2017-03-27",
+        "actual": 784103.265042,
+        "seasonal_naive": 826428.90991,
+        "random_forest": 775157.2897386631
+      },
+      {
+        "date": "2017-03-28",
+        "actual": 702943.9485770001,
+        "seasonal_naive": 746620.926177,
+        "random_forest": 732672.3128589379
+      },
+      {
+        "date": "2017-03-29",
+        "actual": 824632.985033,
+        "seasonal_naive": 767880.804934,
+        "random_forest": 751068.423757893
+      },
+      {
+        "date": "2017-03-30",
+        "actual": 637624.340998,
+        "seasonal_naive": 670848.010029,
+        "random_forest": 738015.4739545727
+      },
+      {
+        "date": "2017-03-31",
+        "actual": 878750.03788,
+        "seasonal_naive": 787914.125515,
+        "random_forest": 765929.1212777566
+      },
+      {
+        "date": "2017-04-01",
+        "actual": 1463083.962459,
+        "seasonal_naive": 1038139.316887,
+        "random_forest": 1119288.1132655558
+      },
+      {
+        "date": "2017-04-02",
+        "actual": 1138650.058898,
+        "seasonal_naive": 1101557.476706,
+        "random_forest": 1169777.4121586727
+      },
+      {
+        "date": "2017-04-03",
+        "actual": 835191.622029,
+        "seasonal_naive": 784103.265042,
+        "random_forest": 885196.1456964561
+      },
+      {
+        "date": "2017-04-04",
+        "actual": 835602.6360017,
+        "seasonal_naive": 702943.9485770001,
+        "random_forest": 821775.4303803149
+      },
+      {
+        "date": "2017-04-05",
+        "actual": 846631.307907,
+        "seasonal_naive": 824632.985033,
+        "random_forest": 811023.5721805908
+      },
+      {
+        "date": "2017-04-06",
+        "actual": 683059.570103,
+        "seasonal_naive": 637624.340998,
+        "random_forest": 782756.5159775257
+      },
+      {
+        "date": "2017-04-07",
+        "actual": 765502.211925,
+        "seasonal_naive": 878750.03788,
+        "random_forest": 780264.3589401152
+      },
+      {
+        "date": "2017-04-08",
+        "actual": 988591.469958,
+        "seasonal_naive": 1463083.962459,
+        "random_forest": 961804.1724633597
+      },
+      {
+        "date": "2017-04-09",
+        "actual": 1101713.657101,
+        "seasonal_naive": 1138650.058898,
+        "random_forest": 1068318.2511071456
+      },
+      {
+        "date": "2017-04-10",
+        "actual": 739392.130988,
+        "seasonal_naive": 835191.622029,
+        "random_forest": 788890.001260499
+      },
+      {
+        "date": "2017-04-11",
+        "actual": 741331.430196,
+        "seasonal_naive": 835602.6360017,
+        "random_forest": 718229.6992591252
+      },
+      {
+        "date": "2017-04-12",
+        "actual": 791762.312883,
+        "seasonal_naive": 846631.307907,
+        "random_forest": 788275.7747171948
+      },
+      {
+        "date": "2017-04-13",
+        "actual": 737029.565183,
+        "seasonal_naive": 683059.570103,
+        "random_forest": 695243.1973789189
+      },
+      {
+        "date": "2017-04-14",
+        "actual": 740889.486829,
+        "seasonal_naive": 765502.211925,
+        "random_forest": 773335.5954297372
+      },
+      {
+        "date": "2017-04-15",
+        "actual": 898610.217928,
+        "seasonal_naive": 988591.469958,
+        "random_forest": 1018618.4207837388
+      },
+      {
+        "date": "2017-04-16",
+        "actual": 985493.795113,
+        "seasonal_naive": 1101713.657101,
+        "random_forest": 1064603.7802502855
+      },
+      {
+        "date": "2017-04-17",
+        "actual": 775916.9059055,
+        "seasonal_naive": 739392.130988,
+        "random_forest": 749747.7477320009
+      },
+      {
+        "date": "2017-04-18",
+        "actual": 717196.315762,
+        "seasonal_naive": 741331.430196,
+        "random_forest": 735764.1291425988
+      },
+      {
+        "date": "2017-04-19",
+        "actual": 735733.2142477001,
+        "seasonal_naive": 791762.312883,
+        "random_forest": 761076.0252458649
+      },
+      {
+        "date": "2017-04-20",
+        "actual": 675804.0219027,
+        "seasonal_naive": 737029.565183,
+        "random_forest": 719387.0114661972
+      },
+      {
+        "date": "2017-04-21",
+        "actual": 795795.893872,
+        "seasonal_naive": 740889.486829,
+        "random_forest": 732853.8995670733
+      },
+      {
+        "date": "2017-04-22",
+        "actual": 974952.817869,
+        "seasonal_naive": 898610.217928,
+        "random_forest": 948993.0619995097
+      },
+      {
+        "date": "2017-04-23",
+        "actual": 1140070.2748035,
+        "seasonal_naive": 985493.795113,
+        "random_forest": 972799.8450295075
+      },
+      {
+        "date": "2017-04-24",
+        "actual": 755072.530945,
+        "seasonal_naive": 775916.9059055,
+        "random_forest": 796057.9512995268
+      },
+      {
+        "date": "2017-04-25",
+        "actual": 718996.080637,
+        "seasonal_naive": 717196.315762,
+        "random_forest": 724199.7117639668
+      },
+      {
+        "date": "2017-04-26",
+        "actual": 781159.2829995,
+        "seasonal_naive": 735733.2142477001,
+        "random_forest": 735209.8354186371
+      },
+      {
+        "date": "2017-04-27",
+        "actual": 624910.0260955,
+        "seasonal_naive": 675804.0219027,
+        "random_forest": 709349.5514753868
+      },
+      {
+        "date": "2017-04-28",
+        "actual": 797636.6251025,
+        "seasonal_naive": 795795.893872,
+        "random_forest": 753195.3564359975
+      },
+      {
+        "date": "2017-04-29",
+        "actual": 1068279.815941,
+        "seasonal_naive": 974952.817869,
+        "random_forest": 978094.962005915
+      },
+      {
+        "date": "2017-04-30",
+        "actual": 1041249.2479705,
+        "seasonal_naive": 1140070.2748035,
+        "random_forest": 1044473.0655619904
+      },
+      {
+        "date": "2017-05-01",
+        "actual": 1306699.366897,
+        "seasonal_naive": 755072.530945,
+        "random_forest": 859643.5482130126
+      },
+      {
+        "date": "2017-05-02",
+        "actual": 907324.094113,
+        "seasonal_naive": 718996.080637,
+        "random_forest": 928367.268374034
+      },
+      {
+        "date": "2017-05-03",
+        "actual": 924247.257204,
+        "seasonal_naive": 781159.2829995,
+        "random_forest": 858567.1803036818
+      },
+      {
+        "date": "2017-05-04",
+        "actual": 716654.608983,
+        "seasonal_naive": 624910.0260955,
+        "random_forest": 789033.0391607664
+      },
+      {
+        "date": "2017-05-05",
+        "actual": 780798.407016,
+        "seasonal_naive": 797636.6251025,
+        "random_forest": 802557.2216609133
+      },
+      {
+        "date": "2017-05-06",
+        "actual": 1039417.861868,
+        "seasonal_naive": 1068279.815941,
+        "random_forest": 995237.2542610205
+      },
+      {
+        "date": "2017-05-07",
+        "actual": 1227380.607924,
+        "seasonal_naive": 1041249.2479705,
+        "random_forest": 1051834.7417045168
+      },
+      {
+        "date": "2017-05-08",
+        "actual": 776307.495015,
+        "seasonal_naive": 1306699.366897,
+        "random_forest": 848766.466015771
+      },
+      {
+        "date": "2017-05-09",
+        "actual": 715811.198881,
+        "seasonal_naive": 907324.094113,
+        "random_forest": 748556.8922820638
+      },
+      {
+        "date": "2017-05-10",
+        "actual": 766101.907094,
+        "seasonal_naive": 924247.257204,
+        "random_forest": 771289.7611420926
+      },
+      {
+        "date": "2017-05-11",
+        "actual": 648650.413039,
+        "seasonal_naive": 716654.608983,
+        "random_forest": 691800.0185973608
+      },
+      {
+        "date": "2017-05-12",
+        "actual": 764812.415784,
+        "seasonal_naive": 780798.407016,
+        "random_forest": 753061.7951257796
+      },
+      {
+        "date": "2017-05-13",
+        "actual": 1116976.891153,
+        "seasonal_naive": 1039417.861868,
+        "random_forest": 996567.5059740394
+      },
+      {
+        "date": "2017-05-14",
+        "actual": 884199.9138385,
+        "seasonal_naive": 1227380.607924,
+        "random_forest": 1072630.743687816
+      },
+      {
+        "date": "2017-05-15",
+        "actual": 823035.572122,
+        "seasonal_naive": 776307.495015,
+        "random_forest": 784740.307104957
+      },
+      {
+        "date": "2017-05-16",
+        "actual": 807803.8950783,
+        "seasonal_naive": 715811.198881,
+        "random_forest": 736299.4636094216
+      },
+      {
+        "date": "2017-05-17",
+        "actual": 841407.607944,
+        "seasonal_naive": 766101.907094,
+        "random_forest": 748809.1805244212
+      },
+      {
+        "date": "2017-05-18",
+        "actual": 628487.989962,
+        "seasonal_naive": 648650.413039,
+        "random_forest": 719472.1387697043
+      },
+      {
+        "date": "2017-05-19",
+        "actual": 773775.4378677,
+        "seasonal_naive": 764812.415784,
+        "random_forest": 741342.1411066705
+      },
+      {
+        "date": "2017-05-20",
+        "actual": 1035667.381833,
+        "seasonal_naive": 1116976.891153,
+        "random_forest": 988041.6710281991
+      },
+      {
+        "date": "2017-05-21",
+        "actual": 1201938.886229,
+        "seasonal_naive": 884199.9138385,
+        "random_forest": 1035052.5472386176
+      },
+      {
+        "date": "2017-05-22",
+        "actual": 778935.156126,
+        "seasonal_naive": 823035.572122,
+        "random_forest": 851786.9624871664
+      },
+      {
+        "date": "2017-05-23",
+        "actual": 723151.767982,
+        "seasonal_naive": 807803.8950783,
+        "random_forest": 737970.4233427102
+      },
+      {
+        "date": "2017-05-24",
+        "actual": 746303.6271255,
+        "seasonal_naive": 841407.607944,
+        "random_forest": 759967.0304610627
+      },
+      {
+        "date": "2017-05-25",
+        "actual": 620108.24391,
+        "seasonal_naive": 628487.989962,
+        "random_forest": 670758.9594379202
+      },
+      {
+        "date": "2017-05-26",
+        "actual": 984511.1521135,
+        "seasonal_naive": 773775.4378677,
+        "random_forest": 760899.1483374549
+      },
+      {
+        "date": "2017-05-27",
+        "actual": 932219.893144,
+        "seasonal_naive": 1035667.381833,
+        "random_forest": 1004193.4647962276
+      },
+      {
+        "date": "2017-05-28",
+        "actual": 1061771.636907,
+        "seasonal_naive": 1201938.886229,
+        "random_forest": 1016972.7692055887
+      },
+      {
+        "date": "2017-05-29",
+        "actual": 776813.137038,
+        "seasonal_naive": 778935.156126,
+        "random_forest": 772919.328790715
+      },
+      {
+        "date": "2017-05-30",
+        "actual": 742471.2769905,
+        "seasonal_naive": 723151.767982,
+        "random_forest": 744095.5106194158
+      },
+      {
+        "date": "2017-05-31",
+        "actual": 858062.149411,
+        "seasonal_naive": 746303.6271255,
+        "random_forest": 765913.6736301132
+      }
+    ],
+    "residuals": {
+      "seasonal_naive": {
+        "edges": [
+          -530391.871882,
+          -487111.12356864,
+          -443830.37525528,
+          -400549.62694192,
+          -357268.87862856,
+          -313988.13031519996,
+          -270707.38200184,
+          -227426.63368848,
+          -184145.88537511998,
+          -140865.13706175995,
+          -97584.38874839997,
+          -54303.64043504,
+          -11022.892121679964,
+          32257.856191680068,
+          75538.60450503998,
+          118819.35281840002,
+          162100.10113176005,
+          205380.84944512008,
+          248661.59775848011,
+          291942.34607184003,
+          335223.09438520006,
+          378503.8426985601,
+          421784.59101192,
+          465065.33932528005,
+          508346.0876386401,
+          551626.835952
+        ],
+        "counts": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1,
+          2,
+          2,
+          7,
+          12,
+          18,
+          9,
+          18,
+          8,
+          4,
+          2,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        "mean": 2703.7985655358707,
+        "std": 152684.33447271763,
+        "median": -5250.882570000016
+      },
+      "random_forest": {
+        "edges": [
+          -188430.82984931592,
+          -163011.3639079838,
+          -137591.89796665165,
+          -112172.43202531953,
+          -86752.9660839874,
+          -61333.50014265526,
+          -35914.03420132314,
+          -10494.568259991007,
+          14924.897681341128,
+          40344.36362267326,
+          65763.8295640054,
+          91183.29550533753,
+          116602.76144666964,
+          142022.2273880018,
+          167441.6933293339,
+          192861.15927066607,
+          218280.62521199818,
+          243700.0911533303,
+          269119.55709466245,
+          294539.02303599456,
+          319958.4889773267,
+          345377.9549186588,
+          370797.420859991,
+          396216.88680132315,
+          421636.3527426552,
+          447055.81868398737
+        ],
+        "counts": [
+          1,
+          0,
+          1,
+          3,
+          7,
+          9,
+          14,
+          15,
+          13,
+          12,
+          3,
+          4,
+          2,
+          3,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "mean": 21035.25392916953,
+        "std": 91177.97536850465,
+        "median": 9487.558282451879
+      }
+    },
+    "error_breakdown": {
+      "seasonal_naive": {
+        "by_weekday": [
+          {
+            "group": "Mon",
+            "mae": 121117.6574369231,
+            "wape": 14.68444735757863,
+            "n": 13
+          },
+          {
+            "group": "Tue",
+            "mae": 89718.3597759692,
+            "wape": 11.874614388727935,
+            "n": 13
+          },
+          {
+            "group": "Wed",
+            "mae": 99814.37321874998,
+            "wape": 12.162829798925747,
+            "n": 14
+          },
+          {
+            "group": "Thu",
+            "mae": 65344.398300430774,
+            "wape": 9.617726647360355,
+            "n": 13
+          },
+          {
+            "group": "Fri",
+            "mae": 59695.1854045,
+            "wape": 7.363351293615805,
+            "n": 13
+          },
+          {
+            "group": "Sat",
+            "mae": 131773.26063091538,
+            "wape": 12.484205857644087,
+            "n": 13
+          },
+          {
+            "group": "Sun",
+            "mae": 151525.6282310769,
+            "wape": 13.694464031224374,
+            "n": 13
+          }
+        ],
+        "by_month": [
+          {
+            "group": "Mar",
+            "mae": 88676.52913630645,
+            "wape": 10.294227763953307,
+            "n": 31
+          },
+          {
+            "group": "Apr",
+            "mae": 88143.70163146665,
+            "wape": 10.21154488277514,
+            "n": 30
+          },
+          {
+            "group": "May",
+            "mae": 130754.39161389033,
+            "wape": 15.061716508298344,
+            "n": 31
+          }
+        ]
+      },
+      "random_forest": {
+        "by_weekday": [
+          {
+            "group": "Mon",
+            "mae": 71924.6815362647,
+            "wape": 8.720233053383915,
+            "n": 13
+          },
+          {
+            "group": "Tue",
+            "mae": 22088.76197089331,
+            "wape": 2.9235435353891877,
+            "n": 13
+          },
+          {
+            "group": "Wed",
+            "mae": 48396.26647384488,
+            "wape": 5.897302493046737,
+            "n": 14
+          },
+          {
+            "group": "Thu",
+            "mae": 58177.641989370306,
+            "wape": 8.56288637121124,
+            "n": 13
+          },
+          {
+            "group": "Fri",
+            "mae": 52048.19449575291,
+            "wape": 6.420101347767633,
+            "n": 13
+          },
+          {
+            "group": "Sat",
+            "mae": 75637.50808287217,
+            "wape": 7.16590161725313,
+            "n": 13
+          },
+          {
+            "group": "Sun",
+            "mae": 107973.52689802485,
+            "wape": 9.758346477036282,
+            "n": 13
+          }
+        ],
+        "by_month": [
+          {
+            "group": "Mar",
+            "mae": 51121.249423687565,
+            "wape": 5.934532962339915,
+            "n": 31
+          },
+          {
+            "group": "Apr",
+            "mae": 56090.13947733385,
+            "wape": 6.498104415318072,
+            "n": 30
+          },
+          {
+            "group": "May",
+            "mae": 79101.25512357471,
+            "wape": 9.111745046697912,
+            "n": 31
+          }
+        ]
+      }
+    }
+  },
+  "test": {
+    "period": {
+      "start": "2017-06-01",
+      "end": "2017-08-15",
+      "n_days": 76
+    },
+    "fit_period": {
+      "start": "2013-01-29",
+      "end": "2017-05-31",
+      "n_days": 1584
+    },
+    "metrics": {
+      "seasonal_naive": {
+        "mae": 94818.10903829473,
+        "rmse": 122454.43490550402,
+        "wape": 11.064700346383832,
+        "r2": 0.4408988613871546,
+        "n_observations": 76
+      },
+      "historical_mean": {
+        "mae": 226831.51935794347,
+        "rmse": 279306.2580410598,
+        "wape": 26.469867584017642,
+        "r2": -1.9087250604193766,
+        "n_observations": 76
+      },
+      "random_forest": {
+        "mae": 44847.39150674612,
+        "rmse": 63824.95159201356,
+        "wape": 5.233419579573061,
+        "r2": 0.8481123971733031,
+        "n_observations": 76
+      }
+    },
+    "improvement_vs_seasonal_naive": {
+      "mae": {
+        "absolute_reduction": 49970.71753154861,
+        "percent_reduction": 52.70166009255326
+      },
+      "rmse": {
+        "absolute_reduction": 58629.48331349046,
+        "percent_reduction": 47.87861163112126
+      },
+      "wape": {
+        "absolute_reduction": 5.831280766810771,
+        "percent_reduction": 52.70166009255326
+      }
+    },
+    "improvement_vs_historical_mean": {
+      "mae": {
+        "absolute_reduction": 181984.12785119735,
+        "percent_reduction": 80.22876554647756
+      },
+      "rmse": {
+        "absolute_reduction": 215481.3064490462,
+        "percent_reduction": 77.14875705268626
+      },
+      "wape": {
+        "absolute_reduction": 21.236448004444583,
+        "percent_reduction": 80.22876554647758
+      }
+    },
+    "series": [
+      {
+        "date": "2017-06-01",
+        "actual": 766859.172845,
+        "seasonal_naive": 620108.24391,
+        "random_forest": 807413.9221715534
+      },
+      {
+        "date": "2017-06-02",
+        "actual": 918421.319125,
+        "seasonal_naive": 984511.1521135,
+        "random_forest": 855742.2648178316
+      },
+      {
+        "date": "2017-06-03",
+        "actual": 1176138.109152,
+        "seasonal_naive": 932219.893144,
+        "random_forest": 1108702.235180506
+      },
+      {
+        "date": "2017-06-04",
+        "actual": 1376511.520495,
+        "seasonal_naive": 1061771.636907,
+        "random_forest": 1206929.3966713534
+      },
+      {
+        "date": "2017-06-05",
+        "actual": 912693.8511,
+        "seasonal_naive": 776813.137038,
+        "random_forest": 886262.0775391626
+      },
+      {
+        "date": "2017-06-06",
+        "actual": 805546.647956,
+        "seasonal_naive": 742471.2769905,
+        "random_forest": 790081.175236763
+      },
+      {
+        "date": "2017-06-07",
+        "actual": 842979.8370823,
+        "seasonal_naive": 858062.149411,
+        "random_forest": 786462.251902887
+      },
+      {
+        "date": "2017-06-08",
+        "actual": 667099.801025,
+        "seasonal_naive": 766859.172845,
+        "random_forest": 707299.5474581649
+      },
+      {
+        "date": "2017-06-09",
+        "actual": 795116.1360699,
+        "seasonal_naive": 918421.319125,
+        "random_forest": 819273.3883617498
+      },
+      {
+        "date": "2017-06-10",
+        "actual": 993732.684049,
+        "seasonal_naive": 1176138.109152,
+        "random_forest": 1024089.0118576572
+      },
+      {
+        "date": "2017-06-11",
+        "actual": 1213673.946877,
+        "seasonal_naive": 1376511.520495,
+        "random_forest": 972892.3511749652
+      },
+      {
+        "date": "2017-06-12",
+        "actual": 768349.7589517,
+        "seasonal_naive": 912693.8511,
+        "random_forest": 817458.6909818389
+      },
+      {
+        "date": "2017-06-13",
+        "actual": 729412.959849,
+        "seasonal_naive": 805546.647956,
+        "random_forest": 759350.8679446788
+      },
+      {
+        "date": "2017-06-14",
+        "actual": 785885.9088963,
+        "seasonal_naive": 842979.8370823,
+        "random_forest": 806268.6342008926
+      },
+      {
+        "date": "2017-06-15",
+        "actual": 660338.346974,
+        "seasonal_naive": 667099.801025,
+        "random_forest": 697081.7537014667
+      },
+      {
+        "date": "2017-06-16",
+        "actual": 834786.4275550001,
+        "seasonal_naive": 795116.1360699,
+        "random_forest": 793493.589928917
+      },
+      {
+        "date": "2017-06-17",
+        "actual": 1096133.5508865,
+        "seasonal_naive": 993732.684049,
+        "random_forest": 1051972.2424946483
+      },
+      {
+        "date": "2017-06-18",
+        "actual": 965144.121179,
+        "seasonal_naive": 1213673.946877,
+        "random_forest": 1123524.9063176957
+      },
+      {
+        "date": "2017-06-19",
+        "actual": 791146.393731,
+        "seasonal_naive": 768349.7589517,
+        "random_forest": 798105.0393877699
+      },
+      {
+        "date": "2017-06-20",
+        "actual": 787326.7170395,
+        "seasonal_naive": 729412.959849,
+        "random_forest": 742041.1939430444
+      },
+      {
+        "date": "2017-06-21",
+        "actual": 766159.0112892,
+        "seasonal_naive": 785885.9088963,
+        "random_forest": 774786.240795964
+      },
+      {
+        "date": "2017-06-22",
+        "actual": 609868.8309586,
+        "seasonal_naive": 660338.346974,
+        "random_forest": 668778.7484037183
+      },
+      {
+        "date": "2017-06-23",
+        "actual": 761049.7450639,
+        "seasonal_naive": 834786.4275550001,
+        "random_forest": 801426.6952407445
+      },
+      {
+        "date": "2017-06-24",
+        "actual": 963268.227135,
+        "seasonal_naive": 1096133.5508865,
+        "random_forest": 995818.6852702026
+      },
+      {
+        "date": "2017-06-25",
+        "actual": 1092610.858614,
+        "seasonal_naive": 965144.121179,
+        "random_forest": 1047522.1878988455
+      },
+      {
+        "date": "2017-06-26",
+        "actual": 755367.8450665,
+        "seasonal_naive": 791146.393731,
+        "random_forest": 767310.2054748564
+      },
+      {
+        "date": "2017-06-27",
+        "actual": 682218.468913,
+        "seasonal_naive": 787326.7170395,
+        "random_forest": 749653.2010847314
+      },
+      {
+        "date": "2017-06-28",
+        "actual": 731896.9850105,
+        "seasonal_naive": 766159.0112892,
+        "random_forest": 788035.9863200726
+      },
+      {
+        "date": "2017-06-29",
+        "actual": 630811.802872,
+        "seasonal_naive": 609868.8309586,
+        "random_forest": 673629.4083717061
+      },
+      {
+        "date": "2017-06-30",
+        "actual": 802273.1392327,
+        "seasonal_naive": 761049.7450639,
+        "random_forest": 788093.4092701665
+      },
+      {
+        "date": "2017-07-01",
+        "actual": 1207529.921868,
+        "seasonal_naive": 963268.227135,
+        "random_forest": 1107884.0889166268
+      },
+      {
+        "date": "2017-07-02",
+        "actual": 1296379.2175535,
+        "seasonal_naive": 1092610.858614,
+        "random_forest": 1183502.7583183714
+      },
+      {
+        "date": "2017-07-03",
+        "actual": 925143.408816,
+        "seasonal_naive": 755367.8450665,
+        "random_forest": 947829.7497196824
+      },
+      {
+        "date": "2017-07-04",
+        "actual": 832359.2860137,
+        "seasonal_naive": 682218.468913,
+        "random_forest": 828834.1673734686
+      },
+      {
+        "date": "2017-07-05",
+        "actual": 844301.613116,
+        "seasonal_naive": 731896.9850105,
+        "random_forest": 820668.2542496929
+      },
+      {
+        "date": "2017-07-06",
+        "actual": 700272.0099567,
+        "seasonal_naive": 630811.802872,
+        "random_forest": 702309.7587114365
+      },
+      {
+        "date": "2017-07-07",
+        "actual": 805792.302193,
+        "seasonal_naive": 802273.1392327,
+        "random_forest": 795910.1284380757
+      },
+      {
+        "date": "2017-07-08",
+        "actual": 998347.1930085,
+        "seasonal_naive": 1207529.921868,
+        "random_forest": 976696.3312724772
+      },
+      {
+        "date": "2017-07-09",
+        "actual": 1100833.322376,
+        "seasonal_naive": 1296379.2175535,
+        "random_forest": 1084983.624244004
+      },
+      {
+        "date": "2017-07-10",
+        "actual": 804158.8610365,
+        "seasonal_naive": 925143.408816,
+        "random_forest": 789542.1428231614
+      },
+      {
+        "date": "2017-07-11",
+        "actual": 730534.767701,
+        "seasonal_naive": 832359.2860137,
+        "random_forest": 739598.3562657877
+      },
+      {
+        "date": "2017-07-12",
+        "actual": 748799.9959087,
+        "seasonal_naive": 844301.613116,
+        "random_forest": 772643.9118131193
+      },
+      {
+        "date": "2017-07-13",
+        "actual": 629651.3629294999,
+        "seasonal_naive": 700272.0099567,
+        "random_forest": 673804.7982946802
+      },
+      {
+        "date": "2017-07-14",
+        "actual": 765489.6173932999,
+        "seasonal_naive": 805792.302193,
+        "random_forest": 793918.138308859
+      },
+      {
+        "date": "2017-07-15",
+        "actual": 969077.125075,
+        "seasonal_naive": 998347.1930085,
+        "random_forest": 1040622.7658892325
+      },
+      {
+        "date": "2017-07-16",
+        "actual": 1100803.699023,
+        "seasonal_naive": 1100833.322376,
+        "random_forest": 1093644.2832244835
+      },
+      {
+        "date": "2017-07-17",
+        "actual": 818325.522149,
+        "seasonal_naive": 804158.8610365,
+        "random_forest": 833881.7161501512
+      },
+      {
+        "date": "2017-07-18",
+        "actual": 730133.70894,
+        "seasonal_naive": 730534.767701,
+        "random_forest": 760379.0991684594
+      },
+      {
+        "date": "2017-07-19",
+        "actual": 767978.778078,
+        "seasonal_naive": 748799.9959087,
+        "random_forest": 767987.7423303461
+      },
+      {
+        "date": "2017-07-20",
+        "actual": 688288.067857,
+        "seasonal_naive": 629651.3629294999,
+        "random_forest": 657494.2336823066
+      },
+      {
+        "date": "2017-07-21",
+        "actual": 782418.2992188,
+        "seasonal_naive": 765489.6173932999,
+        "random_forest": 783465.1357893397
+      },
+      {
+        "date": "2017-07-22",
+        "actual": 932902.046681,
+        "seasonal_naive": 969077.125075,
+        "random_forest": 990546.9766394594
+      },
+      {
+        "date": "2017-07-23",
+        "actual": 1024288.741245,
+        "seasonal_naive": 1100803.699023,
+        "random_forest": 1042201.3712261011
+      },
+      {
+        "date": "2017-07-24",
+        "actual": 816564.327096,
+        "seasonal_naive": 818325.522149,
+        "random_forest": 782005.1492751167
+      },
+      {
+        "date": "2017-07-25",
+        "actual": 713581.632609,
+        "seasonal_naive": 730133.70894,
+        "random_forest": 720717.9521003778
+      },
+      {
+        "date": "2017-07-26",
+        "actual": 740653.044167,
+        "seasonal_naive": 767978.778078,
+        "random_forest": 767659.1338826893
+      },
+      {
+        "date": "2017-07-27",
+        "actual": 659849.8270588,
+        "seasonal_naive": 688288.067857,
+        "random_forest": 658772.123069915
+      },
+      {
+        "date": "2017-07-28",
+        "actual": 835099.6822035,
+        "seasonal_naive": 782418.2992188,
+        "random_forest": 794858.3105046152
+      },
+      {
+        "date": "2017-07-29",
+        "actual": 1032310.865737,
+        "seasonal_naive": 932902.046681,
+        "random_forest": 1026415.9111573938
+      },
+      {
+        "date": "2017-07-30",
+        "actual": 1123752.4779517,
+        "seasonal_naive": 1024288.741245,
+        "random_forest": 1080434.5124852948
+      },
+      {
+        "date": "2017-07-31",
+        "actual": 885856.8408705,
+        "seasonal_naive": 816564.327096,
+        "random_forest": 841921.1502688994
+      },
+      {
+        "date": "2017-08-01",
+        "actual": 988527.763204,
+        "seasonal_naive": 713581.632609,
+        "random_forest": 881000.881765519
+      },
+      {
+        "date": "2017-08-02",
+        "actual": 964712.016051,
+        "seasonal_naive": 740653.044167,
+        "random_forest": 913670.8197253512
+      },
+      {
+        "date": "2017-08-03",
+        "actual": 728068.485132,
+        "seasonal_naive": 659849.8270588,
+        "random_forest": 808671.1993907113
+      },
+      {
+        "date": "2017-08-04",
+        "actual": 827775.686128,
+        "seasonal_naive": 835099.6822035,
+        "random_forest": 829649.9200901288
+      },
+      {
+        "date": "2017-08-05",
+        "actual": 965693.650492,
+        "seasonal_naive": 1032310.865737,
+        "random_forest": 1039395.8706967662
+      },
+      {
+        "date": "2017-08-06",
+        "actual": 1049559.164277,
+        "seasonal_naive": 1123752.4779517,
+        "random_forest": 1133751.7196539417
+      },
+      {
+        "date": "2017-08-07",
+        "actual": 797464.963817,
+        "seasonal_naive": 885856.8408705,
+        "random_forest": 830666.4625668055
+      },
+      {
+        "date": "2017-08-08",
+        "actual": 717766.3491055,
+        "seasonal_naive": 988527.763204,
+        "random_forest": 754867.1887242947
+      },
+      {
+        "date": "2017-08-09",
+        "actual": 734139.67401,
+        "seasonal_naive": 964712.016051,
+        "random_forest": 772705.828582052
+      },
+      {
+        "date": "2017-08-10",
+        "actual": 651386.9119697,
+        "seasonal_naive": 728068.485132,
+        "random_forest": 697138.9497273301
+      },
+      {
+        "date": "2017-08-11",
+        "actual": 826373.722022,
+        "seasonal_naive": 827775.686128,
+        "random_forest": 828514.442973701
+      },
+      {
+        "date": "2017-08-12",
+        "actual": 792630.5350785,
+        "seasonal_naive": 965693.650492,
+        "random_forest": 992184.9883601893
+      },
+      {
+        "date": "2017-08-13",
+        "actual": 865639.677471,
+        "seasonal_naive": 1049559.164277,
+        "random_forest": 1022685.3046376944
+      },
+      {
+        "date": "2017-08-14",
+        "actual": 760922.4060808,
+        "seasonal_naive": 797464.963817,
+        "random_forest": 791642.2761969126
+      },
+      {
+        "date": "2017-08-15",
+        "actual": 762661.935939,
+        "seasonal_naive": 717766.3491055,
+        "random_forest": 748738.3488107438
+      }
+    ],
+    "residuals": {
+      "seasonal_naive": {
+        "edges": [
+          -270761.4140984999,
+          -247341.36219103992,
+          -223921.31028357992,
+          -200501.25837611995,
+          -177081.20646865995,
+          -153661.15456119995,
+          -130241.10265373997,
+          -106821.05074627997,
+          -83400.99883881997,
+          -59980.94693135997,
+          -36560.89502389997,
+          -13140.843116439995,
+          10279.208791019977,
+          33699.26069848001,
+          57119.31260593998,
+          80539.36451340001,
+          103959.41642085998,
+          127379.46832831996,
+          150799.52023578,
+          174219.57214323996,
+          197639.6240507,
+          221059.67595815996,
+          244479.72786561993,
+          267899.7797730799,
+          291319.8316805399,
+          314739.88358799997
+        ],
+        "counts": [
+          2,
+          1,
+          1,
+          3,
+          2,
+          2,
+          2,
+          5,
+          8,
+          3,
+          10,
+          7,
+          5,
+          4,
+          6,
+          3,
+          1,
+          4,
+          1,
+          0,
+          1,
+          3,
+          0,
+          1,
+          1
+        ],
+        "mean": -7660.560880828949,
+        "std": 122214.58356111776,
+        "median": -15817.194329850026
+      },
+      "random_forest": {
+        "edges": [
+          -199554.4532816892,
+          -181941.01132234023,
+          -164327.5693629913,
+          -146714.12740364234,
+          -129100.68544429337,
+          -111487.24348494441,
+          -93873.80152559545,
+          -76260.3595662465,
+          -58646.917606897536,
+          -41033.47564754856,
+          -23420.03368819962,
+          -5806.591728850675,
+          11806.850230498298,
+          29420.29218984727,
+          47033.734149196214,
+          64647.17610854516,
+          82260.61806789413,
+          99874.0600272431,
+          117487.50198659208,
+          135100.943945941,
+          152714.38590528996,
+          170327.82786463894,
+          187941.26982398785,
+          205554.71178333682,
+          223168.1537426858,
+          240781.59570203477
+        ],
+        "counts": [
+          1,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          4,
+          6,
+          16,
+          9,
+          10,
+          8,
+          9,
+          3,
+          1,
+          1,
+          2,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        "mean": -5109.1402012963235,
+        "std": 63620.13150038574,
+        "median": -7881.774499070889
+      }
+    },
+    "error_breakdown": {
+      "seasonal_naive": {
+        "by_weekday": [
+          {
+            "group": "Mon",
+            "mae": 76337.71871934546,
+            "wape": 9.292999633519186,
+            "n": 11
+          },
+          {
+            "group": "Tue",
+            "mae": 105613.87876562726,
+            "wape": 13.69980004783481,
+            "n": 11
+          },
+          {
+            "group": "Wed",
+            "mae": 83520.72397185999,
+            "wape": 10.535559969712487,
+            "n": 10
+          },
+          {
+            "group": "Thu",
+            "mae": 63340.02489162728,
+            "wape": 9.424968290983283,
+            "n": 11
+          },
+          {
+            "group": "Fri",
+            "mae": 42380.29608548183,
+            "wape": 5.206078007014534,
+            "n": 11
+          },
+          {
+            "group": "Sat",
+            "mae": 138142.59557586358,
+            "wape": 13.655650530860925,
+            "n": 11
+          },
+          {
+            "group": "Sun",
+            "mae": 153364.4902522182,
+            "wape": 13.817529750106875,
+            "n": 11
+          }
+        ],
+        "by_month": [
+          {
+            "group": "Jun",
+            "mae": 98368.98991354999,
+            "wape": 11.490441677492385,
+            "n": 30
+          },
+          {
+            "group": "Jul",
+            "mae": 78500.59311954839,
+            "wape": 9.00920129517232,
+            "n": 31
+          },
+          {
+            "group": "Aug",
+            "mae": 121439.21351985999,
+            "wape": 14.650855700238004,
+            "n": 15
+          }
+        ]
+      },
+      "random_forest": {
+        "by_weekday": [
+          {
+            "group": "Mon",
+            "mae": 26337.927460243332,
+            "wape": 3.2062570684820546,
+            "n": 11
+          },
+          {
+            "group": "Tue",
+            "mae": 33331.39647213553,
+            "wape": 4.323612316111411,
+            "n": 11
+          },
+          {
+            "group": "Wed",
+            "mae": 30576.62209368049,
+            "wape": 3.8570287758490154,
+            "n": 10
+          },
+          {
+            "group": "Thu",
+            "mae": 38512.99088471327,
+            "wape": 5.730716375631429,
+            "n": 11
+          },
+          {
+            "group": "Fri",
+            "mae": 24209.062019837893,
+            "wape": 2.973888268683057,
+            "n": 11
+          },
+          {
+            "group": "Sat",
+            "mae": 64012.98743939588,
+            "wape": 6.327801951779096,
+            "n": 11
+          },
+          {
+            "group": "Sun",
+            "mae": 95653.41150330138,
+            "wape": 8.617991407088223,
+            "n": 11
+          }
+        ],
+        "by_month": [
+          {
+            "group": "Jun",
+            "mae": 52816.00941742576,
+            "wape": 6.16941656493744,
+            "n": 30
+          },
+          {
+            "group": "Jul",
+            "mae": 27966.996163887696,
+            "wape": 3.2096610745101826,
+            "n": 31
+          },
+          {
+            "group": "Aug",
+            "mae": 63796.30606062757,
+            "wape": 7.696611722124001,
+            "n": 15
+          }
+        ]
+      }
+    }
+  },
+  "multistep_test": {
+    "description": "Rolling-origin recursive forecasts in blocks of 16 days over the test period; seasonal naive repeats the last observed week.",
+    "metrics": {
+      "seasonal_naive": {
+        "mae": 95495.87751858158,
+        "rmse": 126201.25817791301,
+        "wape": 11.143791832331615,
+        "r2": 0.4061610097626278,
+        "n_observations": 76
+      },
+      "random_forest": {
+        "mae": 49290.57681446156,
+        "rmse": 69404.7293966509,
+        "wape": 5.751912455163642,
+        "r2": 0.8203945667960049,
+        "n_observations": 76
+      }
+    },
+    "improvement_vs_seasonal_naive": {
+      "mae": {
+        "absolute_reduction": 46205.30070412002,
+        "percent_reduction": 48.384602461116074
+      },
+      "rmse": {
+        "absolute_reduction": 56796.52878126211,
+        "percent_reduction": 45.004724676510634
+      },
+      "wape": {
+        "absolute_reduction": 5.391879377167974,
+        "percent_reduction": 48.38460246111606
+      }
+    },
+    "mae_by_horizon": {
+      "1": {
+        "random_forest_mae": 21857.119367312524,
+        "seasonal_naive_mae": 89086.02755335995
+      },
+      "2": {
+        "random_forest_mae": 66398.90507275944,
+        "seasonal_naive_mae": 118002.87919194
+      },
+      "3": {
+        "random_forest_mae": 45771.125480154995,
+        "seasonal_naive_mae": 94048.29487860008
+      },
+      "4": {
+        "random_forest_mae": 64299.10302067494,
+        "seasonal_naive_mae": 113336.16066213997
+      },
+      "5": {
+        "random_forest_mae": 31921.906481341808,
+        "seasonal_naive_mae": 101280.62930117994
+      },
+      "6": {
+        "random_forest_mae": 37679.2164085252,
+        "seasonal_naive_mae": 111012.23058687996
+      },
+      "7": {
+        "random_forest_mae": 36276.631365974456,
+        "seasonal_naive_mae": 75519.70789812002
+      },
+      "8": {
+        "random_forest_mae": 24700.079405916877,
+        "seasonal_naive_mae": 28623.988384440006
+      },
+      "9": {
+        "random_forest_mae": 53176.49873313522,
+        "seasonal_naive_mae": 125730.63957648
+      },
+      "10": {
+        "random_forest_mae": 80570.00433532393,
+        "seasonal_naive_mae": 83824.11619586004
+      },
+      "11": {
+        "random_forest_mae": 75009.14093340302,
+        "seasonal_naive_mae": 77685.08326003999
+      },
+      "12": {
+        "random_forest_mae": 44060.42698016728,
+        "seasonal_naive_mae": 69610.08600104006
+      },
+      "13": {
+        "random_forest_mae": 60240.47000674636,
+        "seasonal_naive_mae": 87142.2441895
+      },
+      "14": {
+        "random_forest_mae": 41870.8368559478,
+        "seasonal_naive_mae": 139664.77540787501
+      },
+      "15": {
+        "random_forest_mae": 46858.76529721217,
+        "seasonal_naive_mae": 133224.25952694996
+      },
+      "16": {
+        "random_forest_mae": 60400.69033400118,
+        "seasonal_naive_mae": 94690.58936612506
+      }
+    },
+    "series": [
+      {
+        "date": "2017-06-01",
+        "actual": 766859.172845,
+        "seasonal_naive": 620108.24391,
+        "random_forest": 807413.9221715536
+      },
+      {
+        "date": "2017-06-02",
+        "actual": 918421.319125,
+        "seasonal_naive": 984511.1521135,
+        "random_forest": 863436.5714998433
+      },
+      {
+        "date": "2017-06-03",
+        "actual": 1176138.109152,
+        "seasonal_naive": 932219.893144,
+        "random_forest": 1098306.887666566
+      },
+      {
+        "date": "2017-06-04",
+        "actual": 1376511.520495,
+        "seasonal_naive": 1061771.636907,
+        "random_forest": 1201713.9780906746
+      },
+      {
+        "date": "2017-06-05",
+        "actual": 912693.8511,
+        "seasonal_naive": 776813.137038,
+        "random_forest": 830302.7443563044
+      },
+      {
+        "date": "2017-06-06",
+        "actual": 805546.647956,
+        "seasonal_naive": 742471.2769905,
+        "random_forest": 766813.0510585059
+      },
+      {
+        "date": "2017-06-07",
+        "actual": 842979.8370823,
+        "seasonal_naive": 858062.149411,
+        "random_forest": 777565.0573155403
+      },
+      {
+        "date": "2017-06-08",
+        "actual": 667099.801025,
+        "seasonal_naive": 620108.24391,
+        "random_forest": 693271.9896444065
+      },
+      {
+        "date": "2017-06-09",
+        "actual": 795116.1360699,
+        "seasonal_naive": 984511.1521135,
+        "random_forest": 808541.959979136
+      },
+      {
+        "date": "2017-06-10",
+        "actual": 993732.684049,
+        "seasonal_naive": 932219.893144,
+        "random_forest": 1055600.403524145
+      },
+      {
+        "date": "2017-06-11",
+        "actual": 1213673.946877,
+        "seasonal_naive": 1061771.636907,
+        "random_forest": 1064855.692909202
+      },
+      {
+        "date": "2017-06-12",
+        "actual": 768349.7589517,
+        "seasonal_naive": 776813.137038,
+        "random_forest": 794922.3920048508
+      },
+      {
+        "date": "2017-06-13",
+        "actual": 729412.959849,
+        "seasonal_naive": 742471.2769905,
+        "random_forest": 763320.2101067856
+      },
+      {
+        "date": "2017-06-14",
+        "actual": 785885.9088963,
+        "seasonal_naive": 858062.149411,
+        "random_forest": 801565.1634264649
+      },
+      {
+        "date": "2017-06-15",
+        "actual": 660338.346974,
+        "seasonal_naive": 620108.24391,
+        "random_forest": 710054.7166200995
+      },
+      {
+        "date": "2017-06-16",
+        "actual": 834786.4275550001,
+        "seasonal_naive": 984511.1521135,
+        "random_forest": 801491.8666883804
+      },
+      {
+        "date": "2017-06-17",
+        "actual": 1096133.5508865,
+        "seasonal_naive": 993732.684049,
+        "random_forest": 1051972.2424946483
+      },
+      {
+        "date": "2017-06-18",
+        "actual": 965144.121179,
+        "seasonal_naive": 1213673.946877,
+        "random_forest": 1122229.7039491045
+      },
+      {
+        "date": "2017-06-19",
+        "actual": 791146.393731,
+        "seasonal_naive": 768349.7589517,
+        "random_forest": 807454.2172035703
+      },
+      {
+        "date": "2017-06-20",
+        "actual": 787326.7170395,
+        "seasonal_naive": 729412.959849,
+        "random_forest": 742740.4431576567
+      },
+      {
+        "date": "2017-06-21",
+        "actual": 766159.0112892,
+        "seasonal_naive": 785885.9088963,
+        "random_forest": 768976.7027037296
+      },
+      {
+        "date": "2017-06-22",
+        "actual": 609868.8309586,
+        "seasonal_naive": 660338.346974,
+        "random_forest": 672420.9854476936
+      },
+      {
+        "date": "2017-06-23",
+        "actual": 761049.7450639,
+        "seasonal_naive": 834786.4275550001,
+        "random_forest": 807659.2794010056
+      },
+      {
+        "date": "2017-06-24",
+        "actual": 963268.227135,
+        "seasonal_naive": 993732.684049,
+        "random_forest": 1009778.6284980304
+      },
+      {
+        "date": "2017-06-25",
+        "actual": 1092610.858614,
+        "seasonal_naive": 1213673.946877,
+        "random_forest": 1084556.5747965602
+      },
+      {
+        "date": "2017-06-26",
+        "actual": 755367.8450665,
+        "seasonal_naive": 768349.7589517,
+        "random_forest": 768852.2048968659
+      },
+      {
+        "date": "2017-06-27",
+        "actual": 682218.468913,
+        "seasonal_naive": 729412.959849,
+        "random_forest": 731501.9437113736
+      },
+      {
+        "date": "2017-06-28",
+        "actual": 731896.9850105,
+        "seasonal_naive": 785885.9088963,
+        "random_forest": 788620.0472266859
+      },
+      {
+        "date": "2017-06-29",
+        "actual": 630811.802872,
+        "seasonal_naive": 660338.346974,
+        "random_forest": 703504.0214416476
+      },
+      {
+        "date": "2017-06-30",
+        "actual": 802273.1392327,
+        "seasonal_naive": 834786.4275550001,
+        "random_forest": 816059.1000867663
+      },
+      {
+        "date": "2017-07-01",
+        "actual": 1207529.921868,
+        "seasonal_naive": 993732.684049,
+        "random_forest": 1130359.0713133675
+      },
+      {
+        "date": "2017-07-02",
+        "actual": 1296379.2175535,
+        "seasonal_naive": 1213673.946877,
+        "random_forest": 1204196.7786142523
+      },
+      {
+        "date": "2017-07-03",
+        "actual": 925143.408816,
+        "seasonal_naive": 755367.8450665,
+        "random_forest": 947829.7497196824
+      },
+      {
+        "date": "2017-07-04",
+        "actual": 832359.2860137,
+        "seasonal_naive": 682218.468913,
+        "random_forest": 830113.6807284444
+      },
+      {
+        "date": "2017-07-05",
+        "actual": 844301.613116,
+        "seasonal_naive": 731896.9850105,
+        "random_forest": 818033.3021891834
+      },
+      {
+        "date": "2017-07-06",
+        "actual": 700272.0099567,
+        "seasonal_naive": 630811.802872,
+        "random_forest": 700483.4664021716
+      },
+      {
+        "date": "2017-07-07",
+        "actual": 805792.302193,
+        "seasonal_naive": 802273.1392327,
+        "random_forest": 796170.8107923191
+      },
+      {
+        "date": "2017-07-08",
+        "actual": 998347.1930085,
+        "seasonal_naive": 1207529.921868,
+        "random_forest": 975181.4388741811
+      },
+      {
+        "date": "2017-07-09",
+        "actual": 1100833.322376,
+        "seasonal_naive": 1296379.2175535,
+        "random_forest": 1076490.045883709
+      },
+      {
+        "date": "2017-07-10",
+        "actual": 804158.8610365,
+        "seasonal_naive": 755367.8450665,
+        "random_forest": 789827.3104355888
+      },
+      {
+        "date": "2017-07-11",
+        "actual": 730534.767701,
+        "seasonal_naive": 682218.468913,
+        "random_forest": 736730.2346714375
+      },
+      {
+        "date": "2017-07-12",
+        "actual": 748799.9959087,
+        "seasonal_naive": 731896.9850105,
+        "random_forest": 772386.4642900154
+      },
+      {
+        "date": "2017-07-13",
+        "actual": 629651.3629294999,
+        "seasonal_naive": 630811.802872,
+        "random_forest": 678175.3507887388
+      },
+      {
+        "date": "2017-07-14",
+        "actual": 765489.6173932999,
+        "seasonal_naive": 802273.1392327,
+        "random_forest": 802710.3238924723
+      },
+      {
+        "date": "2017-07-15",
+        "actual": 969077.125075,
+        "seasonal_naive": 1207529.921868,
+        "random_forest": 1036725.8241530244
+      },
+      {
+        "date": "2017-07-16",
+        "actual": 1100803.699023,
+        "seasonal_naive": 1296379.2175535,
+        "random_forest": 1120943.4520359908
+      },
+      {
+        "date": "2017-07-17",
+        "actual": 818325.522149,
+        "seasonal_naive": 755367.8450665,
+        "random_forest": 834197.3729721216
+      },
+      {
+        "date": "2017-07-18",
+        "actual": 730133.70894,
+        "seasonal_naive": 682218.468913,
+        "random_forest": 768643.2305506814
+      },
+      {
+        "date": "2017-07-19",
+        "actual": 767978.778078,
+        "seasonal_naive": 748799.9959087,
+        "random_forest": 767987.7423303461
+      },
+      {
+        "date": "2017-07-20",
+        "actual": 688288.067857,
+        "seasonal_naive": 629651.3629294999,
+        "random_forest": 657494.2336823064
+      },
+      {
+        "date": "2017-07-21",
+        "actual": 782418.2992188,
+        "seasonal_naive": 765489.6173932999,
+        "random_forest": 782241.6724748568
+      },
+      {
+        "date": "2017-07-22",
+        "actual": 932902.046681,
+        "seasonal_naive": 969077.125075,
+        "random_forest": 988838.8840914796
+      },
+      {
+        "date": "2017-07-23",
+        "actual": 1024288.741245,
+        "seasonal_naive": 1100803.699023,
+        "random_forest": 1043592.9809504404
+      },
+      {
+        "date": "2017-07-24",
+        "actual": 816564.327096,
+        "seasonal_naive": 818325.522149,
+        "random_forest": 785641.7870613053
+      },
+      {
+        "date": "2017-07-25",
+        "actual": 713581.632609,
+        "seasonal_naive": 730133.70894,
+        "random_forest": 715115.6026205056
+      },
+      {
+        "date": "2017-07-26",
+        "actual": 740653.044167,
+        "seasonal_naive": 748799.9959087,
+        "random_forest": 765912.5023065417
+      },
+      {
+        "date": "2017-07-27",
+        "actual": 659849.8270588,
+        "seasonal_naive": 629651.3629294999,
+        "random_forest": 654327.2501756425
+      },
+      {
+        "date": "2017-07-28",
+        "actual": 835099.6822035,
+        "seasonal_naive": 765489.6173932999,
+        "random_forest": 795010.0821351733
+      },
+      {
+        "date": "2017-07-29",
+        "actual": 1032310.865737,
+        "seasonal_naive": 969077.125075,
+        "random_forest": 1020158.9650997104
+      },
+      {
+        "date": "2017-07-30",
+        "actual": 1123752.4779517,
+        "seasonal_naive": 1100803.699023,
+        "random_forest": 1067651.7482121873
+      },
+      {
+        "date": "2017-07-31",
+        "actual": 885856.8408705,
+        "seasonal_naive": 818325.522149,
+        "random_forest": 819143.1287489721
+      },
+      {
+        "date": "2017-08-01",
+        "actual": 988527.763204,
+        "seasonal_naive": 730133.70894,
+        "random_forest": 870649.3841774308
+      },
+      {
+        "date": "2017-08-02",
+        "actual": 964712.016051,
+        "seasonal_naive": 748799.9959087,
+        "random_forest": 920036.0258860049
+      },
+      {
+        "date": "2017-08-03",
+        "actual": 728068.485132,
+        "seasonal_naive": 629651.3629294999,
+        "random_forest": 805684.7250514559
+      },
+      {
+        "date": "2017-08-04",
+        "actual": 827775.686128,
+        "seasonal_naive": 835099.6822035,
+        "random_forest": 829649.9200901289
+      },
+      {
+        "date": "2017-08-05",
+        "actual": 965693.650492,
+        "seasonal_naive": 1032310.865737,
+        "random_forest": 1052578.4060005867
+      },
+      {
+        "date": "2017-08-06",
+        "actual": 1049559.164277,
+        "seasonal_naive": 1123752.4779517,
+        "random_forest": 1157830.809049011
+      },
+      {
+        "date": "2017-08-07",
+        "actual": 797464.963817,
+        "seasonal_naive": 885856.8408705,
+        "random_forest": 843428.3687782548
+      },
+      {
+        "date": "2017-08-08",
+        "actual": 717766.3491055,
+        "seasonal_naive": 988527.763204,
+        "random_forest": 763241.3522478627
+      },
+      {
+        "date": "2017-08-09",
+        "actual": 734139.67401,
+        "seasonal_naive": 964712.016051,
+        "random_forest": 767161.7104970247
+      },
+      {
+        "date": "2017-08-10",
+        "actual": 651386.9119697,
+        "seasonal_naive": 728068.485132,
+        "random_forest": 694868.5081919105
+      },
+      {
+        "date": "2017-08-11",
+        "actual": 826373.722022,
+        "seasonal_naive": 835099.6822035,
+        "random_forest": 837600.5203286948
+      },
+      {
+        "date": "2017-08-12",
+        "actual": 792630.5350785,
+        "seasonal_naive": 1032310.865737,
+        "random_forest": 1025314.8771639053
+      },
+      {
+        "date": "2017-08-13",
+        "actual": 865639.677471,
+        "seasonal_naive": 1123752.4779517,
+        "random_forest": 1129461.5513924668
+      },
+      {
+        "date": "2017-08-14",
+        "actual": 760922.4060808,
+        "seasonal_naive": 885856.8408705,
+        "random_forest": 877190.4934851151
+      },
+      {
+        "date": "2017-08-15",
+        "actual": 762661.935939,
+        "seasonal_naive": 988527.763204,
+        "random_forest": 806346.9393318144
+      }
+    ]
+  },
+  "feature_importance": {
+    "source": "validation period, model fit on training period",
+    "features": [
+      {
+        "feature": "day_of_week",
+        "impurity_importance": 0.03213781725159438,
+        "permutation_mae_increase": 23106.897129353638,
+        "permutation_std": 3238.617086108471
+      },
+      {
+        "feature": "lag_7",
+        "impurity_importance": 0.42646615565113744,
+        "permutation_mae_increase": 14785.535140301412,
+        "permutation_std": 3062.0609212394916
+      },
+      {
+        "feature": "is_weekend",
+        "impurity_importance": 0.020247803113880455,
+        "permutation_mae_increase": 10993.178295175832,
+        "permutation_std": 2033.0662122041879
+      },
+      {
+        "feature": "lag_14",
+        "impurity_importance": 0.15540156873812272,
+        "permutation_mae_increase": 10496.791009601287,
+        "permutation_std": 1584.7900391573185
+      },
+      {
+        "feature": "lag_28",
+        "impurity_importance": 0.039190363036013386,
+        "permutation_mae_increase": 8899.030890086011,
+        "permutation_std": 987.9045134236561
+      },
+      {
+        "feature": "lag_1",
+        "impurity_importance": 0.07399889953356399,
+        "permutation_mae_increase": 8803.14839499095,
+        "permutation_std": 3290.2558795211403
+      },
+      {
+        "feature": "day_of_month",
+        "impurity_importance": 0.02923808491486926,
+        "permutation_mae_increase": 7515.184562038364,
+        "permutation_std": 2631.6652578541375
+      },
+      {
+        "feature": "roll_std_7",
+        "impurity_importance": 0.013673282803389145,
+        "permutation_mae_increase": 541.5514372606274,
+        "permutation_std": 510.193424006565
+      },
+      {
+        "feature": "is_national_holiday",
+        "impurity_importance": 0.003138654967710226,
+        "permutation_mae_increase": 512.4196089237499,
+        "permutation_std": 447.22259235957085
+      },
+      {
+        "feature": "is_payday",
+        "impurity_importance": 0.00028990111429428575,
+        "permutation_mae_increase": 413.29960991019544,
+        "permutation_std": 171.1815536108515
+      },
+      {
+        "feature": "month",
+        "impurity_importance": 0.003923335115581705,
+        "permutation_mae_increase": 28.539574953161356,
+        "permutation_std": 32.03446662229368
+      },
+      {
+        "feature": "roll_mean_7",
+        "impurity_importance": 0.11733986143455259,
+        "permutation_mae_increase": 12.629630000871838,
+        "permutation_std": 1141.5406051394018
+      },
+      {
+        "feature": "quarter",
+        "impurity_importance": 0.0006466224985848861,
+        "permutation_mae_increase": 3.8337807419666206,
+        "permutation_std": 33.3221283149442
+      },
+      {
+        "feature": "is_work_day",
+        "impurity_importance": 0.0,
+        "permutation_mae_increase": -3.637978807091713e-12,
+        "permutation_std": 1.3514491453684393e-11
+      },
+      {
+        "feature": "year",
+        "impurity_importance": 0.0019324865954651967,
+        "permutation_mae_increase": -8.73114913702011e-12,
+        "permutation_std": 1.4840099941918118e-11
+      },
+      {
+        "feature": "is_closure_day",
+        "impurity_importance": 0.0003534685004158923,
+        "permutation_mae_increase": -1.0186340659856796e-11,
+        "permutation_std": 1.1822031817625918e-11
+      },
+      {
+        "feature": "is_new_year",
+        "impurity_importance": 0.00120893385029123,
+        "permutation_mae_increase": -1.0913936421275139e-11,
+        "permutation_std": 1.2283230183045186e-11
+      },
+      {
+        "feature": "roll_std_28",
+        "impurity_importance": 0.005564093637089668,
+        "permutation_mae_increase": -9.186267869036964,
+        "permutation_std": 281.5522046061331
+      },
+      {
+        "feature": "is_national_event",
+        "impurity_importance": 0.000437204116711101,
+        "permutation_mae_increase": -16.306707713023208,
+        "permutation_std": 30.982348844702507
+      },
+      {
+        "feature": "roll_mean_28",
+        "impurity_importance": 0.01744015635513731,
+        "permutation_mae_increase": -65.6628094227126,
+        "permutation_std": 137.5355860286302
+      },
+      {
+        "feature": "day_of_year",
+        "impurity_importance": 0.016908203767668575,
+        "permutation_mae_increase": -241.54193327165848,
+        "permutation_std": 78.44368586042039
+      },
+      {
+        "feature": "roll_mean_14",
+        "impurity_importance": 0.04046310300392637,
+        "permutation_mae_increase": -528.1965040034535,
+        "permutation_std": 389.4007958622808
+      }
+    ]
+  },
+  "figures": [
+    "reports/figures/sales_validation_actual_vs_predicted.png",
+    "reports/figures/sales_test_actual_vs_predicted.png",
+    "reports/figures/sales_test_residuals_rf.png"
+  ],
+  "advanced_model_available": true,
+  "future_forecast": {
+    "origin": "2017-08-15",
+    "horizon_days": 28,
+    "method": "recursive Random Forest",
+    "series": [
+      {
+        "date": "2017-08-16",
+        "forecast": 743066.3282865012
+      },
+      {
+        "date": "2017-08-17",
+        "forecast": 697681.9151118166
+      },
+      {
+        "date": "2017-08-18",
+        "forecast": 759006.7532958697
+      },
+      {
+        "date": "2017-08-19",
+        "forecast": 924600.8059903822
+      },
+      {
+        "date": "2017-08-20",
+        "forecast": 964237.1811300379
+      },
+      {
+        "date": "2017-08-21",
+        "forecast": 769556.219552474
+      },
+      {
+        "date": "2017-08-22",
+        "forecast": 727201.2824859712
+      },
+      {
+        "date": "2017-08-23",
+        "forecast": 740117.5138747414
+      },
+      {
+        "date": "2017-08-24",
+        "forecast": 689345.9316479523
+      },
+      {
+        "date": "2017-08-25",
+        "forecast": 795445.0389790346
+      },
+      {
+        "date": "2017-08-26",
+        "forecast": 927355.014524531
+      },
+      {
+        "date": "2017-08-27",
+        "forecast": 1017081.083534963
+      },
+      {
+        "date": "2017-08-28",
+        "forecast": 792969.381986506
+      },
+      {
+        "date": "2017-08-29",
+        "forecast": 753624.3299949428
+      },
+      {
+        "date": "2017-08-30",
+        "forecast": 763010.4318301252
+      },
+      {
+        "date": "2017-08-31",
+        "forecast": 745376.3805091813
+      },
+      {
+        "date": "2017-09-01",
+        "forecast": 887929.6836018016
+      },
+      {
+        "date": "2017-09-02",
+        "forecast": 1080268.4557902042
+      },
+      {
+        "date": "2017-09-03",
+        "forecast": 1142815.2760567719
+      },
+      {
+        "date": "2017-09-04",
+        "forecast": 847215.4006662469
+      },
+      {
+        "date": "2017-09-05",
+        "forecast": 792043.7449814483
+      },
+      {
+        "date": "2017-09-06",
+        "forecast": 771025.0118670849
+      },
+      {
+        "date": "2017-09-07",
+        "forecast": 719812.2198541984
+      },
+      {
+        "date": "2017-09-08",
+        "forecast": 804515.1985321033
+      },
+      {
+        "date": "2017-09-09",
+        "forecast": 961564.3844882143
+      },
+      {
+        "date": "2017-09-10",
+        "forecast": 1053808.0764799668
+      },
+      {
+        "date": "2017-09-11",
+        "forecast": 798501.9659619235
+      },
+      {
+        "date": "2017-09-12",
+        "forecast": 770074.5288708411
+      }
+    ]
+  }
+}

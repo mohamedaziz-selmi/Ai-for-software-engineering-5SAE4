@@ -1,0 +1,196 @@
+{
+  "dataset": "UCI Online Retail",
+  "total_transaction_lines": 541909,
+  "columns": [
+    "InvoiceNo",
+    "StockCode",
+    "Description",
+    "Quantity",
+    "InvoiceDate",
+    "UnitPrice",
+    "CustomerID",
+    "Country"
+  ],
+  "dtypes": {
+    "InvoiceNo": "str",
+    "StockCode": "str",
+    "Description": "object",
+    "Quantity": "int64",
+    "InvoiceDate": "datetime64[us]",
+    "UnitPrice": "float64",
+    "CustomerID": "float64",
+    "Country": "str"
+  },
+  "unique_invoices": 25900,
+  "unique_customers": 4372,
+  "unique_products": 3958,
+  "countries": 38,
+  "missing_values": {
+    "InvoiceNo": {
+      "missing": 0,
+      "missing_pct": 0.0
+    },
+    "StockCode": {
+      "missing": 0,
+      "missing_pct": 0.0
+    },
+    "Description": {
+      "missing": 1454,
+      "missing_pct": 0.2683107311375157
+    },
+    "Quantity": {
+      "missing": 0,
+      "missing_pct": 0.0
+    },
+    "InvoiceDate": {
+      "missing": 0,
+      "missing_pct": 0.0
+    },
+    "UnitPrice": {
+      "missing": 0,
+      "missing_pct": 0.0
+    },
+    "CustomerID": {
+      "missing": 135080,
+      "missing_pct": 24.926694334288598
+    },
+    "Country": {
+      "missing": 0,
+      "missing_pct": 0.0
+    }
+  },
+  "duplicate_transaction_lines": 5268,
+  "coercion_issues": {
+    "Quantity_not_numeric": 0,
+    "UnitPrice_not_numeric": 0,
+    "InvoiceDate_unparseable": 0,
+    "CustomerID_non_integer": 0
+  },
+  "invalid_quantities": {
+    "zero": 0,
+    "negative": 10624
+  },
+  "invalid_prices": {
+    "zero": 2515,
+    "negative": 2
+  },
+  "cancellations": {
+    "lines": 9288,
+    "invoices": 3836,
+    "lines_with_customer": 8905
+  },
+  "negative_quantity_without_cancellation": 1336,
+  "accounting_adjustment_lines": 3,
+  "non_merchandise_lines": 2950,
+  "purchase_date_range": {
+    "start": "2010-12-01T08:26:00",
+    "end": "2011-12-09T12:50:00"
+  },
+  "line_revenue": {
+    "count": 541909,
+    "mean": 17.987794876999644,
+    "median": 9.75,
+    "std": 378.8108235059747,
+    "min": -168469.6,
+    "p01": -6.58,
+    "p25": 3.4,
+    "p75": 17.4,
+    "p99": 180.0,
+    "max": 168469.6,
+    "skewness": -0.9643891765707857
+  },
+  "invoice_revenue_regular_invoices": {
+    "count": 22061,
+    "mean": 483.0072292280495,
+    "median": 272.63,
+    "std": 1699.3405257890254,
+    "min": 0.0,
+    "p01": 0.0,
+    "p25": 114.14,
+    "p75": 460.43,
+    "p99": 4435.608000000022,
+    "max": 168469.6,
+    "skewness": 53.222607610928314
+  },
+  "invoice_revenue_histogram_log1p": {
+    "edges": [
+      0.3220834991691133,
+      0.7124979336247714,
+      1.1029123680804296,
+      1.4933268025360875,
+      1.8837412369917457,
+      2.274155671447404,
+      2.6645701059030618,
+      3.05498454035872,
+      3.445398974814378,
+      3.835813409270036,
+      4.226227843725694,
+      4.616642278181352,
+      5.00705671263701,
+      5.397471147092668,
+      5.787885581548327,
+      6.178300016003985,
+      6.568714450459643,
+      6.959128884915301,
+      7.349543319370959,
+      7.7399577538266175,
+      8.130372188282276,
+      8.520786622737933,
+      8.91120105719359,
+      9.301615491649251,
+      9.692029926104908,
+      10.082444360560565,
+      10.472858795016222,
+      10.863273229471883,
+      11.25368766392754,
+      11.644102098383197,
+      12.034516532838857
+    ],
+    "counts": [
+      18,
+      47,
+      73,
+      118,
+      173,
+      175,
+      326,
+      263,
+      346,
+      414,
+      769,
+      2091,
+      2623,
+      3776,
+      3556,
+      2177,
+      1292,
+      698,
+      449,
+      236,
+      155,
+      94,
+      46,
+      23,
+      15,
+      1,
+      2,
+      1,
+      1,
+      1
+    ],
+    "log1p": true
+  },
+  "created_at": "2026-10-17T23:17:24+00:00",
+  "customer_exclusions": {
+    "customers_with_id": 4372,
+    "no_valid_purchase": {
+      "count": 38,
+      "reason": "Only cancellations, adjustments, or non-merchandise lines; nothing to segment."
+    },
+    "non_positive_net_spending": {
+      "count": 12,
+      "reason": "Cancellations exceed purchases inside the data window (refunds of earlier orders)."
+    },
+    "eligible_customers": 4322
+  }
+}

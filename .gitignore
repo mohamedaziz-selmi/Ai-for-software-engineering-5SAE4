@@ -1,0 +1,12 @@
+node_modules/
+dist/
+rag_service/.venv/
+rag_service/chroma_db/
+rag_service/*.log
+rag_service/evaluation_reports/
+sentiment classifier/data/processed/
+sentiment classifier/models/
+
+module5_business_intelligence/data/processed/*.gz
+module5_business_intelligence/models/*.joblib
+**/__pycache__/

@@ -1,0 +1,1024 @@
+{
+  "created_at": "2026-10-17T23:17:45+00:00",
+  "note": "Unsupervised clustering: there are no ground-truth labels, so accuracy, precision, recall, and F1 are not applicable. Silhouette, inertia, cluster sizes, and stability are reported instead.",
+  "feature_quality_before": {
+    "rows": 4322,
+    "duplicate_customer_ids": 0,
+    "missing_values": {
+      "recency_days": 0,
+      "frequency": 0,
+      "monetary": 0
+    },
+    "infinite_values": {
+      "recency_days": 0,
+      "frequency": 0,
+      "monetary": 0
+    },
+    "distributions": {
+      "recency_days": {
+        "count": 4322,
+        "mean": 93.09324386857936,
+        "median": 51.0,
+        "std": 100.11558862648018,
+        "min": 1.0,
+        "p01": 2.0,
+        "p25": 18.0,
+        "p75": 143.0,
+        "p99": 369.0,
+        "max": 374.0,
+        "skewness": 1.2451277158335008,
+        "iqr_outliers": 153
+      },
+      "frequency": {
+        "count": 4322,
+        "mean": 4.2545118000925495,
+        "median": 2.0,
+        "std": 7.643830859020804,
+        "min": 1.0,
+        "p01": 1.0,
+        "p25": 1.0,
+        "p75": 5.0,
+        "p99": 30.0,
+        "max": 206.0,
+        "skewness": 11.937912246315063,
+        "iqr_outliers": 278
+      },
+      "monetary": {
+        "count": 4322,
+        "mean": 1913.382073114299,
+        "median": 649.5550000000001,
+        "std": 8301.964761913252,
+        "min": 5.684341886080802e-14,
+        "p01": 51.6524,
+        "p25": 298.95500000000004,
+        "p75": 1609.3775,
+        "p99": 17059.774699999994,
+        "max": 278778.02,
+        "skewness": 21.54846922612767,
+        "iqr_outliers": 410
+      }
+    }
+  },
+  "k_search": {
+    "raw_features": [
+      {
+        "k": 2,
+        "valid": true,
+        "inertia": 102241225308.38538,
+        "silhouette": 0.9862893119228622,
+        "cluster_sizes": [
+          4316,
+          6
+        ],
+        "min_cluster_share": 0.0013882461823229986
+      },
+      {
+        "k": 3,
+        "valid": true,
+        "inertia": 48124344834.19147,
+        "silhouette": 0.9606700254928193,
+        "cluster_sizes": [
+          4291,
+          3,
+          28
+        ],
+        "min_cluster_share": 0.0006941230911614993
+      },
+      {
+        "k": 4,
+        "valid": true,
+        "inertia": 29741389962.95925,
+        "silhouette": 0.884889896277508,
+        "cluster_sizes": [
+          4198,
+          3,
+          15,
+          106
+        ],
+        "min_cluster_share": 0.0006941230911614993
+      },
+      {
+        "k": 5,
+        "valid": true,
+        "inertia": 17490005904.102585,
+        "silhouette": 0.8175999153748488,
+        "cluster_sizes": [
+          4025,
+          28,
+          4,
+          3,
+          262
+        ],
+        "min_cluster_share": 0.0006941230911614993
+      },
+      {
+        "k": 6,
+        "valid": true,
+        "inertia": 11901438956.623156,
+        "silhouette": 0.7791182324303457,
+        "cluster_sizes": [
+          3875,
+          4,
+          37,
+          2,
+          392,
+          12
+        ],
+        "min_cluster_share": 0.00046274872744099955
+      },
+      {
+        "k": 7,
+        "valid": true,
+        "inertia": 8327138764.919195,
+        "silhouette": 0.7740695700722088,
+        "cluster_sizes": [
+          3853,
+          2,
+          4,
+          13,
+          40,
+          409,
+          1
+        ],
+        "min_cluster_share": 0.00023137436372049977
+      },
+      {
+        "k": 8,
+        "valid": true,
+        "inertia": 5246065203.771234,
+        "silhouette": 0.7263527849989106,
+        "cluster_sizes": [
+          621,
+          1,
+          3565,
+          11,
+          2,
+          20,
+          4,
+          98
+        ],
+        "min_cluster_share": 0.00023137436372049977
+      },
+      {
+        "k": 9,
+        "valid": true,
+        "inertia": 3825793790.121774,
+        "silhouette": 0.6775384344711053,
+        "cluster_sizes": [
+          3174,
+          4,
+          11,
+          2,
+          217,
+          62,
+          1,
+          17,
+          834
+        ],
+        "min_cluster_share": 0.00023137436372049977
+      },
+      {
+        "k": 10,
+        "valid": true,
+        "inertia": 2963876873.5991526,
+        "silhouette": 0.681806179574908,
+        "cluster_sizes": [
+          3218,
+          3,
+          2,
+          17,
+          203,
+          1,
+          11,
+          804,
+          62,
+          1
+        ],
+        "min_cluster_share": 0.00023137436372049977
+      }
+    ],
+    "processed_features": [
+      {
+        "k": 2,
+        "valid": true,
+        "inertia": 6465.786502407422,
+        "silhouette": 0.4320662602408075,
+        "cluster_sizes": [
+          2668,
+          1654
+        ],
+        "min_cluster_share": 0.3826931975937066
+      },
+      {
+        "k": 3,
+        "valid": true,
+        "inertia": 4848.034483157284,
+        "silhouette": 0.33841957299189146,
+        "cluster_sizes": [
+          1879,
+          746,
+          1697
+        ],
+        "min_cluster_share": 0.17260527533549283
+      },
+      {
+        "k": 4,
+        "valid": true,
+        "inertia": 3919.1752011561075,
+        "silhouette": 0.33406882508322566,
+        "cluster_sizes": [
+          1183,
+          887,
+          1546,
+          706
+        ],
+        "min_cluster_share": 0.16335030078667284
+      },
+      {
+        "k": 5,
+        "valid": true,
+        "inertia": 3269.224151551356,
+        "silhouette": 0.31740976632874807,
+        "cluster_sizes": [
+          965,
+          1127,
+          1000,
+          357,
+          873
+        ],
+        "min_cluster_share": 0.08260064784821841
+      },
+      {
+        "k": 6,
+        "valid": true,
+        "inertia": 2843.630358053896,
+        "silhouette": 0.3131249198014247,
+        "cluster_sizes": [
+          801,
+          670,
+          328,
+          950,
+          960,
+          613
+        ],
+        "min_cluster_share": 0.07589079130032392
+      },
+      {
+        "k": 7,
+        "valid": true,
+        "inertia": 2537.2585003616077,
+        "silhouette": 0.30301210298384657,
+        "cluster_sizes": [
+          824,
+          200,
+          621,
+          693,
+          869,
+          500,
+          615
+        ],
+        "min_cluster_share": 0.04627487274409996
+      },
+      {
+        "k": 8,
+        "valid": true,
+        "inertia": 2331.3879270267785,
+        "silhouette": 0.3014200995538209,
+        "cluster_sizes": [
+          853,
+          418,
+          310,
+          723,
+          668,
+          482,
+          211,
+          657
+        ],
+        "min_cluster_share": 0.04881999074502545
+      },
+      {
+        "k": 9,
+        "valid": true,
+        "inertia": 2149.6921918644966,
+        "silhouette": 0.28076066396455013,
+        "cluster_sizes": [
+          479,
+          380,
+          287,
+          635,
+          453,
+          670,
+          208,
+          638,
+          572
+        ],
+        "min_cluster_share": 0.04812586765386395
+      },
+      {
+        "k": 10,
+        "valid": true,
+        "inertia": 1991.9069412169042,
+        "silhouette": 0.2776373004932952,
+        "cluster_sizes": [
+          607,
+          492,
+          545,
+          282,
+          609,
+          101,
+          346,
+          421,
+          340,
+          579
+        ],
+        "min_cluster_share": 0.023368810735770476
+      }
+    ],
+    "selection": {
+      "rule": "Among K in [3, 6] whose smallest cluster holds >= 2% of customers, take the largest K whose silhouette is within 0.010 of the best candidate (more actionable segments at an equivalent separation).",
+      "best_candidate_silhouette": 0.33841957299189146,
+      "selected_k": 4,
+      "selected_silhouette": 0.33406882508322566,
+      "global_best_k": 2,
+      "global_best_silhouette": 0.4320662602408075,
+      "note": "K = 2 often maximises silhouette but only separates active from lapsed customers; the business range keeps segments actionable."
+    }
+  },
+  "comparison": {
+    "customer_population": 4322,
+    "reference_date": "2011-12-10",
+    "features": [
+      "recency_days",
+      "frequency",
+      "monetary"
+    ],
+    "k": 4,
+    "before_preprocessing": {
+      "description": "Preprocessing reference experiment: K-means on raw Recency (days), Frequency (invoices), Monetary (GBP) with no transformation or scaling.",
+      "silhouette": 0.884889896277508,
+      "inertia": 29741389962.95925,
+      "cluster_sizes": [
+        4198,
+        3,
+        15,
+        106
+      ],
+      "profiles": [
+        {
+          "cluster": 0,
+          "customers": 4198,
+          "share_pct": 97.1309578898658,
+          "revenue_share_pct": 58.60789527345318,
+          "recency_days_mean": 95.35016674606956,
+          "recency_days_median": 53.0,
+          "frequency_mean": 3.5271557884707003,
+          "frequency_median": 2.0,
+          "monetary_mean": 1154.51652691758,
+          "monetary_median": 626.22
+        },
+        {
+          "cluster": 1,
+          "customers": 3,
+          "share_pct": 0.06941230911614993,
+          "revenue_share_pct": 8.803419325770385,
+          "recency_days_mean": 4.0,
+          "recency_days_median": 2.0,
+          "frequency_mean": 59.333333333333336,
+          "frequency_median": 60.0,
+          "monetary_mean": 242670.28333333335,
+          "monetary_median": 259657.3
+        },
+        {
+          "cluster": 2,
+          "customers": 15,
+          "share_pct": 0.34706154558074964,
+          "revenue_share_pct": 12.986234080698475,
+          "recency_days_mean": 8.733333333333333,
+          "recency_days_median": 5.0,
+          "frequency_mean": 54.86666666666667,
+          "frequency_median": 44.0,
+          "monetary_mean": 71594.29733333334,
+          "monetary_median": 59284.19
+        },
+        {
+          "cluster": 3,
+          "customers": 106,
+          "share_pct": 2.4525682554372974,
+          "revenue_share_pct": 19.60245132007796,
+          "recency_days_mean": 18.169811320754718,
+          "recency_days_median": 8.0,
+          "frequency_mean": 24.339622641509433,
+          "frequency_median": 20.0,
+          "monetary_mean": 15292.939905660376,
+          "monetary_median": 12074.630000000001
+        }
+      ],
+      "silhouette_of_these_labels_in_processed_space": 0.42931678580700383
+    },
+    "after_preprocessing": {
+      "description": "Final model: K-means on log1p-transformed, standardized R, F, M.",
+      "silhouette": 0.33406882508322566,
+      "inertia": 3919.1752011561075,
+      "cluster_sizes": [
+        1183,
+        887,
+        1546,
+        706
+      ],
+      "profiles": [
+        {
+          "cluster": 0,
+          "customers": 1183,
+          "share_pct": 27.371587228135123,
+          "revenue_share_pct": 23.97046331410336,
+          "recency_days_mean": 64.92561284868977,
+          "recency_days_median": 52.0,
+          "frequency_mean": 4.180050718512257,
+          "frequency_median": 4.0,
+          "monetary_mean": 1675.6300760777685,
+          "monetary_median": 1314.45,
+          "avg_order_value_mean": 496.32618241221536,
+          "avg_order_value_median": 351.9,
+          "unique_products_mean": 74.73288250211327,
+          "unique_products_median": 61.0,
+          "active_months_mean": 3.540152155536771,
+          "active_months_median": 3.0,
+          "rule_scores": {
+            "recency_pct": 0.5047431744562703,
+            "frequency_pct": 0.6995603887089311,
+            "monetary_pct": 0.7011800092549746
+          },
+          "segment_label": "Regular customers",
+          "matched_rule": {
+            "label": "Regular customers",
+            "all": {}
+          },
+          "recommended_action": "Maintain: standard newsletters and periodic offers; test upsell to higher order values."
+        },
+        {
+          "cluster": 1,
+          "customers": 887,
+          "share_pct": 20.522906062008328,
+          "revenue_share_pct": 5.076207501685212,
+          "recency_days_mean": 22.304396843291997,
+          "recency_days_median": 20.0,
+          "frequency_mean": 1.931228861330327,
+          "frequency_median": 2.0,
+          "monetary_mean": 473.262626832018,
+          "monetary_median": 401.40000000000003,
+          "avg_order_value_mean": 370.46782930692007,
+          "avg_order_value_median": 221.26999999999998,
+          "unique_products_mean": 38.04058624577227,
+          "unique_products_median": 28.0,
+          "active_months_mean": 1.749718151071026,
+          "active_months_median": 2.0,
+          "rule_scores": {
+            "recency_pct": 0.27383155946321147,
+            "frequency_pct": 0.44180934752429435,
+            "monetary_pct": 0.35527533549282736
+          },
+          "segment_label": "Recent occasional customers",
+          "matched_rule": {
+            "label": "Recent occasional customers",
+            "all": {
+              "recency_pct": [
+                "<=",
+                0.4
+              ],
+              "frequency_pct": [
+                "<",
+                0.5
+              ]
+            }
+          },
+          "recommended_action": "Nurture: onboarding sequence and a second-purchase incentive to build frequency."
+        },
+        {
+          "cluster": 2,
+          "customers": 1546,
+          "share_pct": 35.77047663118926,
+          "revenue_share_pct": 6.572121835205223,
+          "recency_days_mean": 192.26261319534282,
+          "recency_days_median": 186.5,
+          "frequency_mean": 1.3395860284605434,
+          "frequency_median": 1.0,
+          "monetary_mean": 351.54633893919794,
+          "monetary_median": 294.18,
+          "avg_order_value_mean": 293.6138491806813,
+          "avg_order_value_median": 228.43,
+          "unique_products_mean": 22.423673997412678,
+          "unique_products_median": 17.0,
+          "active_months_mean": 1.261319534282018,
+          "active_months_median": 1.0,
+          "rule_scores": {
+            "recency_pct": 0.8095788986580287,
+            "frequency_pct": 0.1729523368810736,
+            "monetary_pct": 0.24479407681628876
+          },
+          "segment_label": "Inactive customers",
+          "matched_rule": {
+            "label": "Inactive customers",
+            "all": {
+              "recency_pct": [
+                ">=",
+                0.7
+              ],
+              "frequency_pct": [
+                "<",
+                0.5
+              ]
+            }
+          },
+          "recommended_action": "Reactivate cheaply: low-cost reminder campaigns; suppress from expensive channels if they stay inactive."
+        },
+        {
+          "cluster": 3,
+          "customers": 706,
+          "share_pct": 16.335030078667284,
+          "revenue_share_pct": 64.3812073490062,
+          "recency_days_mean": 12.067988668555241,
+          "recency_days_median": 9.0,
+          "frequency_mean": 13.681303116147308,
+          "frequency_median": 10.0,
+          "monetary_mean": 7541.207294617563,
+          "monetary_median": 3539.815,
+          "avg_order_value_mean": 496.10408288967466,
+          "avg_order_value_median": 361.38958333333335,
+          "unique_products_mean": 154.69263456090653,
+          "unique_products_median": 116.5,
+          "active_months_mean": 7.5339943342776206,
+          "active_months_median": 7.0,
+          "rule_scores": {
+            "recency_pct": 0.13269319759370662,
+            "frequency_pct": 0.9169366034243406,
+            "monetary_pct": 0.9030541416011106
+          },
+          "segment_label": "High-value customers",
+          "matched_rule": {
+            "label": "High-value customers",
+            "all": {
+              "monetary_pct": [
+                ">=",
+                0.8
+              ],
+              "frequency_pct": [
+                ">=",
+                0.75
+              ],
+              "recency_pct": [
+                "<=",
+                0.5
+              ]
+            }
+          },
+          "recommended_action": "Protect: VIP loyalty rewards, early access, and account management; monitor for any drop in order frequency."
+        }
+      ],
+      "silhouette_of_these_labels_in_raw_space": -0.010416825331514085
+    },
+    "silhouette_change": -0.5508210711942824,
+    "interpretation": "The silhouette is lower after preprocessing (0.885 -> 0.334). On raw features Monetary (std 8,302 GBP, skewness 21.5) dominates Euclidean distance, so K-means mostly isolates a few extreme spenders (raw cluster sizes [4198, 3, 15, 106]). Such a split of one huge group plus tiny outlier groups can score a high silhouette while saying almost nothing about recency or frequency. After log1p and standardization all three features contribute equally (cluster sizes [1183, 887, 1546, 706]), producing balanced, interpretable segments whose boundaries run through dense regions, which naturally lowers silhouette. Silhouette values are computed in each model's own feature space and are not directly comparable; cross-space scores are reported alongside."
+  },
+  "stability": {
+    "method": "Adjusted Rand Index vs the final labels: 10 different seeds, and 10 fits on random 80% subsamples predicted on all customers.",
+    "seed_ari_mean": 0.996619132193843,
+    "seed_ari_min": 0.9896941426066425,
+    "subsample_ari_mean": 0.9221466062012297,
+    "subsample_ari_min": 0.8518286398719062
+  },
+  "label_notes": [],
+  "distributions": {
+    "recency_days": {
+      "raw": {
+        "edges": [
+          1.0,
+          13.433333333333334,
+          25.866666666666667,
+          38.3,
+          50.733333333333334,
+          63.16666666666667,
+          75.6,
+          88.03333333333333,
+          100.46666666666667,
+          112.9,
+          125.33333333333334,
+          137.76666666666668,
+          150.2,
+          162.63333333333333,
+          175.06666666666666,
+          187.5,
+          199.93333333333334,
+          212.36666666666667,
+          224.8,
+          237.23333333333335,
+          249.66666666666669,
+          262.1,
+          274.53333333333336,
+          286.9666666666667,
+          299.4,
+          311.8333333333333,
+          324.26666666666665,
+          336.7,
+          349.1333333333333,
+          361.56666666666666,
+          374.0
+        ],
+        "counts": [
+          864,
+          576,
+          438,
+          249,
+          293,
+          254,
+          174,
+          112,
+          83,
+          87,
+          80,
+          70,
+          72,
+          78,
+          75,
+          68,
+          61,
+          64,
+          55,
+          67,
+          63,
+          62,
+          62,
+          45,
+          46,
+          58,
+          35,
+          11,
+          32,
+          88
+        ],
+        "log1p": false
+      },
+      "log1p": {
+        "edges": [
+          0.6931471805599453,
+          0.8676064754069608,
+          1.0420657702539762,
+          1.2165250651009918,
+          1.3909843599480074,
+          1.5654436547950228,
+          1.7399029496420382,
+          1.914362244489054,
+          2.0888215393360694,
+          2.263280834183085,
+          2.4377401290301,
+          2.612199423877116,
+          2.7866587187241314,
+          2.961118013571147,
+          3.1355773084181626,
+          3.310036603265178,
+          3.4844958981121934,
+          3.658955192959209,
+          3.833414487806224,
+          4.00787378265324,
+          4.182333077500255,
+          4.356792372347271,
+          4.531251667194287,
+          4.705710962041302,
+          4.880170256888317,
+          5.054629551735333,
+          5.229088846582348,
+          5.403548141429364,
+          5.57800743627638,
+          5.752466731123395,
+          5.926926025970411
+        ],
+        "counts": [
+          35,
+          0,
+          103,
+          89,
+          0,
+          94,
+          94,
+          48,
+          71,
+          149,
+          139,
+          82,
+          197,
+          167,
+          218,
+          178,
+          185,
+          195,
+          213,
+          190,
+          250,
+          181,
+          150,
+          141,
+          136,
+          181,
+          210,
+          193,
+          225,
+          208
+        ],
+        "log1p": true
+      }
+    },
+    "frequency": {
+      "raw": {
+        "edges": [
+          1.0,
+          7.833333333333333,
+          14.666666666666666,
+          21.5,
+          28.333333333333332,
+          35.166666666666664,
+          42.0,
+          48.83333333333333,
+          55.666666666666664,
+          62.5,
+          69.33333333333333,
+          76.16666666666666,
+          83.0,
+          89.83333333333333,
+          96.66666666666666,
+          103.5,
+          110.33333333333333,
+          117.16666666666666,
+          124.0,
+          130.83333333333331,
+          137.66666666666666,
+          144.5,
+          151.33333333333331,
+          158.16666666666666,
+          165.0,
+          171.83333333333331,
+          178.66666666666666,
+          185.5,
+          192.33333333333331,
+          199.16666666666666,
+          206.0
+        ],
+        "counts": [
+          3769,
+          367,
+          102,
+          38,
+          16,
+          8,
+          6,
+          4,
+          4,
+          0,
+          1,
+          0,
+          1,
+          2,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "log1p": false
+      },
+      "log1p": {
+        "edges": [
+          0.6931471805599453,
+          0.8477995676501261,
+          1.0024519547403068,
+          1.1571043418304876,
+          1.3117567289206684,
+          1.4664091160108492,
+          1.6210615031010298,
+          1.7757138901912106,
+          1.9303662772813914,
+          2.0850186643715722,
+          2.239671051461753,
+          2.394323438551934,
+          2.5489758256421147,
+          2.7036282127322955,
+          2.8582805998224763,
+          3.012932986912657,
+          3.167585374002838,
+          3.3222377610930187,
+          3.4768901481831995,
+          3.6315425352733803,
+          3.786194922363561,
+          3.940847309453742,
+          4.095499696543922,
+          4.250152083634103,
+          4.404804470724284,
+          4.559456857814465,
+          4.714109244904646,
+          4.868761631994826,
+          5.023414019085007,
+          5.178066406175188,
+          5.332718793265369
+        ],
+        "counts": [
+          1495,
+          0,
+          829,
+          0,
+          502,
+          395,
+          0,
+          236,
+          312,
+          98,
+          69,
+          108,
+          72,
+          55,
+          44,
+          29,
+          22,
+          18,
+          9,
+          7,
+          7,
+          4,
+          3,
+          1,
+          3,
+          1,
+          1,
+          0,
+          0,
+          2
+        ],
+        "log1p": true
+      }
+    },
+    "monetary": {
+      "raw": {
+        "edges": [
+          5.684341886080802e-14,
+          9292.600666666667,
+          18585.201333333334,
+          27877.802000000003,
+          37170.40266666667,
+          46463.003333333334,
+          55755.60400000001,
+          65048.20466666667,
+          74340.80533333334,
+          83633.406,
+          92926.00666666667,
+          102218.60733333333,
+          111511.20800000001,
+          120803.80866666668,
+          130096.40933333334,
+          139389.01,
+          148681.61066666667,
+          157974.21133333334,
+          167266.812,
+          176559.41266666667,
+          185852.01333333334,
+          195144.614,
+          204437.21466666667,
+          213729.81533333333,
+          223022.41600000003,
+          232315.0166666667,
+          241607.61733333336,
+          250900.21800000002,
+          260192.8186666667,
+          269485.4193333333,
+          278778.02
+        ],
+        "counts": [
+          4217,
+          63,
+          11,
+          11,
+          2,
+          6,
+          4,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "log1p": false
+      },
+      "log1p": {
+        "edges": [
+          5.68434188608064e-14,
+          0.4179391567987537,
+          0.8358783135974506,
+          1.2538174703961475,
+          1.6717566271948443,
+          2.089695783993541,
+          2.5076349407922383,
+          2.925574097590935,
+          3.3435132543896318,
+          3.7614524111883285,
+          4.179391567987025,
+          4.5973307247857225,
+          5.01526988158442,
+          5.433209038383116,
+          5.851148195181813,
+          6.2690873519805095,
+          6.687026508779207,
+          7.104965665577904,
+          7.5229048223766,
+          7.940843979175297,
+          8.358783135973994,
+          8.776722292772691,
+          9.194661449571388,
+          9.612600606370085,
+          10.030539763168782,
+          10.448478919967478,
+          10.866418076766175,
+          11.284357233564872,
+          11.70229639036357,
+          12.120235547162267,
+          12.538174703960962
+        ],
+        "counts": [
+          2,
+          0,
+          0,
+          2,
+          1,
+          0,
+          6,
+          4,
+          19,
+          36,
+          94,
+          249,
+          395,
+          514,
+          537,
+          585,
+          502,
+          446,
+          362,
+          250,
+          145,
+          76,
+          42,
+          20,
+          14,
+          6,
+          8,
+          2,
+          2,
+          3
+        ],
+        "log1p": true
+      }
+    }
+  },
+  "exclusions": {
+    "customers_with_id": 4372,
+    "no_valid_purchase": {
+      "count": 38,
+      "reason": "Only cancellations, adjustments, or non-merchandise lines; nothing to segment."
+    },
+    "non_positive_net_spending": {
+      "count": 12,
+      "reason": "Cancellations exceed purchases inside the data window (refunds of earlier orders)."
+    },
+    "eligible_customers": 4322
+  },
+  "figures": [
+    "reports/figures/segmentation_k_search.png",
+    "reports/figures/segmentation_recency_days_distribution.png",
+    "reports/figures/segmentation_frequency_distribution.png",
+    "reports/figures/segmentation_monetary_distribution.png"
+  ]
+}
