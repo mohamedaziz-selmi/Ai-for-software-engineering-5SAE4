@@ -66,6 +66,11 @@ class Settings:
     embedding_model: str
     embedding_device: str
     top_k: int
+    review_seed: int | None = 7  # fixed sampling seed for review calls (repeatable verdicts); None to omit
+    warm_up: bool = True  # load the local model at startup so the first question is not slow
+    # RAFT fine-tuned model in the same private Ollama: a user-selectable choice and a local backup ("" = none).
+    # Default stays the base model (it won the final test, eval/results/assistant_final-*.md).
+    assistant_raft_model: str = "assistant-raft2a:qwen2.5-7b"
 
     @property
     def hosted_key_present(self) -> bool:
@@ -99,4 +104,7 @@ def load_settings(*, read_dotenv: bool = True) -> Settings:
         embedding_model=env("EMBEDDING_MODEL", "intfloat/multilingual-e5-base"),
         embedding_device=env("EMBEDDING_DEVICE", "cpu"),
         top_k=int(env("RETRIEVAL_TOP_K", "5")),
+        review_seed=int(env("REVIEW_SEED", "7")) if env("REVIEW_SEED", "7").strip() else None,
+        warm_up=_flag("ASSISTANT_WARM_UP", True),
+        assistant_raft_model=env("ASSISTANT_RAFT_MODEL", "assistant-raft2a:qwen2.5-7b").strip(),
     )

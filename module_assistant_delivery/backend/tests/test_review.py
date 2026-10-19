@@ -7,6 +7,7 @@ from app.llm.prompts import Excerpt, render_excerpts
 from conftest import CLIENT, FREELANCER, OTHER, SEED_DOCS, upload
 
 DELIVERABLE = Path(__file__).resolve().parents[2] / "data" / "seed" / "deliverables" / "PRJ-DEMO-001_M2"
+DEMO = Path(__file__).resolve().parents[2] / "demo" / "deliverables"
 
 
 def setup_project(env):
@@ -80,6 +81,8 @@ def test_review_keeps_verified_evidence_and_drops_the_rest(env):
     assert "NN-4" not in by_code
     assert review["summary"]["dropped_unverified_findings"] == {"quote_not_at_location": 1}
     assert "advisory" in review["advisory_notice"].lower()
+    assert review["progress"] == {"done": 13, "total": 13}  # what the UI's progress bar shows while it runs
+    assert review["prompt_version"] == "review_judge.v2"
 
 
 def test_only_the_client_decides_on_findings(env):
@@ -91,6 +94,31 @@ def test_only_the_client_decides_on_findings(env):
     body = {"client_decision": "accepted", "client_comment": "Will fix in v2"}
     assert client.patch(f"/api/ai/findings/{finding_id}", headers={"X-Demo-User": FREELANCER}, json=body).status_code == 403
     assert client.patch(f"/api/ai/findings/{finding_id}", headers={"X-Demo-User": CLIENT}, json=body).json()["client_decision"] == "accepted"
+
+
+def test_members_edit_requirements_and_extraction_keeps_the_edit(env):
+    client = setup_project(env)
+    params, h = {"project_id": "PRJ-DEMO-001"}, {"X-Demo-User": FREELANCER}
+    reqs = client.post("/api/ai/requirements/extract", params=params, headers=h).json()["requirements"]
+    target = next(r for r in reqs if r["code"] == "REQ-008")
+    body = {"text": "The catalogue shows a best seller badge on the top three products.", "priority": "should"}
+    assert client.put(f"/api/ai/requirements/{target['id']}", headers={"X-Demo-User": OTHER}, json=body).status_code == 403
+    edited = client.put(f"/api/ai/requirements/{target['id']}", headers=h, json=body).json()
+    assert edited["priority"] == "should" and edited["edited_by_user"] == 1
+    again = client.post("/api/ai/requirements/extract", params=params, headers=h).json()["requirements"]
+    assert next(r for r in again if r["code"] == "REQ-008")["text"] == body["text"]
+
+
+def test_only_the_client_accepts_the_delivery_or_requests_changes(env):
+    client = setup_project(env)
+    deliverable = submit(client).json()["deliverable_id"]
+    url = f"/api/ai/deliverables/{deliverable}/decision"
+    body = {"decision": "changes_requested", "comment": "Fix NN-1 first."}
+    assert client.patch(url, headers={"X-Demo-User": FREELANCER}, json=body).status_code == 403
+    assert client.patch(url, headers={"X-Demo-User": CLIENT}, json=body).json()["client_decision"] == "changes_requested"
+    listed = client.get("/api/ai/deliverables", params={"project_id": "PRJ-DEMO-001"}, headers={"X-Demo-User": FREELANCER}).json()["deliverables"][0]
+    assert (listed["client_decision"], listed["client_comment"], listed["decided_by"]) == ("changes_requested", "Fix NN-1 first.", CLIENT)
+    assert client.patch(url, headers={"X-Demo-User": CLIENT}, json={"decision": "maybe"}).status_code == 422
 
 
 def test_review_fails_cleanly_when_the_model_is_down(env):
@@ -146,6 +174,25 @@ def test_elided_quotes_are_verified_line_by_line_at_their_numbers():
     assert verify_finding({**finding, "evidence_quote": elided.replace("SLOT_MINUTES = 15", "SLOT_MINUTES = 30")}, files) == "quote_not_at_location"
     assert verify_finding({**finding, "evidence_quote": elided.replace("12|", "13|")}, files) == "quote_not_at_location"
     assert verify_finding({**finding, "line_start": 11, "line_end": 14}, files) == "quote_not_at_location"  # line 5 outside the stated range
+
+
+def test_quotes_that_skip_lines_pass_only_if_every_line_is_real_and_in_order():
+    from app.review.pipeline import verify_finding
+
+    files = {"src/slots.py": (DELIVERABLE / "src" / "slots.py").read_text(encoding="utf-8")}
+    # Observed from openai/gpt-oss-120b (Groq) on 2026-10-19: the docstring (line 11) skipped without a marker.
+    skipped = ("SLOT_MINUTES = 15\n...\ndef slot_is_open(slot_start: datetime, now: datetime, orders_in_slot: int) -> bool:\n"
+               "    if orders_in_slot >= MAX_ORDERS_PER_SLOT:\n        return False\n    return now <= slot_start - BOOKING_CLOSES_BEFORE")
+    finding = {"file_path": "src/slots.py", "line_start": 5, "line_end": 14, "evidence_quote": skipped}
+    assert verify_finding(finding, files) is None
+    assert verify_finding({**finding, "evidence_quote": skipped.replace("return False", "return True")}, files) == "quote_not_at_location"  # reworded
+    reordered = "    if orders_in_slot >= MAX_ORDERS_PER_SLOT:\nSLOT_MINUTES = 15"
+    assert verify_finding({**finding, "evidence_quote": reordered}, files) == "quote_not_at_location"  # out of order
+    # Observed on 2026-10-19 on the corrected deliverable: lines quoted without their trailing comments.
+    fixed = {"src/slots.py": (DEMO / "M2_v2_fixed" / "src" / "slots.py").read_text(encoding="utf-8")}
+    no_comments = "SLOT_MINUTES = 15\nMAX_ORDERS_PER_SLOT = 20\nBOOKING_CLOSES_BEFORE = timedelta(hours=2)\n...\nif orders_in_slot >= MAX_ORDERS_PER_SLOT:\n    return False"
+    assert verify_finding({**finding, "evidence_quote": no_comments}, fixed) is None
+    assert verify_finding({**finding, "evidence_quote": no_comments.replace("= 20", "= 25")}, fixed) == "quote_not_at_location"
 
 
 def test_deliverable_text_stays_inside_file_delimiters():

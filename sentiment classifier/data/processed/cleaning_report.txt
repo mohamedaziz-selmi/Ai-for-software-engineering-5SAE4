@@ -1,0 +1,21 @@
+SENTIMENT DATA CLEANING REPORT
+Random seed: 42
+
+Detected schemas:
+- reviews_dataset.csv: {'text_column': 'review', 'label_column': 'sentiment', 'raw_label_counts': {'positive': 18773, 'negative': 13787, 'neutral': 13087}, 'unverified_labels': 0, 'file': 'reviews_dataset.csv', 'dataset': 'multidomain_reviews', 'input_rows': 45647}
+- Womens Clothing E-Commerce Reviews.csv: {'text_column': 'Review Text', 'label_column': 'Rating', 'unexpected_ratings': 0, 'file': 'Womens Clothing E-Commerce Reviews.csv', 'dataset': 'womens_ecommerce', 'input_rows': 23486}
+
+Cleaning summary:
+- input rows: 69,133
+- empty reviews removed: 845
+- invalid or unverified labels removed: 0
+- exact duplicates removed: 7
+- label conflicts removed: 0
+- final rows: 68,281
+
+Split sizes: train=47,796, validation=10,242, test=10,243
+Exact duplicate leakage check: passed (duplicates were removed before stratified splitting).
+Near duplicates: not removed; only exact normalized duplicates were removed to avoid deleting legitimate similar reviews.
+Text policy: HTML/entities and repeated whitespace normalized; punctuation, negations, emojis, stopwords, and word forms preserved.
+Warnings:
+- None

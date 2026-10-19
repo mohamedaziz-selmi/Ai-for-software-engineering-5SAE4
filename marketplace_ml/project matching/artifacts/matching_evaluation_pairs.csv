@@ -1,0 +1,529 @@
+project_id,freelancer_id,relevance_label,annotation_notes
+project_1,15906625,1,Same category proxy label for Accountant.
+project_1,30361788,1,Same category proxy label for Accountant.
+project_1,21031285,1,Same category proxy label for Accountant.
+project_1,25749150,1,Same category proxy label for Accountant.
+project_1,12338274,1,Same category proxy label for Accountant.
+project_1,33527446,1,Same category proxy label for Accountant.
+project_1,12442909,1,Same category proxy label for Accountant.
+project_1,37997506,1,Same category proxy label for Accountant.
+project_1,37370455,1,Same category proxy label for Accountant.
+project_1,10554236,1,Same category proxy label for Accountant.
+project_1,31602598,1,Same category proxy label for Accountant.
+project_1,19545827,1,Same category proxy label for Accountant.
+project_1,11842274,0,Category mismatch proxy label.
+project_1,19929506,0,Category mismatch proxy label.
+project_1,73075521,0,Category mismatch proxy label.
+project_1,28923650,0,Category mismatch proxy label.
+project_1,91431878,0,Category mismatch proxy label.
+project_1,37739183,0,Category mismatch proxy label.
+project_1,15601399,0,Category mismatch proxy label.
+project_1,29319314,0,Category mismatch proxy label.
+project_1,20681037,0,Category mismatch proxy label.
+project_1,15265464,0,Category mismatch proxy label.
+project_2,14445309,1,Same category proxy label for Advocate.
+project_2,35474904,1,Same category proxy label for Advocate.
+project_2,37348041,1,Same category proxy label for Advocate.
+project_2,89508407,1,Same category proxy label for Advocate.
+project_2,25873425,1,Same category proxy label for Advocate.
+project_2,31040875,1,Same category proxy label for Advocate.
+project_2,11188218,1,Same category proxy label for Advocate.
+project_2,73448369,1,Same category proxy label for Advocate.
+project_2,42164460,1,Same category proxy label for Advocate.
+project_2,18725071,1,Same category proxy label for Advocate.
+project_2,28974459,1,Same category proxy label for Advocate.
+project_2,38291889,1,Same category proxy label for Advocate.
+project_2,16962067,0,Category mismatch proxy label.
+project_2,26189601,0,Category mismatch proxy label.
+project_2,12254068,0,Category mismatch proxy label.
+project_2,19362586,0,Category mismatch proxy label.
+project_2,24294778,0,Category mismatch proxy label.
+project_2,31392754,0,Category mismatch proxy label.
+project_2,20141807,0,Category mismatch proxy label.
+project_2,70667011,0,Category mismatch proxy label.
+project_2,17509935,0,Category mismatch proxy label.
+project_2,13212436,0,Category mismatch proxy label.
+project_3,54246169,1,Same category proxy label for Agriculture.
+project_3,28165687,1,Same category proxy label for Agriculture.
+project_3,21134923,1,Same category proxy label for Agriculture.
+project_3,37292350,1,Same category proxy label for Agriculture.
+project_3,84512719,1,Same category proxy label for Agriculture.
+project_3,21868149,1,Same category proxy label for Agriculture.
+project_3,37201447,1,Same category proxy label for Agriculture.
+project_3,29897742,1,Same category proxy label for Agriculture.
+project_3,55500538,1,Same category proxy label for Agriculture.
+project_3,15053703,1,Same category proxy label for Agriculture.
+project_3,15603319,1,Same category proxy label for Agriculture.
+project_3,69336473,1,Same category proxy label for Agriculture.
+project_3,49127329,0,Category mismatch proxy label.
+project_3,24668861,0,Category mismatch proxy label.
+project_3,18172739,0,Category mismatch proxy label.
+project_3,86322251,0,Category mismatch proxy label.
+project_3,25719936,0,Category mismatch proxy label.
+project_3,19850482,0,Category mismatch proxy label.
+project_3,14364597,0,Category mismatch proxy label.
+project_3,43994605,0,Category mismatch proxy label.
+project_3,16723524,0,Category mismatch proxy label.
+project_3,18278509,0,Category mismatch proxy label.
+project_4,24533931,1,Same category proxy label for Apparel.
+project_4,21807211,1,Same category proxy label for Apparel.
+project_4,71767359,1,Same category proxy label for Apparel.
+project_4,27694040,1,Same category proxy label for Apparel.
+project_4,15535408,1,Same category proxy label for Apparel.
+project_4,13386301,1,Same category proxy label for Apparel.
+project_4,27091280,1,Same category proxy label for Apparel.
+project_4,14413257,1,Same category proxy label for Apparel.
+project_4,11677077,1,Same category proxy label for Apparel.
+project_4,29521434,1,Same category proxy label for Apparel.
+project_4,50324968,1,Same category proxy label for Apparel.
+project_4,13764840,1,Same category proxy label for Apparel.
+project_4,17640785,0,Category mismatch proxy label.
+project_4,56286525,0,Category mismatch proxy label.
+project_4,24349611,0,Category mismatch proxy label.
+project_4,24553863,0,Category mismatch proxy label.
+project_4,16280971,0,Category mismatch proxy label.
+project_4,19090468,0,Category mismatch proxy label.
+project_4,29193505,0,Category mismatch proxy label.
+project_4,20457611,0,Category mismatch proxy label.
+project_4,37242217,0,Category mismatch proxy label.
+project_4,18187364,0,Category mismatch proxy label.
+project_5,31273413,1,Same category proxy label for Arts.
+project_5,12386670,1,Same category proxy label for Arts.
+project_5,93576192,1,Same category proxy label for Arts.
+project_5,15306049,1,Same category proxy label for Arts.
+project_5,31114531,1,Same category proxy label for Arts.
+project_5,21060367,1,Same category proxy label for Arts.
+project_5,17325147,1,Same category proxy label for Arts.
+project_5,23752500,1,Same category proxy label for Arts.
+project_5,20149476,1,Same category proxy label for Arts.
+project_5,54100393,1,Same category proxy label for Arts.
+project_5,11187796,1,Same category proxy label for Arts.
+project_5,39470264,1,Same category proxy label for Arts.
+project_5,93002334,0,Category mismatch proxy label.
+project_5,33141415,0,Category mismatch proxy label.
+project_5,14241621,0,Category mismatch proxy label.
+project_5,17025292,0,Category mismatch proxy label.
+project_5,18460045,0,Category mismatch proxy label.
+project_5,11752500,0,Category mismatch proxy label.
+project_5,32651555,0,Category mismatch proxy label.
+project_5,14554542,0,Category mismatch proxy label.
+project_5,19929506,0,Category mismatch proxy label.
+project_5,23602130,0,Category mismatch proxy label.
+project_6,11797122,1,Same category proxy label for Automobile.
+project_6,16332293,1,Same category proxy label for Automobile.
+project_6,28790806,1,Same category proxy label for Automobile.
+project_6,91515108,1,Same category proxy label for Automobile.
+project_6,32109048,1,Same category proxy label for Automobile.
+project_6,11152490,1,Same category proxy label for Automobile.
+project_6,99680385,1,Same category proxy label for Automobile.
+project_6,15790602,1,Same category proxy label for Automobile.
+project_6,17510973,1,Same category proxy label for Automobile.
+project_6,23522150,1,Same category proxy label for Automobile.
+project_6,11257723,1,Same category proxy label for Automobile.
+project_6,14455622,1,Same category proxy label for Automobile.
+project_6,34953092,0,Category mismatch proxy label.
+project_6,24673903,0,Category mismatch proxy label.
+project_6,11677077,0,Category mismatch proxy label.
+project_6,19532392,0,Category mismatch proxy label.
+project_6,43622023,0,Category mismatch proxy label.
+project_6,20819838,0,Category mismatch proxy label.
+project_6,30311202,0,Category mismatch proxy label.
+project_6,19929506,0,Category mismatch proxy label.
+project_6,21007083,0,Category mismatch proxy label.
+project_6,25930778,0,Category mismatch proxy label.
+project_7,69458502,1,Same category proxy label for Aviation.
+project_7,82738323,1,Same category proxy label for Aviation.
+project_7,16833515,1,Same category proxy label for Aviation.
+project_7,11804712,1,Same category proxy label for Aviation.
+project_7,21287405,1,Same category proxy label for Aviation.
+project_7,10176815,1,Same category proxy label for Aviation.
+project_7,29221006,1,Same category proxy label for Aviation.
+project_7,23761385,1,Same category proxy label for Aviation.
+project_7,38355831,1,Same category proxy label for Aviation.
+project_7,24773845,1,Same category proxy label for Aviation.
+project_7,17876954,1,Same category proxy label for Aviation.
+project_7,36252245,1,Same category proxy label for Aviation.
+project_7,22890839,0,Category mismatch proxy label.
+project_7,12897903,0,Category mismatch proxy label.
+project_7,21869994,0,Category mismatch proxy label.
+project_7,32531824,0,Category mismatch proxy label.
+project_7,29406313,0,Category mismatch proxy label.
+project_7,10889157,0,Category mismatch proxy label.
+project_7,39027764,0,Category mismatch proxy label.
+project_7,27788376,0,Category mismatch proxy label.
+project_7,13376919,0,Category mismatch proxy label.
+project_7,27835351,0,Category mismatch proxy label.
+project_8,74552449,1,Same category proxy label for Banking.
+project_8,79041971,1,Same category proxy label for Banking.
+project_8,77156708,1,Same category proxy label for Banking.
+project_8,24580361,1,Same category proxy label for Banking.
+project_8,34953092,1,Same category proxy label for Banking.
+project_8,17189156,1,Same category proxy label for Banking.
+project_8,19920687,1,Same category proxy label for Banking.
+project_8,26579709,1,Same category proxy label for Banking.
+project_8,29093426,1,Same category proxy label for Banking.
+project_8,33286293,1,Same category proxy label for Banking.
+project_8,29552167,1,Same category proxy label for Banking.
+project_8,69243180,1,Same category proxy label for Banking.
+project_8,27496514,0,Category mismatch proxy label.
+project_8,10909720,0,Category mismatch proxy label.
+project_8,24592627,0,Category mismatch proxy label.
+project_8,28933005,0,Category mismatch proxy label.
+project_8,25413261,0,Category mismatch proxy label.
+project_8,33344933,0,Category mismatch proxy label.
+project_8,38220146,0,Category mismatch proxy label.
+project_8,23782450,0,Category mismatch proxy label.
+project_8,71772815,0,Category mismatch proxy label.
+project_8,18316239,0,Category mismatch proxy label.
+project_9,79261033,1,Same category proxy label for Bpo.
+project_9,16492045,1,Same category proxy label for Bpo.
+project_9,18589927,1,Same category proxy label for Bpo.
+project_9,23933031,1,Same category proxy label for Bpo.
+project_9,13964744,1,Same category proxy label for Bpo.
+project_9,89512321,1,Same category proxy label for Bpo.
+project_9,30709029,1,Same category proxy label for Bpo.
+project_9,11183737,1,Same category proxy label for Bpo.
+project_9,63158213,1,Same category proxy label for Bpo.
+project_9,24727739,1,Same category proxy label for Bpo.
+project_9,15145575,1,Same category proxy label for Bpo.
+project_9,69097572,1,Same category proxy label for Bpo.
+project_9,24533931,0,Category mismatch proxy label.
+project_9,23522150,0,Category mismatch proxy label.
+project_9,22452756,0,Category mismatch proxy label.
+project_9,18268860,0,Category mismatch proxy label.
+project_9,19446337,0,Category mismatch proxy label.
+project_9,30826569,0,Category mismatch proxy label.
+project_9,27531694,0,Category mismatch proxy label.
+project_9,19612167,0,Category mismatch proxy label.
+project_9,21190805,0,Category mismatch proxy label.
+project_9,24322804,0,Category mismatch proxy label.
+project_10,65708020,1,Same category proxy label for Business Development.
+project_10,36805025,1,Same category proxy label for Business Development.
+project_10,13080868,1,Same category proxy label for Business Development.
+project_10,20748929,1,Same category proxy label for Business Development.
+project_10,26581830,1,Same category proxy label for Business Development.
+project_10,38688388,1,Same category proxy label for Business Development.
+project_10,25397102,1,Same category proxy label for Business Development.
+project_10,12059198,1,Same category proxy label for Business Development.
+project_10,10228751,1,Same category proxy label for Business Development.
+project_10,61677751,1,Same category proxy label for Business Development.
+project_10,20553895,1,Same category proxy label for Business Development.
+project_10,18757174,1,Same category proxy label for Business Development.
+project_10,32109048,0,Category mismatch proxy label.
+project_10,11409460,0,Category mismatch proxy label.
+project_10,49997097,0,Category mismatch proxy label.
+project_10,37695494,0,Category mismatch proxy label.
+project_10,19302310,0,Category mismatch proxy label.
+project_10,57667857,0,Category mismatch proxy label.
+project_10,29878348,0,Category mismatch proxy label.
+project_10,12351749,0,Category mismatch proxy label.
+project_10,25990239,0,Category mismatch proxy label.
+project_10,17431847,0,Category mismatch proxy label.
+project_11,15180322,1,Same category proxy label for Chef.
+project_11,24221960,1,Same category proxy label for Chef.
+project_11,24673903,1,Same category proxy label for Chef.
+project_11,19007667,1,Same category proxy label for Chef.
+project_11,30311202,1,Same category proxy label for Chef.
+project_11,11121498,1,Same category proxy label for Chef.
+project_11,32518109,1,Same category proxy label for Chef.
+project_11,26718039,1,Same category proxy label for Chef.
+project_11,23568731,1,Same category proxy label for Chef.
+project_11,14663897,1,Same category proxy label for Chef.
+project_11,21904897,1,Same category proxy label for Chef.
+project_11,23591247,1,Same category proxy label for Chef.
+project_11,10268614,0,Category mismatch proxy label.
+project_11,13575312,0,Category mismatch proxy label.
+project_11,24658786,0,Category mismatch proxy label.
+project_11,34317538,0,Category mismatch proxy label.
+project_11,38860712,0,Category mismatch proxy label.
+project_11,26581830,0,Category mismatch proxy label.
+project_11,17640785,0,Category mismatch proxy label.
+project_11,26013403,0,Category mismatch proxy label.
+project_11,38896303,0,Category mismatch proxy label.
+project_11,12938389,0,Category mismatch proxy label.
+project_12,99433371,1,Same category proxy label for Construction.
+project_12,10734870,1,Same category proxy label for Construction.
+project_12,18472240,1,Same category proxy label for Construction.
+project_12,71576860,1,Same category proxy label for Construction.
+project_12,29087505,1,Same category proxy label for Construction.
+project_12,22965804,1,Same category proxy label for Construction.
+project_12,33141415,1,Same category proxy label for Construction.
+project_12,26509539,1,Same category proxy label for Construction.
+project_12,36331163,1,Same category proxy label for Construction.
+project_12,25656981,1,Same category proxy label for Construction.
+project_12,26091595,1,Same category proxy label for Construction.
+project_12,11393213,1,Same category proxy label for Construction.
+project_12,41950126,0,Category mismatch proxy label.
+project_12,26202430,0,Category mismatch proxy label.
+project_12,30563572,0,Category mismatch proxy label.
+project_12,21297521,0,Category mismatch proxy label.
+project_12,25935030,0,Category mismatch proxy label.
+project_12,14861855,0,Category mismatch proxy label.
+project_12,19268120,0,Category mismatch proxy label.
+project_12,27531694,0,Category mismatch proxy label.
+project_12,29510501,0,Category mismatch proxy label.
+project_12,12748557,0,Category mismatch proxy label.
+project_13,27096471,1,Same category proxy label for Consultant.
+project_13,43311839,1,Same category proxy label for Consultant.
+project_13,15119529,1,Same category proxy label for Consultant.
+project_13,88907739,1,Same category proxy label for Consultant.
+project_13,31395742,1,Same category proxy label for Consultant.
+project_13,93349646,1,Same category proxy label for Consultant.
+project_13,25694422,1,Same category proxy label for Consultant.
+project_13,26291616,1,Same category proxy label for Consultant.
+project_13,11020140,1,Same category proxy label for Consultant.
+project_13,93459677,1,Same category proxy label for Consultant.
+project_13,18079050,1,Same category proxy label for Consultant.
+project_13,25213006,1,Same category proxy label for Consultant.
+project_13,21830565,0,Category mismatch proxy label.
+project_13,17378327,0,Category mismatch proxy label.
+project_13,13352113,0,Category mismatch proxy label.
+project_13,11336022,0,Category mismatch proxy label.
+project_13,11444536,0,Category mismatch proxy label.
+project_13,35673335,0,Category mismatch proxy label.
+project_13,19557384,0,Category mismatch proxy label.
+project_13,32959732,0,Category mismatch proxy label.
+project_13,15180322,0,Category mismatch proxy label.
+project_13,63282405,0,Category mismatch proxy label.
+project_14,37058472,1,Same category proxy label for Designer.
+project_14,68240723,1,Same category proxy label for Designer.
+project_14,76010167,1,Same category proxy label for Designer.
+project_14,19164410,1,Same category proxy label for Designer.
+project_14,29147100,1,Same category proxy label for Designer.
+project_14,25061645,1,Same category proxy label for Designer.
+project_14,11919526,1,Same category proxy label for Designer.
+project_14,81011612,1,Same category proxy label for Designer.
+project_14,11722421,1,Same category proxy label for Designer.
+project_14,13774329,1,Same category proxy label for Designer.
+project_14,35990852,1,Same category proxy label for Designer.
+project_14,36269672,1,Same category proxy label for Designer.
+project_14,50328713,0,Category mismatch proxy label.
+project_14,14491649,0,Category mismatch proxy label.
+project_14,23918545,0,Category mismatch proxy label.
+project_14,32947778,0,Category mismatch proxy label.
+project_14,28396458,0,Category mismatch proxy label.
+project_14,17488801,0,Category mismatch proxy label.
+project_14,39875803,0,Category mismatch proxy label.
+project_14,25497147,0,Category mismatch proxy label.
+project_14,81677620,0,Category mismatch proxy label.
+project_14,75286906,0,Category mismatch proxy label.
+project_15,13837784,1,Same category proxy label for Digital Media.
+project_15,16509761,1,Same category proxy label for Digital Media.
+project_15,29915354,1,Same category proxy label for Digital Media.
+project_15,82929064,1,Same category proxy label for Digital Media.
+project_15,10515955,1,Same category proxy label for Digital Media.
+project_15,14945250,1,Same category proxy label for Digital Media.
+project_15,28609364,1,Same category proxy label for Digital Media.
+project_15,19861776,1,Same category proxy label for Digital Media.
+project_15,14036515,1,Same category proxy label for Digital Media.
+project_15,11005406,1,Same category proxy label for Digital Media.
+project_15,17132168,1,Same category proxy label for Digital Media.
+project_15,15353911,1,Same category proxy label for Digital Media.
+project_15,22605864,0,Category mismatch proxy label.
+project_15,17640785,0,Category mismatch proxy label.
+project_15,69487178,0,Category mismatch proxy label.
+project_15,48285304,0,Category mismatch proxy label.
+project_15,12019284,0,Category mismatch proxy label.
+project_15,23143731,0,Category mismatch proxy label.
+project_15,12938200,0,Category mismatch proxy label.
+project_15,30361788,0,Category mismatch proxy label.
+project_15,37263609,0,Category mismatch proxy label.
+project_15,34962725,0,Category mismatch proxy label.
+project_16,14206561,1,Same category proxy label for Engineering.
+project_16,15139979,1,Same category proxy label for Engineering.
+project_16,44624796,1,Same category proxy label for Engineering.
+project_16,54227873,1,Same category proxy label for Engineering.
+project_16,28005884,1,Same category proxy label for Engineering.
+project_16,82246962,1,Same category proxy label for Engineering.
+project_16,13149176,1,Same category proxy label for Engineering.
+project_16,12022566,1,Same category proxy label for Engineering.
+project_16,20981299,1,Same category proxy label for Engineering.
+project_16,25919149,1,Same category proxy label for Engineering.
+project_16,86828820,1,Same category proxy label for Engineering.
+project_16,28320387,1,Same category proxy label for Engineering.
+project_16,23929500,0,Category mismatch proxy label.
+project_16,14945250,0,Category mismatch proxy label.
+project_16,15906625,0,Category mismatch proxy label.
+project_16,21807211,0,Category mismatch proxy label.
+project_16,41152404,0,Category mismatch proxy label.
+project_16,13727873,0,Category mismatch proxy label.
+project_16,14106638,0,Category mismatch proxy label.
+project_16,37560528,0,Category mismatch proxy label.
+project_16,16407619,0,Category mismatch proxy label.
+project_16,12674307,0,Category mismatch proxy label.
+project_17,11877150,1,Same category proxy label for Finance.
+project_17,86549455,1,Same category proxy label for Finance.
+project_17,26530575,1,Same category proxy label for Finance.
+project_17,23955183,1,Same category proxy label for Finance.
+project_17,24854026,1,Same category proxy label for Finance.
+project_17,48285304,1,Same category proxy label for Finance.
+project_17,14722634,1,Same category proxy label for Finance.
+project_17,27789372,1,Same category proxy label for Finance.
+project_17,26767199,1,Same category proxy label for Finance.
+project_17,15891494,1,Same category proxy label for Finance.
+project_17,78229715,1,Same category proxy label for Finance.
+project_17,22720697,1,Same category proxy label for Finance.
+project_17,98300955,0,Category mismatch proxy label.
+project_17,26768723,0,Category mismatch proxy label.
+project_17,34198885,0,Category mismatch proxy label.
+project_17,10176815,0,Category mismatch proxy label.
+project_17,53640713,0,Category mismatch proxy label.
+project_17,33964275,0,Category mismatch proxy label.
+project_17,26278597,0,Category mismatch proxy label.
+project_17,17704246,0,Category mismatch proxy label.
+project_17,34511655,0,Category mismatch proxy label.
+project_17,94503308,0,Category mismatch proxy label.
+project_18,17576030,1,Same category proxy label for Fitness.
+project_18,24444525,1,Same category proxy label for Fitness.
+project_18,10268614,1,Same category proxy label for Fitness.
+project_18,29792535,1,Same category proxy label for Fitness.
+project_18,15932017,1,Same category proxy label for Fitness.
+project_18,23063986,1,Same category proxy label for Fitness.
+project_18,10816645,1,Same category proxy label for Fitness.
+project_18,11522068,1,Same category proxy label for Fitness.
+project_18,10568350,1,Same category proxy label for Fitness.
+project_18,18767449,1,Same category proxy label for Fitness.
+project_18,20457611,1,Same category proxy label for Fitness.
+project_18,54259150,1,Same category proxy label for Fitness.
+project_18,12587973,0,Category mismatch proxy label.
+project_18,11959428,0,Category mismatch proxy label.
+project_18,43408471,0,Category mismatch proxy label.
+project_18,74126637,0,Category mismatch proxy label.
+project_18,30163002,0,Category mismatch proxy label.
+project_18,37739183,0,Category mismatch proxy label.
+project_18,27120528,0,Category mismatch proxy label.
+project_18,12674307,0,Category mismatch proxy label.
+project_18,26676567,0,Category mismatch proxy label.
+project_18,22025574,0,Category mismatch proxy label.
+project_19,23617240,1,Same category proxy label for Healthcare.
+project_19,23138078,1,Same category proxy label for Healthcare.
+project_19,51777546,1,Same category proxy label for Healthcare.
+project_19,69199666,1,Same category proxy label for Healthcare.
+project_19,93988900,1,Same category proxy label for Healthcare.
+project_19,41910253,1,Same category proxy label for Healthcare.
+project_19,28670024,1,Same category proxy label for Healthcare.
+project_19,36625776,1,Same category proxy label for Healthcare.
+project_19,96260484,1,Same category proxy label for Healthcare.
+project_19,11378657,1,Same category proxy label for Healthcare.
+project_19,34962725,1,Same category proxy label for Healthcare.
+project_19,18365443,1,Same category proxy label for Healthcare.
+project_19,83566455,0,Category mismatch proxy label.
+project_19,23917826,0,Category mismatch proxy label.
+project_19,20748926,0,Category mismatch proxy label.
+project_19,90867631,0,Category mismatch proxy label.
+project_19,26750846,0,Category mismatch proxy label.
+project_19,11555549,0,Category mismatch proxy label.
+project_19,54201930,0,Category mismatch proxy label.
+project_19,11020140,0,Category mismatch proxy label.
+project_19,38056161,0,Category mismatch proxy label.
+project_19,11415967,0,Category mismatch proxy label.
+project_20,16852973,1,Same category proxy label for Hr.
+project_20,22323967,1,Same category proxy label for Hr.
+project_20,33176873,1,Same category proxy label for Hr.
+project_20,27018550,1,Same category proxy label for Hr.
+project_20,17812897,1,Same category proxy label for Hr.
+project_20,11592605,1,Same category proxy label for Hr.
+project_20,25824789,1,Same category proxy label for Hr.
+project_20,15375009,1,Same category proxy label for Hr.
+project_20,11847784,1,Same category proxy label for Hr.
+project_20,32896934,1,Same category proxy label for Hr.
+project_20,29149998,1,Same category proxy label for Hr.
+project_20,11480899,1,Same category proxy label for Hr.
+project_20,37931076,0,Category mismatch proxy label.
+project_20,38847011,0,Category mismatch proxy label.
+project_20,18767449,0,Category mismatch proxy label.
+project_20,91072502,0,Category mismatch proxy label.
+project_20,29746235,0,Category mismatch proxy label.
+project_20,16964217,0,Category mismatch proxy label.
+project_20,20148147,0,Category mismatch proxy label.
+project_20,28895997,0,Category mismatch proxy label.
+project_20,18484846,0,Category mismatch proxy label.
+project_20,19553067,0,Category mismatch proxy label.
+project_21,36856210,1,Same category proxy label for Information Technology.
+project_21,21780877,1,Same category proxy label for Information Technology.
+project_21,33241454,1,Same category proxy label for Information Technology.
+project_21,25990239,1,Same category proxy label for Information Technology.
+project_21,16899268,1,Same category proxy label for Information Technology.
+project_21,91635250,1,Same category proxy label for Information Technology.
+project_21,19796840,1,Same category proxy label for Information Technology.
+project_21,15651486,1,Same category proxy label for Information Technology.
+project_21,52246737,1,Same category proxy label for Information Technology.
+project_21,12045067,1,Same category proxy label for Information Technology.
+project_21,13836471,1,Same category proxy label for Information Technology.
+project_21,14789139,1,Same category proxy label for Information Technology.
+project_21,32081266,0,Category mismatch proxy label.
+project_21,59818742,0,Category mismatch proxy label.
+project_21,30311725,0,Category mismatch proxy label.
+project_21,10329506,0,Category mismatch proxy label.
+project_21,19975121,0,Category mismatch proxy label.
+project_21,26330995,0,Category mismatch proxy label.
+project_21,50775901,0,Category mismatch proxy label.
+project_21,16426777,0,Category mismatch proxy label.
+project_21,10176013,0,Category mismatch proxy label.
+project_21,20880935,0,Category mismatch proxy label.
+project_22,31392754,1,Same category proxy label for Public Relations.
+project_22,23143731,1,Same category proxy label for Public Relations.
+project_22,26130673,1,Same category proxy label for Public Relations.
+project_22,25070914,1,Same category proxy label for Public Relations.
+project_22,37913536,1,Same category proxy label for Public Relations.
+project_22,14278888,1,Same category proxy label for Public Relations.
+project_22,28831442,1,Same category proxy label for Public Relations.
+project_22,98086373,1,Same category proxy label for Public Relations.
+project_22,23673025,1,Same category proxy label for Public Relations.
+project_22,10070224,1,Same category proxy label for Public Relations.
+project_22,28290448,1,Same category proxy label for Public Relations.
+project_22,24559558,1,Same category proxy label for Public Relations.
+project_22,31948488,0,Category mismatch proxy label.
+project_22,15479281,0,Category mismatch proxy label.
+project_22,25507648,0,Category mismatch proxy label.
+project_22,32532982,0,Category mismatch proxy label.
+project_22,19302310,0,Category mismatch proxy label.
+project_22,16186411,0,Category mismatch proxy label.
+project_22,12544735,0,Category mismatch proxy label.
+project_22,27902692,0,Category mismatch proxy label.
+project_22,28711616,0,Category mismatch proxy label.
+project_22,50432401,0,Category mismatch proxy label.
+project_23,87118391,1,Same category proxy label for Sales.
+project_23,33578873,1,Same category proxy label for Sales.
+project_23,27607632,1,Same category proxy label for Sales.
+project_23,23760084,1,Same category proxy label for Sales.
+project_23,30083943,1,Same category proxy label for Sales.
+project_23,20552814,1,Same category proxy label for Sales.
+project_23,40987524,1,Same category proxy label for Sales.
+project_23,29134721,1,Same category proxy label for Sales.
+project_23,18062906,1,Same category proxy label for Sales.
+project_23,29399491,1,Same category proxy label for Sales.
+project_23,19473948,1,Same category proxy label for Sales.
+project_23,71772815,1,Same category proxy label for Sales.
+project_23,20882041,0,Category mismatch proxy label.
+project_23,77439230,0,Category mismatch proxy label.
+project_23,17306905,0,Category mismatch proxy label.
+project_23,39805617,0,Category mismatch proxy label.
+project_23,10751444,0,Category mismatch proxy label.
+project_23,16237710,0,Category mismatch proxy label.
+project_23,24294778,0,Category mismatch proxy label.
+project_23,21038022,0,Category mismatch proxy label.
+project_23,14391434,0,Category mismatch proxy label.
+project_23,30128072,0,Category mismatch proxy label.
+project_24,12467531,1,Same category proxy label for Teacher.
+project_24,19918523,1,Same category proxy label for Teacher.
+project_24,62184086,1,Same category proxy label for Teacher.
+project_24,28063132,1,Same category proxy label for Teacher.
+project_24,29797594,1,Same category proxy label for Teacher.
+project_24,22408666,1,Same category proxy label for Teacher.
+project_24,13087952,1,Same category proxy label for Teacher.
+project_24,15850434,1,Same category proxy label for Teacher.
+project_24,28772892,1,Same category proxy label for Teacher.
+project_24,33704389,1,Same category proxy label for Teacher.
+project_24,16210888,1,Same category proxy label for Teacher.
+project_24,38750659,1,Same category proxy label for Teacher.
+project_24,10076271,0,Category mismatch proxy label.
+project_24,19336728,0,Category mismatch proxy label.
+project_24,20001721,0,Category mismatch proxy label.
+project_24,79759716,0,Category mismatch proxy label.
+project_24,88038965,0,Category mismatch proxy label.
+project_24,95350373,0,Category mismatch proxy label.
+project_24,27298953,0,Category mismatch proxy label.
+project_24,60004873,0,Category mismatch proxy label.
+project_24,27523575,0,Category mismatch proxy label.
+project_24,23110214,0,Category mismatch proxy label.

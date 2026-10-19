@@ -101,7 +101,7 @@ if (-not (Test-Path $envFile)) {
     Write-Host "Created .env. Put your own Groq key after HOSTED_API_KEY= to enable delivery reviews and the fallback." -ForegroundColor Yellow
 } else { Write-Host ".env already exists: left unchanged." }
 
-Step "5/7 Local model $Model (module-private Ollama on port 11435)"
+Step "5/7 Local models: $Model and RAFT if shipped (module-private Ollama on port 11435)"
 $models = Join-Path $storage "ollama\models"
 New-Item -ItemType Directory -Force $models | Out-Null
 if ($OllamaModelsFrom) {
@@ -117,6 +117,25 @@ if (-not (Test-Port 11435)) {
 }
 $env:OLLAMA_HOST = "127.0.0.1:11435"
 Invoke-Tool "ollama pull $Model" "ollama" @("pull", $Model)
+
+# The RAFT model (a choice in the UI and the base model's backup), built from the shipped GGUF when present
+# (make_handoff.ps1 -IncludeRaftModel). Without it the assistant runs on the base model and shows RAFT as not installed.
+$raftTag = "assistant-raft2a:qwen2.5-7b"
+$raftDir = Join-Path $root "raft\outputs\qwen2.5-7b-raft2a"
+$raftGguf = Join-Path $raftDir "raft-q5_0.gguf"
+$installed = & { $ErrorActionPreference = "Continue"; ollama list 2>$null } | Select-String -SimpleMatch $raftTag
+if ($installed) { Write-Host "RAFT model $raftTag already installed." }
+elseif ((Test-Path $raftGguf) -and (Test-Path (Join-Path $raftDir "Modelfile.raft-q5_0"))) {
+    # The shipped Modelfile points at the GGUF on the machine that exported it: point it at this copy.
+    $text = (Get-Content (Join-Path $raftDir "Modelfile.raft-q5_0") -Raw -Encoding UTF8) -replace '(?m)^FROM .*$', ("FROM " + $raftGguf.Replace("\", "/"))
+    $modelfile = Join-Path $storage "ollama\Modelfile.raft2a"
+    [IO.File]::WriteAllText($modelfile, $text, (New-Object Text.UTF8Encoding $false))  # no BOM
+    Invoke-Tool "ollama create $raftTag" "ollama" @("create", $raftTag, "-f", $modelfile)
+    Remove-Item $raftGguf  # Ollama now holds its own copy (make_handoff.ps1 reads it from there): keep one on disk
+    Write-Host "Installed $raftTag (the shipped 5.7 GB file was removed: Ollama keeps its own copy)."
+} else {
+    Write-Host "RAFT model not included in this copy: the assistant uses Base + RAG (RAFT shows as not installed)." -ForegroundColor Yellow
+}
 
 Step "6/7 Embedding model and demo data"
 $env:HF_HOME = Join-Path $storage "hf"

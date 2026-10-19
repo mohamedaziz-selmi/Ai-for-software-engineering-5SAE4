@@ -136,6 +136,16 @@ class ChatClient:
         usage = data.get("usage") or {}
         return Completion(content, data.get("model", self.model), usage.get("prompt_tokens"), usage.get("completion_tokens"))
 
+    def warm_up(self, timeout_s: float = 180.0) -> bool:
+        """Load the model into memory with a one-token request (Ollama loads a model on first use). True if it answered."""
+        try:
+            with self._client(timeout_s) as client:
+                response = client.post(f"{self.base_url}/chat/completions",
+                                       json={"model": self.model, "messages": [{"role": "user", "content": "ok"}], "max_tokens": 1})
+            return response.status_code == 200
+        except httpx.HTTPError:
+            return False
+
     def probe(self, timeout_s: float = 3.0) -> str:
         """Cheap readiness check: 'up', 'model_missing' or 'down'. Lists models; generates nothing."""
         try:

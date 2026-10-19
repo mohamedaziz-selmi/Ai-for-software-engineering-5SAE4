@@ -1,8 +1,7 @@
 # AI Assistant & Delivery Review (module service)
 
-A separate service of the freelance platform, built like the template's other modules (a workspace in
-the style of the Business Intelligence module; FastAPI `api.py` run with uvicorn). Through the existing
-gateway (`platform_gateway/`, read-only):
+A separate service of the freelance platform, run like the template's other services (FastAPI `api.py` with
+uvicorn); its interface has its own design (this module only). Through the existing gateway (`platform_gateway/`):
 
 - UI: `http://127.0.0.1:8080/assistant/`
 - API: `http://127.0.0.1:8080/api/ai/...` (OpenAPI docs at `/api/ai/docs`)
@@ -21,18 +20,25 @@ No teammate file, environment, database or the shared Ollama (:11434) is used or
 > (`docs/AUDIT.md`), so the UI lets you *choose* a synthetic identity. Never expose this service
 > beyond localhost.
 
+## Demo
+
+`demo/README.md` walks through every scenario, each verified live, with the files to use: a document to
+upload, a defective and a corrected deliverable, and help-desk texts. Short run-and-test guide:
+`docs/RUN_AND_TEST.md`. The whole documentation in one file:
+`docs/AI_Assistant_Delivery_Review_Mohamed_Aziz_Selmi.pdf` (`scripts\build_report_pdf.py`).
+
 ## GitHub
 
 The integrated project (template, teammates' modules, gateway, this module) is in the private repository
 https://github.com/mohamedaziz-selmi/freelance-platform. After `git clone`, run `scripts\setup.ps1` here.
-- Not in Git: `.env` (keys), downloaded tools and models (`storage\`), `.venv`, the built UI (`frontend\dist`) and the RAFT adapter.
-- Setup re-creates the tools, models and environment, and builds the UI with Node.js 22+. The adapter is in the handoff zip.
+- Not in Git: `.env` (keys), downloaded tools and models (`storage\`), `.venv`, the built UI (`frontend\dist`) and the RAFT files.
+- Setup re-creates the tools, models and environment, and builds the UI with Node.js 22+. The RAFT adapter and model come with the handoff zip.
 - Rayen's 116 MB `train.csv` is stored with Git LFS.
 
 ## Setup on a new machine (one command)
 
 Needs: Windows 10/11, [Ollama](https://ollama.com/download) installed, internet on the first run and about
-7 GB of free disk. An NVIDIA GPU is optional (the local model also runs on CPU, more slowly). Node.js is
+7 GB of free disk (13 GB with the RAFT model; 19 GB free while setup installs it, then it deletes the shipped copy). An NVIDIA GPU is optional (the local model also runs on CPU, more slowly). Node.js is
 needed only when `frontend\dist` is missing (a Git clone); the handoff zip ships the built UI.
 Keep the folder's path at most 159 characters (e.g. `C:\dev\...\module_assistant_delivery`): Ollama cannot
 load a model file whose path exceeds 260 characters, and the setup refuses deeper folders. Setup takes about
@@ -68,11 +74,19 @@ service). The individual scripts still work: `scripts\start_ollama.ps1`, `script
 ## Handoff package
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\make_handoff.ps1    # -NoAdapter leaves out the 165 MB RAFT adapter
+powershell -ExecutionPolicy Bypass -File scripts\make_handoff.ps1                    # small zip, base model only
+powershell -ExecutionPolicy Bypass -File scripts\make_handoff.ps1 -IncludeRaftModel  # + the RAFT model (5.7 GB)
 ```
 
+| Zip | Size | On the receiver's PC |
+|---|---|---|
+| Default | 147 MB | Base + RAG; RAFT shows as "not installed" in the model menu |
+| `-IncludeRaftModel` | 5.4 GB (builds in about 5 min) | `setup.ps1` installs RAFT in the private Ollama: both models selectable |
+
+`-NoAdapter` also leaves out the 165 MB RAFT adapter (only needed to rebuild the model).
+
 It writes `handoff\module_assistant_delivery.zip`: the module's own work only (code, docs, data, built UI,
-lock files, RAFT adapter and results, scripts), with a SHA-256 manifest. Left out: `.env` (your key),
+lock files, RAFT run 2a adapter and results, scripts), with a SHA-256 manifest. Left out: `.env` (your key),
 `.venv*`, `storage\` (Python, models, databases, caches), `node_modules` and logs. It refuses to package
 anything that looks like a key. The receiver unzips it next to the other modules and runs `scripts\setup.ps1`.
 
@@ -105,10 +119,14 @@ Evaluations (fallback always off), with results in `eval/results/`:
 - Assistant: `Qwen/Qwen2.5-7B-Instruct`, served as Ollama `qwen2.5:7b-instruct` (Q4_K_M) by the private Ollama.
   Chosen by measurement against `Qwen/Qwen3-4B-Instruct-2507`: `eval/results/model_selection.md`.
 - Delivery review and assistant fallback: hosted `openai/gpt-oss-120b` on Groq's free tier (key in `.env`).
-- RAFT run 1: a LoRA adapter on the same checkpoint (Unsloth 4-bit QLoRA), kept in `raft/outputs/qwen2.5-7b-raft/adapter`.
-  It is **not served**: it did not improve the hand-written dev set (`eval/results/raft_findings.md`). Its Ollama
-  models, the training weights and `.venv-raft` were deleted to keep the folder small (~7 GB). To rebuild them:
-  `raft\setup_raft.ps1`, `raft\download.py unsloth/Qwen2.5-7B-Instruct-bnb-4bit`, then `raft\export_gguf.ps1`.
+- RAFT run 2a: `assistant-raft2a:qwen2.5-7b` (same checkpoint + LoRA, merged, Q5_0), in the same private Ollama.
+  A choice in the UI's model menu and the base model's first backup; **not the default**: it lost the final test
+  (19/24 vs 23/24, `docs/report/raft2_results.md`). One model is loaded at a time. Run 1 was not adopted
+  (`eval/results/raft_findings.md`).
+- Disk: the folder is about 13 GB, 9.6 GB of it the two served models. The RAFT model file is kept once, inside the
+  private Ollama (`make_handoff.ps1 -IncludeRaftModel` reads it from there). Training-only files were deleted on
+  2026-10-19 (`.venv-raft`, the 4-bit training weights, export intermediates, checkpoint); to train again, rebuild
+  them with the first and third commands of the RAFT section below.
 - Embeddings: `intfloat/multilingual-e5-base` on CPU.
 
 ## RAFT

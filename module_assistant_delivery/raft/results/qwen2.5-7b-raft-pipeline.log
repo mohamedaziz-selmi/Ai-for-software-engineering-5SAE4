@@ -1,0 +1,14 @@
+2026-10-18T14:11:48 waiting for training process
+2026-10-18T14:23:56 waiting for training process
+2026-10-18T15:31:03 training status: completed
+2026-10-18T15:31:03 export + evals
+{
+  "run": "qwen2.5-7b-raft",
+  "tag": "assistant-raft:qwen2.5-7b",
+  "base_tag": "qwen2.5:7b-instruct",
+  "adapter": "raft\\outputs\\qwen2.5-7b-raft\\adapter",
+  "method": "safetensors_adapter",
+  "returncode": 1,
+  "output_tail": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[?25h\u001b[?2026l\nError: LoRA adapters are no longer supported",
+  "show": null
+}

@@ -1,0 +1,28 @@
+{"id": "A01", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "How long is a collection window?", "keywords": [["45"]]}
+{"id": "A02", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "When does a collection window stop taking new orders?", "keywords": [["12"]]}
+{"id": "A03", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "How many lockers does each store get?", "keywords": [["4", "four"]]}
+{"id": "A04", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "What is delivered in Phase B and how much is paid for it?", "keywords": [["35"], ["staff screen", "test server", "basket"]]}
+{"id": "A05", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "How long does MarsaFresh have to pay an invoice?", "keywords": [["21"]]}
+{"id": "A06", "doc": "VAL-A", "lang": "fr", "type": "fact", "question": "Quel est le prix total du projet ?", "keywords": [["14,500", "14 500", "14500", "14.500"]]}
+{"id": "A07", "doc": "VAL-A", "lang": "en", "type": "fact", "question": "How do staff accounts sign in?", "keywords": [["one-time code", "sms"]]}
+{"id": "A08", "doc": "VAL-A", "lang": "en", "type": "scope", "question": "Will staff be able to print labels for the bags?", "scope": "in_scope"}
+{"id": "A09", "doc": "VAL-A", "lang": "en", "type": "scope", "question": "Is home delivery part of this project?", "scope": "out_of_scope"}
+{"id": "A10", "doc": "VAL-A", "lang": "fr", "type": "scope", "question": "Le paiement en ligne par carte est-il prévu ?", "scope": "out_of_scope"}
+{"id": "A11", "doc": "VAL-A", "lang": "en", "type": "scope", "question": "The client also wants recipe suggestions in the app. Is that covered?", "scope": "out_of_scope"}
+{"id": "A12", "doc": "VAL-A", "lang": "en", "type": "unanswerable", "question": "Which hosting company will run the servers?"}
+{"id": "A13", "doc": "VAL-A", "lang": "en", "type": "unanswerable", "question": "How many customers does MarsaFresh expect per day?"}
+{"id": "A14", "doc": "VAL-A", "lang": "en", "type": "offtopic", "question": "What is a good name for a cat?"}
+{"id": "B01", "doc": "VAL-B", "lang": "fr", "type": "fact", "question": "Combien de temps dure un rendez-vous standard ?", "keywords": [["20"]]}
+{"id": "B02", "doc": "VAL-B", "lang": "fr", "type": "fact", "question": "Jusqu'à quand peut-on annuler un rendez-vous sans frais ?", "keywords": [["24"]]}
+{"id": "B03", "doc": "VAL-B", "lang": "en", "type": "fact", "question": "How late can an appointment still be booked?", "keywords": [["3"]]}
+{"id": "B04", "doc": "VAL-B", "lang": "fr", "type": "fact", "question": "Où sont hébergées les données des clients ?", "keywords": [["union européenne", "european union", "ue", "eu"]]}
+{"id": "B05", "doc": "VAL-B", "lang": "fr", "type": "fact", "question": "Quel est le prix du projet ?", "keywords": [["9 800", "9800", "9,800", "9.800"]]}
+{"id": "B06", "doc": "VAL-B", "lang": "en", "type": "fact", "question": "When is the test version delivered?", "keywords": [["5", "five", "cinq"]]}
+{"id": "B07", "doc": "VAL-B", "lang": "fr", "type": "fact", "question": "En combien de jours la clinique valide-t-elle une livraison ?", "keywords": [["4", "quatre", "four"]]}
+{"id": "B08", "doc": "VAL-B", "lang": "fr", "type": "scope", "question": "Les clients recevront-ils un rappel par SMS ?", "scope": "in_scope"}
+{"id": "B09", "doc": "VAL-B", "lang": "fr", "type": "scope", "question": "La téléconsultation vidéo est-elle incluse ?", "scope": "out_of_scope"}
+{"id": "B10", "doc": "VAL-B", "lang": "en", "type": "scope", "question": "Is an online pet food shop included?", "scope": "out_of_scope"}
+{"id": "B11", "doc": "VAL-B", "lang": "fr", "type": "scope", "question": "Peut-on ajouter un programme de fidélité ?", "scope": "out_of_scope"}
+{"id": "B12", "doc": "VAL-B", "lang": "fr", "type": "unanswerable", "question": "Quel est le nom du vétérinaire en chef ?"}
+{"id": "B13", "doc": "VAL-B", "lang": "en", "type": "unanswerable", "question": "Is there a penalty if the freelancer delivers late?"}
+{"id": "B14", "doc": "VAL-B", "lang": "fr", "type": "offtopic", "question": "Écris-moi un poème sur les chats."}

@@ -1,7 +1,8 @@
 """LLM layer used by every runtime AI call (spec 8.4). Not the API gateway.
 
-Assistant calls: mask PII -> local model -> validate JSON (one repair retry) -> on failure, the hosted
-backup if enabled and configured -> unmask for display. Every attempt is logged without content.
+Assistant calls: mask PII -> the chosen local model (base or RAFT) -> validate JSON (one repair retry) -> on
+failure, the other local model, then the hosted backup (both only if backups are enabled) -> unmask for display.
+Every attempt is logged without content.
 """
 
 from __future__ import annotations
@@ -32,7 +33,7 @@ class ReviewNotConfigured(Exception):
 @dataclass
 class LlmResult:
     parsed: BaseModel
-    served_by: str  # "local" | "backup"
+    served_by: str  # "local" (the chosen model) | "local_backup" (the other local model) | "backup" (hosted)
     model: str
     latency_ms: int
     masker: Masker
@@ -50,9 +51,11 @@ def _parse(content: str, model_type: type[BaseModel]) -> BaseModel:
 class LlmService:
     def __init__(
         self, *, local: ChatClient, backup: ChatClient | None, backup_enabled: bool, log_call: CallLogger,
-        review: ChatClient | None = None, review_served_by: str = "hosted",
+        review: ChatClient | None = None, review_served_by: str = "hosted", local_models: dict[str, ChatClient] | None = None,
     ) -> None:
         self.local = local
+        # Selectable local models: "base" (default) and, when configured, "raft". Each is the other's backup.
+        self.local_models: dict[str, ChatClient] = {"base": local, **{k: v for k, v in (local_models or {}).items() if k != "base"}}
         self.backup = backup
         self.backup_enabled = backup_enabled
         # Review client: the hosted model (owner decision), or None when its key is missing. The local model is
@@ -104,13 +107,16 @@ class LlmService:
 
     def _structured(
         self, routes: list[tuple[str, ChatClient]], messages: list[dict], schema: dict, model_type: type[BaseModel],
-        *, schema_name: str, prompt_version: str, feature: str,
+        *, schema_name: str, prompt_version: str, feature: str, fail_first: bool = False,
     ) -> LlmResult:
         masker = Masker()
         masked = [{"role": m["role"], "content": masker.mask(m["content"])} for m in messages]
         started = time.perf_counter()
         attempts: list[dict] = []
-        for served_by, client in routes:
+        for index, (served_by, client) in enumerate(routes):
+            if fail_first and index == 0:  # failure drill: the chosen model is skipped as if it had failed
+                attempts.append({"served_by": served_by, "model": client.model, "error": "simulated_failure"})
+                continue
             try:
                 parsed, completion = self._call_validated(
                     client, masked, schema, schema_name, model_type,
@@ -124,14 +130,19 @@ class LlmService:
 
     def assistant_json(
         self, messages: list[dict], schema: dict, model_type: type[BaseModel], *, schema_name: str, prompt_version: str,
-        feature: str = "assistant",
+        feature: str = "assistant", model: str = "base", simulate_failure: bool = False,
     ) -> LlmResult:
-        """Local model first; the hosted backup only if enabled and configured (never during evals)."""
-        routes: list[tuple[str, ChatClient]] = [("local", self.local)]
-        if self.backup_enabled and self.backup is not None:
-            routes.append(("backup", self.backup))
+        """The chosen local model ("base" or "raft") first. If it fails: the other local model, then the hosted
+        backup; both only when backups are enabled (never during evals). `simulate_failure` is the demo's failure
+        drill: the chosen model is skipped so the backup chain can be shown without stopping anything."""
+        chosen = self.local_models.get(model, self.local)
+        routes: list[tuple[str, ChatClient]] = [("local", chosen)]
+        if self.backup_enabled:
+            routes += [("local_backup", client) for client in self.local_models.values() if client is not chosen]
+            if self.backup is not None:
+                routes.append(("backup", self.backup))
         return self._structured(routes, messages, schema, model_type, schema_name=schema_name,
-                                prompt_version=prompt_version, feature=feature)
+                                prompt_version=prompt_version, feature=feature, fail_first=simulate_failure)
 
     def review_json(
         self, messages: list[dict], schema: dict, model_type: type[BaseModel], *, schema_name: str, prompt_version: str,

@@ -1,0 +1,9 @@
+/* Back-office styles. Colours checked for 4.5:1 contrast on white. */
+:root { --ink: #1d1d1f; --muted: #5f6368; --accent: #a50e24; }
+body { font: 16px/1.5 system-ui, sans-serif; color: var(--ink); background: #fff; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: left; }
+td:nth-child(4) { color: var(--muted); }
+button { background: var(--accent); color: #fff; border: 0; padding: 6px 12px; border-radius: 4px; }
+button:focus-visible, a:focus-visible { outline: 3px solid #1a73e8; outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

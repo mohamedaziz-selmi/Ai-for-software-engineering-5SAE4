@@ -1,0 +1,24 @@
+# Staging deployment for milestone reviews (https://staging.atelier.example).
+# The staging server is in Paris (EU), so customer data stays in the European Union.
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: atelier
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    volumes: [dbdata:/var/lib/postgresql/data]
+    secrets: [db_password]
+  api:
+    build: ../backend
+    environment:
+      DATABASE_URL: postgresql://atelier@db/atelier
+    depends_on: [db]
+  web:
+    build: ../frontend
+    ports: ["443:443"]
+    depends_on: [api]
+volumes:
+  dbdata:
+secrets:
+  db_password:
+    file: ./db_password.txt

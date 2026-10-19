@@ -1,0 +1,17 @@
+Accessibility audit report, milestone M3
+Project PRJ-DEMO-001, Atelier Lumière online ordering. Synthetic demonstration document.
+
+Standard: WCAG 2.1 level AA.
+Scope: the customer-facing pages (catalogue, cart, pickup slot picker, account and password reset, order history).
+Method: automated scan of every page with axe-core 4.10, one keyboard-only pass and one screen-reader pass (NVDA).
+
+Results
+- Catalogue: pass. Every product image has a text alternative.
+- Cart: pass.
+- Pickup slot picker: one issue found and fixed during the audit. Full slots were shown by colour only;
+  a "Complet" label now appears next to them.
+- Account and password reset: pass.
+- Order history: pass.
+
+Open issues: none.
+Conclusion: at the end of M3 the customer-facing pages meet WCAG 2.1 level AA.

@@ -1,0 +1,22 @@
+{
+  "dataset_rows_after_deduplication": 56811,
+  "fraud_rows": 101,
+  "fraud_rate": 0.0017778247170442344,
+  "test_rows": 11363,
+  "xgboost": {
+    "pr_auc": 0.7907850823918777,
+    "roc_auc": 0.992836991977431,
+    "accuracy": 0.9993839655020681,
+    "balanced_accuracy": 0.8749118399012608,
+    "precision": 0.8823529411764706,
+    "recall": 0.75
+  },
+  "isolation_forest": {
+    "pr_auc": 0.14305391508570903,
+    "accuracy_at_995_percentile": 0.9939276599489572,
+    "balanced_accuracy_at_995_percentile": 0.6974874371859296,
+    "precision_at_995_percentile": 0.12307692307692308,
+    "recall_at_995_percentile": 0.4
+  },
+  "warning": "Accuracy is included for completeness but PR-AUC, precision, recall, and balanced accuracy are the meaningful fraud metrics because the classes are highly imbalanced."
+}

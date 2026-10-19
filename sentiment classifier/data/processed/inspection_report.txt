@@ -1,0 +1,89 @@
+FILE: reviews_dataset.csv
+Rows: 45,647
+Columns: ['review_id', 'user_id', 'username', 'review_title', 'review', 'sentiment', 'category', 'product', 'rating', 'verified_purchase', 'helpful_votes', 'review_length', 'purchase_date', 'review_date', 'country', 'language', 'source', 'device', 'review_type', 'writing_style', 'emotion', 'recommendation_score', 'company_response']
+Data types:
+  - review_id: str
+  - user_id: str
+  - username: str
+  - review_title: str
+  - review: str
+  - sentiment: str
+  - category: str
+  - product: str
+  - rating: int64
+  - verified_purchase: str
+  - helpful_votes: int64
+  - review_length: int64
+  - purchase_date: str
+  - review_date: str
+  - country: str
+  - language: str
+  - source: str
+  - device: str
+  - review_type: str
+  - writing_style: str
+  - emotion: str
+  - recommendation_score: int64
+  - company_response: str
+Missing values:
+  - review_id: 0
+  - user_id: 0
+  - username: 0
+  - review_title: 0
+  - review: 0
+  - sentiment: 0
+  - category: 0
+  - product: 0
+  - rating: 0
+  - verified_purchase: 0
+  - helpful_votes: 0
+  - review_length: 0
+  - purchase_date: 0
+  - review_date: 0
+  - country: 0
+  - language: 0
+  - source: 0
+  - device: 0
+  - review_type: 0
+  - writing_style: 0
+  - emotion: 0
+  - recommendation_score: 0
+  - company_response: 0
+Sample records:
+review_id   user_id        username          review_title                                                                                                                                                              review sentiment category             product  rating verified_purchase  helpful_votes  review_length purchase_date review_date country language       source device review_type writing_style emotion  recommendation_score                    company_response
+REV000001 USR703724   liam_ahmed468            Acceptable To be honest, I ordered this Photo Editor online. However, The interface is decent but could be improved. Average experience. I don't think I'll purchase it again.   Neutral Software        Photo Editor       3               Yes            317             27    2022-01-13  2025-01-09  France  English Product Hunt Tablet        Long        casual Neutral                     5          We appreciate your review.
+REV000002 USR303857 karen_wilson390           Low Quality                                                                     I ordered this Jacket online. The material feels cheap and uncomfertable. Avoid this product. 😤  Negative Clothing              Jacket       2               Yes             83             15    2022-04-10  2023-12-22  Canada  English          H&M Tablet      Medium        casual   Anger                     4 We apologize for the inconvenience.
+REV000003 USR908909   david_khan535 Exceeded Expectations                                                                                        Everything works perfectly and the speaker quality is excellent. Five stars.  Positive  Laptops Mechanical Keyboard       4                No            356             11    2025-10-04  2025-12-02  Brazil  English     HP Store Tablet       Short        casual     Joy                    10 We appreciate your positive review.
+
+FILE: Womens Clothing E-Commerce Reviews.csv
+Rows: 23,486
+Columns: ['Unnamed: 0', 'Clothing ID', 'Age', 'Title', 'Review Text', 'Rating', 'Recommended IND', 'Positive Feedback Count', 'Division Name', 'Department Name', 'Class Name']
+Data types:
+  - Unnamed: 0: int64
+  - Clothing ID: int64
+  - Age: int64
+  - Title: str
+  - Review Text: str
+  - Rating: int64
+  - Recommended IND: int64
+  - Positive Feedback Count: int64
+  - Division Name: str
+  - Department Name: str
+  - Class Name: str
+Missing values:
+  - Unnamed: 0: 0
+  - Clothing ID: 0
+  - Age: 0
+  - Title: 3,810
+  - Review Text: 845
+  - Rating: 0
+  - Recommended IND: 0
+  - Positive Feedback Count: 0
+  - Division Name: 14
+  - Department Name: 14
+  - Class Name: 14
+Sample records:
+ Unnamed: 0  Clothing ID  Age                   Title                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Review Text  Rating  Recommended IND  Positive Feedback Count Division Name Department Name Class Name
+          0          767   33                     NaN                                                                                                                                                                                                                                                                                                                                                                                                                                                                Absolutely wonderful - silky and sexy and comfortable       4                1                        0     Initmates        Intimate  Intimates
+          1         1080   34                     NaN                                                                                                                                                                                                      Love this dress!  it's sooo pretty.  i happened to find it in a store, and i'm glad i did bc i never would have ordered it online bc it's petite.  i bought a petite and am 5'8".  i love the length on me- hits just a little below the knee.  would definitely be a true midi on someone who is truly petite.       5                1                        4       General         Dresses    Dresses
+          2         1077   60 Some major design flaws I had such high hopes for this dress and really wanted it to work for me. i initially ordered the petite small (my usual size) but i found this to be outrageously small. so small in fact that i could not zip it up! i reordered it in petite medium, which was just ok. overall, the top half was comfortable and fit nicely, but the bottom half had a very tight under layer and several somewhat cheap (net) over layers. imo, a major design flaw was the net over layer sewn directly into the zipper - it c       3                0                        0       General         Dresses    Dresses

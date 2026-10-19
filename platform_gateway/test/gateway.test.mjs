@@ -4,7 +4,7 @@ import http from 'node:http';
 import net from 'node:net';
 import { once } from 'node:events';
 import { configuration, resolveRoute } from '../config.mjs';
-import { createProxy } from '../proxy.mjs';
+import { createProxy, injectTag } from '../proxy.mjs';
 
 async function serve(t, server) {
   const sockets = new Set();
@@ -48,10 +48,17 @@ async function proxy(t, name, routes, timeoutMs = 1000) {
   return serve(t, createProxy({ name, routes, timeoutMs }));
 }
 
-test('configuration preserves the two-service boundary and rejects loops and remote targets', () => {
+test('configuration preserves the service boundaries and rejects loops and remote targets', () => {
   const edge = configuration('gateway', {});
-  assert.equal(new Set(edge.routes.map(r => r.origin)).size, 2);
+  assert.equal(new Set(edge.routes.map(r => r.origin)).size, 8);
+  assert.throws(() => configuration('gateway', { MARKETPLACE_ORIGIN: 'https://example.com' }));
+  assert.throws(() => configuration('gateway', { MATCHER_OLLAMA_ORIGIN: 'https://example.com' }));
+  assert.throws(() => configuration('gateway', { BUSINESS_AI_ORIGIN: 'https://example.com' }));
+  assert.throws(() => configuration('gateway', { BUSINESS_AI_UI_ORIGIN: 'https://example.com' }));
+  assert.throws(() => configuration('gateway', { CONTROL_ORIGIN: 'https://example.com' }));
+  assert.ok(configuration('gateway', {}).inject && configuration('legacy', {}).inject === null && configuration('gateway', { CONTROL_BUBBLE: '0' }).inject === null);
   assert.throws(() => configuration('gateway', { AI_ORIGIN: 'https://example.com' }));
+  assert.throws(() => configuration('gateway', { ADVISOR_ORIGIN: 'https://example.com' }));
   assert.throws(() => configuration('gateway', { AI_ORIGIN: 'http://127.0.0.1:8080' }));
   assert.throws(() => configuration('legacy', { FRONTEND_ORIGIN: 'http://127.0.0.1:8080' }));
   assert.throws(() => configuration('gateway', { GATEWAY_PORT: 'not-a-port' }));
@@ -62,6 +69,22 @@ test('routing uses path boundaries and rejects ambiguous paths', () => {
   assert.equal(resolveRoute('/api/ai/chat?q=hello%20world', routes).service, 'assistant-delivery');
   assert.equal(resolveRoute('/api/air', routes).service, 'existing-platform');
   assert.equal(resolveRoute('/assistant-extra', routes).service, 'existing-platform');
+  assert.deepEqual([resolveRoute('/advisor/research/stream', routes).service, resolveRoute('/advisor/research/stream', routes).path], ['freelance-advisor', '/research/stream']);
+  assert.equal(resolveRoute('/advisors', routes).service, 'existing-platform');
+  for (const path of ['/api/health', '/api/match', '/api/budget']) {
+    assert.deepEqual([resolveRoute(path, routes).service, resolveRoute(path, routes).path], ['marketplace-ml', path]);
+  }
+  assert.deepEqual([resolveRoute('/ollama-match/api/chat', routes).service, resolveRoute('/ollama-match/api/chat', routes).path], ['marketplace-matcher', '/api/chat']);
+  assert.equal(resolveRoute('/ollama/api/chat', routes).service, 'existing-platform');
+  assert.deepEqual([resolveRoute('/business-ai/', routes).service, resolveRoute('/business-ai/', routes).path], ['cerebro-business-ai-ui', '/']);
+  assert.deepEqual([resolveRoute('/business-ai', routes).service, resolveRoute('/business-ai', routes).path], ['cerebro-business-ai-ui', '/']);
+  assert.deepEqual([resolveRoute('/business-ai/assets/index.js', routes).service, resolveRoute('/business-ai/assets/index.js', routes).path], ['cerebro-business-ai-ui', '/assets/index.js']);
+  assert.deepEqual([resolveRoute('/business-ai-api/api/ai/status', routes).service, resolveRoute('/business-ai-api/api/ai/status', routes).path], ['cerebro-business-ai', '/api/ai/status']);
+  assert.deepEqual([resolveRoute('/_control/api/state', routes).service, resolveRoute('/_control/api/state', routes).path], ['control-center', '/api/state']);
+  assert.equal(resolveRoute('/business-aix', routes).service, 'existing-platform');
+  assert.equal(resolveRoute('/api/ai/status', routes).service, 'assistant-delivery');
+  assert.equal(resolveRoute('/api/ai/health', routes).service, 'assistant-delivery');
+  assert.equal(resolveRoute('/api/module5/health', routes).service, 'existing-platform');
   for (const path of ['//example.com', 'http://example.com', '/api/ai/../module5', '/api%2fai/chat', '/api/%252e/chat']) {
     assert.equal(resolveRoute(path, routes), null);
   }
@@ -201,3 +224,27 @@ test('WebSocket upgrade and bytes traverse both proxy layers', async t => {
   });
   socket.destroy();
 });
+
+
+test('the control bubble is added to HTML pages only, with a corrected length', async t => {
+  const tag = '<script src="/_control/bubble.js" async data-control-base="/_control"></script>';
+  assert.equal(injectTag('<html><body><p>x</p></body></html>', tag), `<html><body><p>x</p>${tag}</body></html>`);
+  assert.equal(injectTag('<div id="root"></div>', tag), `<div id="root"></div>${tag}`);
+  assert.equal(injectTag(`<body>${tag}</body>`, tag), `<body>${tag}</body>`);
+  const page = await serve(t, http.createServer((req, res) => {
+    if (req.url === '/api') { res.setHeader('content-type', 'application/json'); return res.end('{"ok":true}'); }
+    if (req.url === '/gz') { res.setHeader('content-type', 'text/html'); res.setHeader('content-encoding', 'gzip'); return res.end('zz'); }
+    res.setHeader('content-type', 'text/html; charset=utf-8');
+    res.end('<html><body>hi</body></html>');
+  }));
+  const edge = await proxy(t, 'gateway', [{ prefix: '/', origin: page, service: 'existing-platform' }]);
+  const injecting = await serve(t, createProxy({ name: 'gateway', routes: [{ prefix: '/', origin: page, service: 'existing-platform' }],
+    timeoutMs: 1000, inject: { tag, skipService: 'control-center' } }));
+  const html = await request(injecting, '/');
+  assert.equal(html.body.toString(), `<html><body>hi${tag}</body></html>`);
+  assert.equal(Number(html.headers['content-length']), html.body.length);
+  assert.equal((await request(injecting, '/api')).body.toString(), '{"ok":true}');
+  assert.equal((await request(injecting, '/gz')).body.toString(), 'zz');
+  assert.equal((await request(edge, '/')).body.toString(), '<html><body>hi</body></html>');
+});
+

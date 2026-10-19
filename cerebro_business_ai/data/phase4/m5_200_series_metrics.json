@@ -1,0 +1,146 @@
+{
+  "status": "complete",
+  "dataset": "M5 Forecasting Accuracy",
+  "subset_series": 200,
+  "selection": "100 lowest and 100 highest training-mean-demand series",
+  "train_dates": [
+    "2011-02-26",
+    "2016-02-28"
+  ],
+  "validation_dates": [
+    "2016-02-29",
+    "2016-03-27"
+  ],
+  "test_dates": [
+    "2016-03-28",
+    "2016-04-24"
+  ],
+  "n_train": 365800,
+  "n_validation": 5600,
+  "n_test": 5600,
+  "metrics": {
+    "validation": {
+      "seasonal_naive": {
+        "mae": 5.79,
+        "rmse": 13.164155878748929,
+        "wape": 0.3790285814483605
+      },
+      "moving_average": {
+        "mae": 5.025127551020408,
+        "rmse": 11.27008944865825,
+        "wape": 0.3289580254335646
+      },
+      "xgboost": {
+        "mae": 4.36228947701997,
+        "rmse": 9.302057781742818,
+        "wape": 0.28556690714024
+      }
+    },
+    "test": {
+      "seasonal_naive": {
+        "mae": 5.486071428571429,
+        "rmse": 12.037026210821342,
+        "wape": 0.3640392454261067
+      },
+      "moving_average": {
+        "mae": 5.078265306122449,
+        "rmse": 10.528724073326496,
+        "wape": 0.33697845428815193
+      },
+      "xgboost": {
+        "mae": 4.190484300984826,
+        "rmse": 8.613804116688861,
+        "wape": 0.27806796954112983
+      }
+    }
+  },
+  "volume_analysis": {
+    "validation": {
+      "low_demand": {
+        "series": 100,
+        "zero_actual_rate": 0.9396428571428571,
+        "xgboost": {
+          "mae": 0.12515382732663835,
+          "rmse": 0.3061327045270868,
+          "wape": 1.8251599818468094
+        },
+        "seasonal_naive": {
+          "mae": 0.12178571428571429,
+          "rmse": 0.392337318424556,
+          "wape": 1.7760416666666667
+        }
+      },
+      "high_demand": {
+        "series": 100,
+        "zero_actual_rate": 0.06714285714285714,
+        "xgboost": {
+          "mae": 8.599425126713301,
+          "rmse": 13.151533778118168,
+          "wape": 0.28210362090140056
+        },
+        "seasonal_naive": {
+          "mae": 11.458214285714286,
+          "rmse": 18.612793219411518,
+          "wape": 0.3758860262673837
+        }
+      }
+    },
+    "test": {
+      "low_demand": {
+        "series": 100,
+        "zero_actual_rate": 0.915,
+        "xgboost": {
+          "mae": 0.16695165088125838,
+          "rmse": 0.37390290983400026,
+          "wape": 1.663575168923571
+        },
+        "seasonal_naive": {
+          "mae": 0.16892857142857143,
+          "rmse": 0.48292264982529626,
+          "wape": 1.6832740213523132
+        }
+      },
+      "high_demand": {
+        "series": 100,
+        "zero_actual_rate": 0.08035714285714286,
+        "xgboost": {
+          "mae": 8.214016951088395,
+          "rmse": 12.176019026569794,
+          "wape": 0.2734392346191046
+        },
+        "seasonal_naive": {
+          "mae": 10.803214285714287,
+          "rmse": 17.016074333238137,
+          "wape": 0.3596319149695046
+        }
+      }
+    }
+  },
+  "best_iteration": 201,
+  "elapsed_seconds": 16.28,
+  "resource_before": {
+    "cpu_percent": 20.7,
+    "ram_percent": 44.1,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 4.014905293782553,
+    "temperature_c": 54.0,
+    "sensor_error": null
+  },
+  "resource_after": {
+    "cpu_percent": 18.3,
+    "ram_percent": 49.5,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 5.588404337565104,
+    "temperature_c": 57.0,
+    "sensor_error": null
+  },
+  "resource_policy": {
+    "target_percent": 85,
+    "safety_threshold_percent": 90,
+    "threads": 8
+  }
+}

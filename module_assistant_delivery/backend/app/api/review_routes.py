@@ -18,7 +18,7 @@ from ..llm.prompts import REVIEW_PROMPT_VERSION
 from ..review.files import RejectedUpload, validate_files
 from ..review.pipeline import run_review
 from ..review.requirements import extract_requirements, list_requirements
-from .routes import current_user, directory, get_conn, require_member
+from .routes import current_user, directory, errors, get_conn, require_member
 
 router = APIRouter(prefix="/api/ai")
 _gpu_lock = threading.Lock()  # one review at a time on the single local GPU
@@ -29,20 +29,39 @@ def _require_role(request: Request, user: DemoUser, project_id: str, role: str) 
         raise HTTPException(403, detail={"error": f"only_the_project_{role}"})
 
 
-@router.get("/requirements")
+@router.get("/requirements", responses=errors(401, 403, 404), summary="List the project's requirements")
 def requirements(request: Request, project_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     require_member(request, user, project_id)
     return {"project_id": project_id, "requirements": list_requirements(conn, project_id)}
 
 
-@router.post("/requirements/extract")
+@router.post("/requirements/extract", responses=errors(401, 403, 404), summary="Extract requirements from the documents")
 def extract(request: Request, project_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     require_member(request, user, project_id)
     reqs = extract_requirements(conn, project_id)
     return {"project_id": project_id, "requirements": reqs, "method": "explicit REQ-/NN- codes in the active documents"}
 
 
-@router.post("/deliverables", status_code=201)
+class RequirementIn(BaseModel):
+    text: str = Field(min_length=3, max_length=2000)
+    priority: Literal["must", "should", "could"]
+
+
+@router.put("/requirements/{requirement_id}", responses=errors(401, 403, 404), summary="Edit a requirement")
+def edit_requirement(request: Request, requirement_id: str, body: RequirementIn, user: DemoUser = Depends(current_user),
+                     conn: sqlite3.Connection = Depends(get_conn)) -> dict:
+    """A project member corrects an extracted requirement; re-extraction never overwrites it (edited_by_user)."""
+    row = conn.execute("SELECT project_id FROM requirements WHERE id = ?", (requirement_id,)).fetchone()
+    if row is None:
+        raise HTTPException(404, detail={"error": "requirement_not_found"})
+    require_member(request, user, row["project_id"])
+    with conn:
+        conn.execute("UPDATE requirements SET text = ?, priority = ?, edited_by_user = 1 WHERE id = ?",
+                     (body.text.strip(), body.priority, requirement_id))
+    return dict(conn.execute("SELECT * FROM requirements WHERE id = ?", (requirement_id,)).fetchone())
+
+
+@router.post("/deliverables", status_code=201, responses=errors(401, 403, 404), summary="Submit a deliverable (freelancer)")
 async def submit_deliverable(
     request: Request,
     project_id: str = Form(...),
@@ -71,7 +90,7 @@ async def submit_deliverable(
     return {"deliverable_id": deliverable_id, "version": version, "files": [f.path for f in validated]}
 
 
-@router.get("/deliverables")
+@router.get("/deliverables", responses=errors(401, 403, 404), summary="List deliverables")
 def deliverables(request: Request, project_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     require_member(request, user, project_id)
     rows = conn.execute(
@@ -88,7 +107,7 @@ def _deliverable_project(conn: sqlite3.Connection, deliverable_id: str) -> str:
     return row["project_id"]
 
 
-@router.post("/deliverables/{deliverable_id}/review", status_code=202)
+@router.post("/deliverables/{deliverable_id}/review", status_code=202, responses=errors(401, 403, 404, 503), summary="Start a delivery review")
 def start_review(request: Request, deliverable_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     project_id = _deliverable_project(conn, deliverable_id)
     require_member(request, user, project_id)
@@ -121,7 +140,7 @@ def start_review(request: Request, deliverable_id: str, user: DemoUser = Depends
     return {"review_id": review_id, "status": "pending"}
 
 
-@router.get("/reviews/{review_id}")
+@router.get("/reviews/{review_id}", responses=errors(401, 403, 404), summary="Read a delivery review")
 def get_review(request: Request, review_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     review = conn.execute("SELECT * FROM reviews WHERE id = ?", (review_id,)).fetchone()
     if review is None:
@@ -139,8 +158,28 @@ def get_review(request: Request, review_id: str, user: DemoUser = Depends(curren
     data["summary"] = json.loads(review["summary"]) if review["summary"] else None
     data["requirement_results"] = [dict(r) for r in results]
     data["findings"] = [dict(f) for f in findings]
+    # Live progress for the UI while the review runs (requirements are judged one by one).
+    total = data["summary"]["requirements"] if data["summary"] else len(list_requirements(conn, _deliverable_project(conn, review["deliverable_id"])))
+    data["progress"] = {"done": len(results), "total": total}
     data["advisory_notice"] = "Findings are advisory. The client decides whether to accept the delivery."
     return data
+
+
+class DeliveryDecision(BaseModel):
+    decision: Literal["accepted", "changes_requested", "pending"]
+    comment: str = Field(default="", max_length=2000)
+
+
+@router.patch("/deliverables/{deliverable_id}/decision", responses=errors(401, 403, 404), summary="Accept a delivery or request changes (client)")
+def decide_delivery(request: Request, deliverable_id: str, body: DeliveryDecision, user: DemoUser = Depends(current_user),
+                    conn: sqlite3.Connection = Depends(get_conn)) -> dict:
+    """The client accepts the delivery or requests changes; the review only advises."""
+    project_id = _deliverable_project(conn, deliverable_id)
+    _require_role(request, user, project_id, "client")
+    with conn:
+        conn.execute("UPDATE deliverables SET client_decision = ?, client_comment = ?, decided_by = ?, decided_at = ? WHERE id = ?",
+                     (body.decision, body.comment.strip(), user.id, utcnow(), deliverable_id))
+    return {"id": deliverable_id, "client_decision": body.decision}
 
 
 class Decision(BaseModel):
@@ -148,7 +187,7 @@ class Decision(BaseModel):
     client_comment: str = Field(default="", max_length=2000)
 
 
-@router.patch("/findings/{finding_id}")
+@router.patch("/findings/{finding_id}", responses=errors(401, 403, 404), summary="Accept or dismiss a finding (client)")
 def decide(request: Request, finding_id: str, body: Decision, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     row = conn.execute("SELECT f.id, d.project_id FROM findings f JOIN reviews r ON r.id = f.review_id"
                        " JOIN deliverables d ON d.id = r.deliverable_id WHERE f.id = ?", (finding_id,)).fetchone()

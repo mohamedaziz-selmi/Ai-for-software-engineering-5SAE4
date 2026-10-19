@@ -4,6 +4,7 @@ Submits the synthetic M2 deliverable, runs a review, waits, and scores verdicts 
 detection against eval/datasets/review_demo_gold.json. Writes eval/results/review_live_<label>.md/json.
 
 Usage: .venv\\Scripts\\python.exe eval\\run_review_live.py --label qwen2.5-7b-base [--base http://127.0.0.1:8003]
+       [--folder demo\\deliverables\\M2_v2_fixed --gold eval\\datasets\\review_demo_v2_gold.json]
 """
 
 from __future__ import annotations
@@ -16,8 +17,6 @@ from pathlib import Path
 import httpx
 
 MODULE_ROOT = Path(__file__).resolve().parents[1]
-DELIVERABLE = MODULE_ROOT / "data" / "seed" / "deliverables" / "PRJ-DEMO-001_M2"
-GOLD = json.loads((MODULE_ROOT / "eval" / "datasets" / "review_demo_gold.json").read_text(encoding="utf-8"))
 RESULTS = MODULE_ROOT / "eval" / "results"
 
 
@@ -25,7 +24,11 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--label", required=True)
     parser.add_argument("--base", default="http://127.0.0.1:8003")
+    parser.add_argument("--folder", type=Path, default=MODULE_ROOT / "data" / "seed" / "deliverables" / "PRJ-DEMO-001_M2")
+    parser.add_argument("--gold", type=Path, default=MODULE_ROOT / "eval" / "datasets" / "review_demo_gold.json")
     args = parser.parse_args()
+    DELIVERABLE = args.folder.resolve()
+    GOLD = json.loads(args.gold.read_text(encoding="utf-8"))
     api = httpx.Client(base_url=f"{args.base}/api/ai", timeout=60)
     freelancer, client = {"X-Demo-User": "demo-freelancer-a"}, {"X-Demo-User": "demo-client-b"}
     health = api.get("/health").json()
@@ -62,7 +65,7 @@ def main() -> None:
                "assistant_model_at_health": health["assistant"]["model"]}
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / f"review_live_{args.label}.json").write_text(json.dumps({"summary": summary, "review": review}, indent=2, ensure_ascii=False), encoding="utf-8")
-    lines = [f"# Live review check: {args.label}", "", "Synthetic M2 deliverable with planted defects (see `eval/datasets/review_demo_gold.json`). "
+    lines = [f"# Live review check: {args.label}", "", f"Deliverable `{DELIVERABLE.relative_to(MODULE_ROOT).as_posix()}`, scored against `{args.gold.resolve().relative_to(MODULE_ROOT).as_posix()}`. "
              f"Real run through the HTTP API; review served by `{summary['served_by']}` model `{summary['model']}`. "
              "Verdicts are after code-side evidence verification.", "",
              f"- Verdict accuracy: **{summary['verdict_accuracy']}**", f"- Planted defects detected with verified evidence (blocker/major): **{summary['planted_defects_detected']}**",

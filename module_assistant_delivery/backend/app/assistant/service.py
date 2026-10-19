@@ -48,6 +48,8 @@ def answer_question(
     question: str,
     conversation_id: str | None,
     top_k: int,
+    model: str = "base",
+    simulate_failure: bool = False,
 ) -> dict:
     retrieved = retrieve(conn, embedder, store, project_id=project_id, query=question, k=top_k)
     labelled = {f"C{i + 1}": chunk for i, chunk in enumerate(retrieved)}
@@ -57,7 +59,8 @@ def answer_question(
     ]
     language = _language(question)
 
-    base = {"retrieval": retrieval_info, "prompt_version": ASSISTANT_PROMPT_VERSION, "dropped_citations": [], "attempts": []}
+    base = {"retrieval": retrieval_info, "prompt_version": ASSISTANT_PROMPT_VERSION, "dropped_citations": [], "attempts": [],
+            "model_choice": model, "simulated_failure": simulate_failure}
     if not retrieved:
         result = {**base, "status": "no_documents", "grounded": False, "answer": NOT_FOUND[language], "citations": [],
                   "scope_verdict": None, "served_by": None, "model": None, "latency_ms": 0}
@@ -69,6 +72,7 @@ def answer_question(
         llm_result = llm.assistant_json(
             messages, ASSISTANT_ANSWER_JSON_SCHEMA, AssistantAnswer,
             schema_name="assistant_answer", prompt_version=ASSISTANT_PROMPT_VERSION,
+            model=model, simulate_failure=simulate_failure,
         )
         parsed: AssistantAnswer = llm_result.parsed  # type: ignore[assignment]
         unmask = llm_result.masker.unmask

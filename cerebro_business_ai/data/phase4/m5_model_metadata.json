@@ -1,0 +1,88 @@
+{
+  "status": "complete",
+  "dataset": "M5 Forecasting Accuracy",
+  "source": "https://www.kaggle.com/competitions/m5-forecasting-accuracy/data",
+  "subset_series": 20,
+  "train_dates": [
+    "2011-02-26",
+    "2016-02-28"
+  ],
+  "validation_dates": [
+    "2016-02-29",
+    "2016-03-27"
+  ],
+  "test_dates": [
+    "2016-03-28",
+    "2016-04-24"
+  ],
+  "feature_names": [
+    "lag_1",
+    "lag_7",
+    "lag_28",
+    "rolling_mean_7",
+    "rolling_mean_28",
+    "dayofweek",
+    "dayofmonth",
+    "month",
+    "weekofyear",
+    "has_event",
+    "sell_price",
+    "price_change"
+  ],
+  "n_train": 36580,
+  "n_validation": 560,
+  "n_test": 560,
+  "metrics": {
+    "validation": {
+      "seasonal_naive": {
+        "mae": 1.9285714285714286,
+        "rmse": 4.582186003582632,
+        "wape": 1.267605633802817
+      },
+      "xgboost": {
+        "mae": 1.5182413757379567,
+        "rmse": 3.006539258077187,
+        "wape": 0.9979051295930231
+      }
+    },
+    "test": {
+      "seasonal_naive": {
+        "mae": 2.2642857142857142,
+        "rmse": 5.296899362565128,
+        "wape": 1.1795348837209303
+      },
+      "xgboost": {
+        "mae": 1.633495100055422,
+        "rmse": 3.5996780499004886,
+        "wape": 0.8509369823544525
+      }
+    }
+  },
+  "best_iteration": 22,
+  "elapsed_seconds": 9.854,
+  "resource_before": {
+    "cpu_percent": 15.5,
+    "ram_percent": 50.5,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 2.44140625,
+    "temperature_c": 53.0,
+    "sensor_error": null
+  },
+  "resource_after": {
+    "cpu_percent": 22.3,
+    "ram_percent": 52.3,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 4.014905293782553,
+    "temperature_c": 54.0,
+    "sensor_error": null
+  },
+  "resource_policy": {
+    "target_percent": 85,
+    "safety_threshold_percent": 90,
+    "threads": 8
+  }
+}

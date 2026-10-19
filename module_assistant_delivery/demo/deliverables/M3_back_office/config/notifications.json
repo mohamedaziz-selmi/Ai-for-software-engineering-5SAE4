@@ -1,0 +1,11 @@
+{
+  "sender": "Atelier Lumière <commandes@atelier.example>",
+  "smtp_host": "smtp.eu-west-3.mail.example",
+  "smtp_port": 587,
+  "templates": {
+    "order_ready": {
+      "subject": "Votre commande {number} est prête",
+      "body": "Bonjour,\n\nVotre commande {number} vous attend à {shop}, créneau de {slot}.\n\nÀ bientôt,\nAtelier Lumière"
+    }
+  }
+}

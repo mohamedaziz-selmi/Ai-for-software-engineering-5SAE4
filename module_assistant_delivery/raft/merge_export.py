@@ -40,7 +40,9 @@ def main() -> None:
     from huggingface_hub import snapshot_download
     from safetensors import safe_open
     from safetensors.torch import save_file
+    from train import cool_down  # same heat guard as training (owner's 79 C limit)
 
+    heat: dict = {}
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["base", "raft"], required=True)
     parser.add_argument("--run", default="qwen2.5-7b-raft")
@@ -103,6 +105,7 @@ def main() -> None:
                     weight += (b @ a) * scale
                     merged += 1
                 tensor = weight.to(torch.bfloat16).cpu()
+                cool_down(heat)  # owner's 79 C limit: pause at 76 C until 70 C
             shard[key] = tensor.contiguous()
             shard_bytes += tensor.numel() * tensor.element_size()
             if shard_bytes > 3_000_000_000:

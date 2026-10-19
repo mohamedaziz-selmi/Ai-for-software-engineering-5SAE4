@@ -1,0 +1,44 @@
+{
+  "base": {
+    "correct": 16,
+    "n": 28,
+    "by_type": {
+      "fact": "10/14",
+      "offtopic": "2/2",
+      "scope": "0/8",
+      "unanswerable": "4/4"
+    },
+    "harmful": [
+      "A09",
+      "B09"
+    ],
+    "invalid_json": 0,
+    "mean_seconds": 3.15
+  },
+  "run1": {
+    "correct": 22,
+    "n": 28,
+    "by_type": {
+      "fact": "10/14",
+      "offtopic": "2/2",
+      "scope": "6/8",
+      "unanswerable": "4/4"
+    },
+    "harmful": [],
+    "invalid_json": 0,
+    "mean_seconds": 11.8
+  },
+  "run2a": {
+    "correct": 24,
+    "n": 28,
+    "by_type": {
+      "fact": "10/14",
+      "offtopic": "2/2",
+      "scope": "8/8",
+      "unanswerable": "4/4"
+    },
+    "harmful": [],
+    "invalid_json": 0,
+    "mean_seconds": 3.81
+  }
+}

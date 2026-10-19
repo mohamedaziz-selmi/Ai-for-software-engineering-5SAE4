@@ -1,5 +1,7 @@
 import json
 
+import httpx
+
 from app.db import connect
 from app.llm.prompts import ContextChunk, render_context
 
@@ -30,6 +32,14 @@ def test_health_is_honest_about_demo_identity_and_model_state(env):
     assert body["backup"]["status"] == "disabled"
     assert body["review"]["status"] == "configured" and body["review"]["provider"] == "hosted"
     assert body["database"]["status"] == "up"
+
+
+def test_swagger_documents_every_refusal(env):
+    paths = env["make"]().get("/api/ai/openapi.json").json()["paths"]
+    assert {"201", "401", "403", "404", "413", "415"} <= set(paths["/api/ai/documents"]["post"]["responses"])
+    assert "503" in paths["/api/ai/chat"]["post"]["responses"]
+    assert "503" in paths["/api/ai/deliverables/{deliverable_id}/review"]["post"]["responses"]
+    assert "401" not in paths["/api/ai/health"]["get"]["responses"]  # health needs no identity
 
 
 def test_identity_listing_says_it_is_not_authentication(env):
@@ -63,7 +73,9 @@ def test_unsupported_upload_is_rejected(env, tmp_path):
     client = env["make"]()
     exe = tmp_path / "tool.exe"
     exe.write_bytes(b"MZ\x00\x01")
-    assert upload(client, FREELANCER, "PRJ-DEMO-001", exe).status_code == 415
+    response = upload(client, FREELANCER, "PRJ-DEMO-001", exe)
+    assert response.status_code == 415
+    assert response.json()["detail"]["message"].startswith(".exe files are not supported")  # the UI shows this text
 
 
 def test_answer_with_verified_citation_and_provenance(env):
@@ -127,11 +139,76 @@ def test_local_down_without_backup_gives_friendly_503(env):
 
 def test_backup_answers_only_when_local_fails_and_is_labelled(env):
     client = seeded(env, backup_enabled=True)
-    env["local"].up = False
+    env["local"].up = env["raft"].up = False  # the private Ollama is down: both local models fail
     env["backup"].responses = [cite("Fixed price: 18,000 TND excluding VAT")]
     body = ask(client, "What is the fixed price?").json()
     assert body["served_by"] == "backup" and body["status"] == "answered"
-    assert body["attempts"] == [{"served_by": "local", "model": "fake-local", "error": "unavailable"}]
+    assert body["attempts"] == [{"served_by": "local", "model": "fake-local", "error": "unavailable"},
+                                {"served_by": "local_backup", "model": "fake-raft", "error": "unavailable"}]
+
+
+def test_raft_can_be_chosen_and_serves_alone(env):
+    client = seeded(env)
+    env["raft"].responses = [cite("Fixed price: 18,000 TND excluding VAT")]
+    body = client.post("/api/ai/chat", headers=H, json={"project_id": "PRJ-DEMO-001", "message": "What is the fixed price?",
+                                                         "model": "raft"}).json()
+    assert body["served_by"] == "local" and body["model"] == "fake-raft" and body["model_choice"] == "raft"
+    assert body["status"] == "answered" and env["local"].requests == []  # the base model was never called
+
+
+def test_unknown_model_choice_is_rejected(env):
+    response = seeded(env).post("/api/ai/chat", headers=H, json={"project_id": "PRJ-DEMO-001", "message": "Price?", "model": "gpt"})
+    assert response.status_code == 422
+
+
+def test_failure_drill_falls_back_to_the_other_local_model(env):
+    client = seeded(env, backup_enabled=True)
+    env["raft"].responses = [cite("Fixed price: 18,000 TND excluding VAT")]
+    body = client.post("/api/ai/chat", headers=H, json={"project_id": "PRJ-DEMO-001", "message": "What is the fixed price?",
+                                                         "simulate_failure": True}).json()
+    assert body["served_by"] == "local_backup" and body["model"] == "fake-raft" and body["status"] == "answered"
+    assert body["attempts"] == [{"served_by": "local", "model": "fake-local", "error": "simulated_failure"}]
+    assert env["local"].requests == [] and env["backup"].requests == []
+
+
+def test_real_local_failure_falls_back_to_raft(env):
+    client = seeded(env, backup_enabled=True)
+    env["local"].responses = [httpx.Response(500, json={"error": "model crashed"})]
+    env["raft"].responses = [cite("Fixed price: 18,000 TND excluding VAT")]
+    body = ask(client, "What is the fixed price?").json()
+    assert body["served_by"] == "local_backup" and body["model"] == "fake-raft"
+    assert body["attempts"][0]["served_by"] == "local" and env["backup"].requests == []
+
+
+def test_no_backup_of_any_kind_when_backups_are_disabled(env):
+    client = seeded(env)  # backup_enabled=False, as in every evaluation
+    response = client.post("/api/ai/chat", headers=H, json={"project_id": "PRJ-DEMO-001", "message": "What is the fixed price?",
+                                                             "simulate_failure": True})
+    assert response.status_code == 503 and env["raft"].requests == []
+
+
+def test_health_lists_both_selectable_models(env):
+    env["raft"].up = False
+    models = env["make"]().get("/api/ai/health").json()["assistant"]
+    assert models["default"] == "base"
+    assert models["models"] == {"base": {"tag": "fake-local", "status": "up"}, "raft": {"tag": "fake-raft", "status": "down"}}
+
+
+def test_removing_a_document_stops_answers_from_it_and_restores_the_previous_version(env, tmp_path):
+    client = seeded(env)
+    v2 = tmp_path / DOC1.name
+    v2.write_text(DOC1.read_text(encoding="utf-8").replace("18,000 TND", "21,000 TND"), encoding="utf-8")
+    assert upload(client, FREELANCER, "PRJ-DEMO-001", v2).json()["version"] == 2
+    docs = client.get("/api/ai/documents", params={"project_id": "PRJ-DEMO-001"}, headers=H).json()["documents"]
+    newest = next(d for d in docs if d["version"] == 2)
+    assert client.delete(f"/api/ai/documents/{newest['id']}", headers={"X-Demo-User": OTHER}).status_code == 403
+    removed = client.delete(f"/api/ai/documents/{newest['id']}", headers=H).json()
+    assert removed["restored"]["version"] == 1
+    docs = client.get("/api/ai/documents", params={"project_id": "PRJ-DEMO-001"}, headers=H).json()["documents"]
+    assert [(d["version"], d["status"]) for d in docs] == [(1, "active")]
+    env["local"].responses = [cite("Fixed price: 18,000 TND excluding VAT")]
+    assert ask(client, "What is the fixed price?").json()["status"] == "answered"  # answered from version 1 again
+    assert client.delete(f"/api/ai/documents/{newest['id']}", headers=H).status_code == 404
 
 
 def test_pii_is_masked_before_the_model_and_restored_for_display(env):

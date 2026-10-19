@@ -15,7 +15,7 @@ from ..assistant.service import answer_question
 from ..db import utcnow
 from ..integrations.demo import DemoUser
 from ..llm.service import AssistantUnavailable
-from .routes import current_user, directory, get_conn, require_member
+from .routes import current_user, directory, errors, get_conn, require_member
 
 router = APIRouter(prefix="/api/ai")
 
@@ -26,7 +26,7 @@ def _require_admin(user: DemoUser) -> None:
 
 
 # ---------------------------------------------------------------- chat history
-@router.get("/conversations")
+@router.get("/conversations", responses=errors(401, 403, 404), summary="List my conversations")
 def conversations(request: Request, project_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     require_member(request, user, project_id)
     rows = conn.execute(
@@ -36,7 +36,7 @@ def conversations(request: Request, project_id: str, user: DemoUser = Depends(cu
     return {"conversations": [dict(r) for r in rows]}
 
 
-@router.get("/conversations/{conversation_id}")
+@router.get("/conversations/{conversation_id}", responses=errors(401, 403, 404), summary="Read a conversation")
 def conversation(request: Request, conversation_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     row = conn.execute("SELECT * FROM conversations WHERE id = ?", (conversation_id,)).fetchone()
     if row is None or row["user_id"] != user.id:  # a conversation is private to its author
@@ -58,7 +58,7 @@ class FaqIn(BaseModel):
     language: Literal["en", "fr"] = "en"
 
 
-@router.get("/faq")
+@router.get("/faq", summary="List the FAQ")
 def faq(conn: sqlite3.Connection = Depends(get_conn), language: str | None = None) -> dict:
     query, args = "SELECT * FROM faq_entries", ()
     if language:
@@ -66,7 +66,7 @@ def faq(conn: sqlite3.Connection = Depends(get_conn), language: str | None = Non
     return {"faq": [dict(r) for r in conn.execute(query + " ORDER BY created_at", args)]}
 
 
-@router.post("/faq", status_code=201)
+@router.post("/faq", status_code=201, responses=errors(401, 403), summary="Add an FAQ entry (admin)")
 def create_faq(body: FaqIn, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     _require_admin(user)
     entry_id, now = f"faq-{uuid.uuid4().hex[:10]}", utcnow()
@@ -75,7 +75,7 @@ def create_faq(body: FaqIn, user: DemoUser = Depends(current_user), conn: sqlite
     return {"id": entry_id}
 
 
-@router.put("/faq/{entry_id}")
+@router.put("/faq/{entry_id}", responses=errors(401, 403, 404), summary="Edit an FAQ entry (admin)")
 def update_faq(entry_id: str, body: FaqIn, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     _require_admin(user)
     with conn:
@@ -86,7 +86,7 @@ def update_faq(entry_id: str, body: FaqIn, user: DemoUser = Depends(current_user
     return {"id": entry_id}
 
 
-@router.delete("/faq/{entry_id}", status_code=204)
+@router.delete("/faq/{entry_id}", status_code=204, responses=errors(401, 403, 404), summary="Delete an FAQ entry (admin)")
 def delete_faq(entry_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> None:
     _require_admin(user)
     with conn:
@@ -102,7 +102,7 @@ class SupportIn(BaseModel):
     project_id: str | None = Field(default=None, max_length=64)
 
 
-@router.post("/support-requests", status_code=201)
+@router.post("/support-requests", status_code=201, responses=errors(401, 403, 404), summary="Send a support request")
 def create_support(request: Request, body: SupportIn, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
     if body.project_id:
         require_member(request, user, body.project_id)
@@ -113,30 +113,69 @@ def create_support(request: Request, body: SupportIn, user: DemoUser = Depends(c
     return {"id": request_id, "status": "open"}
 
 
-@router.get("/support-requests")
+def _support_request(conn: sqlite3.Connection, request_id: str, user: DemoUser) -> sqlite3.Row:
+    """The request, if this user may see it: its author or an admin (404 otherwise, so ids are not probed)."""
+    row = conn.execute("SELECT * FROM support_requests WHERE id = ?", (request_id,)).fetchone()
+    if row is None or (user.role != "admin" and row["user_id"] != user.id):
+        raise HTTPException(404, detail={"error": "support_request_not_found"})
+    return row
+
+
+@router.get("/support-requests", responses=errors(401), summary="List support requests")
 def list_support(user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
+    query = ("SELECT r.*, (SELECT COUNT(*) FROM support_messages m WHERE m.request_id = r.id) AS replies,"
+             " (SELECT MAX(m.created_at) FROM support_messages m WHERE m.request_id = r.id) AS last_reply_at FROM support_requests r")
     if user.role == "admin":
-        rows = conn.execute("SELECT * FROM support_requests ORDER BY created_at DESC")
+        rows = conn.execute(query + " ORDER BY r.updated_at DESC")
     else:
-        rows = conn.execute("SELECT * FROM support_requests WHERE user_id = ? ORDER BY created_at DESC", (user.id,))
+        rows = conn.execute(query + " WHERE r.user_id = ? ORDER BY r.updated_at DESC", (user.id,))
     return {"support_requests": [dict(r) for r in rows]}
+
+
+@router.get("/support-requests/{request_id}", responses=errors(401, 404), summary="Read a support request and its thread")
+def get_support(request_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
+    row = _support_request(conn, request_id, user)
+    messages = conn.execute("SELECT * FROM support_messages WHERE request_id = ? ORDER BY created_at, rowid", (request_id,))
+    return {"support_request": dict(row), "messages": [dict(m) for m in messages]}
+
+
+class ReplyIn(BaseModel):
+    body: str = Field(min_length=1, max_length=5000)
+
+
+@router.post("/support-requests/{request_id}/messages", status_code=201, responses=errors(401, 404), summary="Reply to a support request")
+def reply_support(request_id: str, body: ReplyIn, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
+    row = _support_request(conn, request_id, user)
+    # An admin's first answer moves an open request to "in progress"; the author writing again reopens a closed one.
+    status = row["status"]
+    if user.role == "admin" and status == "open":
+        status = "in_progress"
+    elif user.role != "admin" and status == "closed":
+        status = "open"
+    message_id, now = f"spm-{uuid.uuid4().hex[:10]}", utcnow()
+    with conn:
+        conn.execute("INSERT INTO support_messages VALUES (?, ?, ?, ?, ?, ?)",
+                     (message_id, request_id, user.id, "admin" if user.role == "admin" else "requester", body.body.strip(), now))
+        conn.execute("UPDATE support_requests SET status = ?, updated_at = ? WHERE id = ?", (status, now, request_id))
+    return {"id": message_id, "status": status}
 
 
 class StatusIn(BaseModel):
     status: Literal["open", "in_progress", "closed"]
 
 
-@router.patch("/support-requests/{request_id}")
+@router.patch("/support-requests/{request_id}", responses=errors(401, 403, 404), summary="Change a support request's status")
 def update_support(request_id: str, body: StatusIn, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)) -> dict:
-    _require_admin(user)
+    _support_request(conn, request_id, user)
+    if user.role != "admin" and body.status == "in_progress":  # the author may close or reopen; triage is the admin's
+        raise HTTPException(403, detail={"error": "admin_only"})
     with conn:
-        if not conn.execute("UPDATE support_requests SET status = ?, updated_at = ? WHERE id = ?", (body.status, utcnow(), request_id)).rowcount:
-            raise HTTPException(404, detail={"error": "support_request_not_found"})
+        conn.execute("UPDATE support_requests SET status = ?, updated_at = ? WHERE id = ?", (body.status, utcnow(), request_id))
     return {"id": request_id, "status": body.status}
 
 
 # ---------------------------------------------------------------- explain a finding (same assistant pipeline)
-@router.post("/findings/{finding_id}/explain")
+@router.post("/findings/{finding_id}/explain", responses=errors(401, 403, 404, "unavailable"), summary="Explain a finding from the documents")
 def explain_finding(request: Request, finding_id: str, user: DemoUser = Depends(current_user), conn: sqlite3.Connection = Depends(get_conn)):
     row = conn.execute(
         "SELECT f.*, q.code, q.text AS requirement_text, q.priority, d.project_id FROM findings f JOIN reviews r ON r.id = f.review_id"

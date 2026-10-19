@@ -70,9 +70,9 @@ A SHA-256 baseline of all 286 protected files (outside `node_modules/` and `.ven
 
 | Convention in the template | Where | How this module follows it |
 |---|---|---|
-| A module opens as a workspace: `review-workspace` shell (`#f1edf4` card on the paper backdrop), eyebrow path "Cerebro / Module …", large title, mono status pill, `×` close | `src/BusinessIntelligence.jsx`, `src/styles.css` (review-workspace rules) | `AssistantWorkspace.jsx` uses the same structure; shell rules copied to `frontend/src/template-shell.css` |
-| Sticky numbered tabs, `Section` headings (eyebrow + h3 + description), tiles, pass/warn/fail badges, `review-error` with the exact start command when the API is offline | `src/bi-workspace.css`, `BusinessIntelligence.jsx` | Same patterns with an `ad-` prefix (`assistant-workspace.css`) |
-| Arial + Consolas, palette `#302b39` / `#625e68` / `#286443` / `#963d3d` | `src/styles.css`, `bi-workspace.css` | Same values |
+| A module opens as a workspace: `review-workspace` shell, eyebrow path, status pill, `×` close | `src/BusinessIntelligence.jsx`, `src/styles.css` | Followed until 2026-10-19; replaced by the module's own design on the owner's request (module UI only, see `CLAUDE.md`) |
+| Sticky numbered tabs, `Section` headings, tiles, pass/warn/fail badges, the exact start command when the API is offline | `src/bi-workspace.css`, `BusinessIntelligence.jsx` | Same functions kept (pages, sections, tiles, badges, offline message) in the new design, `ad-` prefix |
+| Arial + Consolas, template palette | `src/styles.css`, `bi-workspace.css` | Replaced in the module UI only: Hanken Grotesk, Source Serif 4 and JetBrains Mono (self-hosted), OKLCH tokens, light + dark |
 | Each backend is a FastAPI `api.py` run with `uvicorn api:app --port <n>`, with `/health` reporting `ready` | `module5_business_intelligence/api.py`, `rag_service/api.py`, `sentiment classifier/api.py` | `backend/api.py`, port 8003, `/api/ai/health` includes `ready` |
 | Module API under its own prefix (`/api/module5`) | `vite.config.js`, BI `api.py` | `/api/ai` (already routed by the gateway) |
 
@@ -98,6 +98,27 @@ Everything under the application root except `module_assistant_delivery/`. That 
 `module5_business_intelligence/`, `Rayen/`, `cerebro/`, `plausible.io/`, root `.gitignore`, and
 `platform_gateway/` (read-only for this milestone). The shared Ollama model store
 (`%USERPROFILE%\.ollama`) is also left untouched.
+
+## Teammates' environment on this PC (2026-10-18, owner asked to test the teammates' work)
+
+- `rag_service/.venv` (shared by retrieval, sentiment and BI) was created on another PC. Its `pyvenv.cfg` pointed to `C:\Users\MSI\...\Python311`, so all three services failed with "No Python at ...".
+- **Fix on this PC only:**
+  - A standalone CPython 3.11.9, the venv's own version, was placed in `module_assistant_delivery/storage/python311`.
+  - The `home`/`executable` lines of `rag_service/.venv/pyvenv.cfg` now point to it. The original is kept as `pyvenv.cfg.from-MSI` in the same folder.
+  - No package was installed or changed. The venv is not in Git, so nothing reaches the teammates.
+  - Undo: copy `pyvenv.cfg.from-MSI` back over `pyvenv.cfg`.
+- **Checked through the gateway:**
+  - Retrieval ready (hybrid_rrf, 752 chunks; it downloaded `all-MiniLM-L6-v2` on first start).
+  - Sentiment ready, `/predict` answers.
+  - BI ready (3 models).
+
+## Control center (owner's microservice, 2026-10-19)
+
+- New folder `control_center/` (the owner's work). Shared files changed with the owner's approval: `platform_gateway/config.mjs`
+  (route `/_control` → :8090; HTML pages get the button, `CONTROL_BUBBLE=0` turns it off), `proxy.mjs` (HTML-only
+  injection with a corrected length), `test/gateway.test.mjs` (+1 test, 10/10), `README.md`, `.env.example`.
+- No module's code changed for the button: the gateway adds one script tag to pages it serves; the widget lives in a
+  Shadow DOM.
 
 ## Integration changes that need another owner (described, not performed)
 

@@ -1,0 +1,82 @@
+{
+  "projects": 40,
+  "seed": 7,
+  "embedding_model": "intfloat/multilingual-e5-base",
+  "split_projects": {
+    "train": [
+      "RAFT-P001",
+      "RAFT-P002",
+      "RAFT-P003",
+      "RAFT-P004",
+      "RAFT-P005",
+      "RAFT-P007",
+      "RAFT-P008",
+      "RAFT-P009",
+      "RAFT-P010",
+      "RAFT-P012",
+      "RAFT-P014",
+      "RAFT-P015",
+      "RAFT-P017",
+      "RAFT-P018",
+      "RAFT-P019",
+      "RAFT-P021",
+      "RAFT-P023",
+      "RAFT-P024",
+      "RAFT-P025",
+      "RAFT-P026",
+      "RAFT-P027",
+      "RAFT-P028",
+      "RAFT-P029",
+      "RAFT-P030",
+      "RAFT-P032",
+      "RAFT-P033",
+      "RAFT-P034",
+      "RAFT-P035",
+      "RAFT-P037",
+      "RAFT-P038",
+      "RAFT-P039",
+      "RAFT-P040"
+    ],
+    "val": [
+      "RAFT-P011",
+      "RAFT-P016",
+      "RAFT-P022",
+      "RAFT-P031"
+    ],
+    "test": [
+      "RAFT-P006",
+      "RAFT-P013",
+      "RAFT-P020",
+      "RAFT-P036"
+    ]
+  },
+  "examples": {
+    "train": 1056,
+    "val": 132,
+    "test": 132
+  },
+  "by_split_and_type": {
+    "test/abstain_absent": 11,
+    "test/abstain_removed": 18,
+    "test/fact": 63,
+    "test/multi": 3,
+    "test/offtopic": 4,
+    "test/scope": 25,
+    "test/scope_absent": 8,
+    "train/abstain_absent": 82,
+    "train/abstain_removed": 190,
+    "train/fact": 467,
+    "train/multi": 24,
+    "train/offtopic": 32,
+    "train/scope": 197,
+    "train/scope_absent": 64,
+    "val/abstain_absent": 11,
+    "val/abstain_removed": 20,
+    "val/fact": 62,
+    "val/multi": 4,
+    "val/offtopic": 4,
+    "val/scope": 23,
+    "val/scope_absent": 8
+  },
+  "rejected": {}
+}

@@ -32,7 +32,9 @@ This directory is the **AI Assistant & Delivery Review** module of a freelancer-
 
 - Two service boundaries behind the existing gateway (:8080): the existing platform facade (:8081)
   and this module (:8003, API under `/api/ai`, UI and assets under `/assistant/`).
-- Assistant: local open model, base model first, RAFT-tuned later on the same endpoint.
+- Assistant (owner, 2026-10-19): **Base + RAG is the default** (it won the final test); the RAFT model is a
+  user-selectable choice and the base model's local backup, in the same private Ollama. One model is loaded at a
+  time (`OLLAMA_MAX_LOADED_MODELS=1`). Chain: chosen local model, then the other one, then hosted (backups on).
 - **Model policy (settled, owner 2026-10-18, restoring the first decision):** hosted delivery review and
   hosted assistant fallback (Groq free tier, `openai/gpt-oss-120b`). The local model answers; the hosted model
   is used only when the local model fails, and for every review. Without `HOSTED_API_KEY` the review is
@@ -41,7 +43,8 @@ This directory is the **AI Assistant & Delivery Review** module of a freelancer-
 - No intent classifier and no intent routing.
 - Generative model: **Qwen2.5-7B-Instruct**, chosen by measurement against Qwen3-4B-Instruct-2507
   (`eval/results/model_selection.md`). It is the served base AND the RAFT checkpoint (same checkpoint before
-  and after). The RAFT model is served as base + LoRA adapter (`raft/export.py`), not a separate merge.
+  and after). RAFT run 2a is served as a merged Q5_0 GGUF, `assistant-raft2a:qwen2.5-7b` (`raft/export_gguf.ps1`):
+  Ollama 0.40.6 refuses ADAPTER lines for this model.
 - Retrieval: LlamaIndex local components (file readers, HuggingFaceEmbedding, ChromaVectorStore with
   metadata filters) + this module's clause-preserving chunker. Chroma in `storage/chroma`, SQLite in
   `storage/assistant.sqlite3`. Embeddings `intfloat/multilingual-e5-base` on CPU unless the retrieval
@@ -92,12 +95,18 @@ This directory is the **AI Assistant & Delivery Review** module of a freelancer-
   (WinError 1114, access violation). Service venv `.venv/` (pinned: `backend/requirements.lock.txt`),
   training venv `.venv-raft/` (pinned: `raft/requirements-raft.lock.txt`). FastAPI, Pydantic v2, `pytest`.
 - Frontend: React app, same-origin API calls to `/api/ai/...`; `npm run build` in `frontend/`.
-- **Follow the template's module pattern** (owner, 2026-10-18): the UI is built like the Business
-  Intelligence workspace in `../src/BusinessIntelligence.jsx` + `../src/bi-workspace.css` (review-workspace
-  shell, eyebrow path, status pill, numbered tabs, Section headings, Arial + Consolas, template palette).
-  Shared shell rules are copied into `frontend/src/template-shell.css`, never imported from or edited in
-  the template. Module classes use the `ad-` prefix. The template's typography takes precedence here over
-  the global "no Arial" default, because the owner asked to follow the template.
+- **Module UI: own design** (owner, 2026-10-19, replacing the 2026-10-18 "follow the template" rule): "bold new
+  look", for this module's interface **only**. Never change the dashboard, `frontend/tile-preview.svg` or any
+  teammate's interface. Design: `frontend/src/assistant-workspace.css`, every rule scoped to `.ad-app`
+  (`ad-` prefix), OKLCH tokens, light + dark, one lime accent, reduced-motion fallback. Type (owner, 2026-10-19,
+  "Claude-like"): Hanken Grotesk (interface), Source Serif 4 (answers, quotes), JetBrains Mono (code), self-hosted via
+  @fontsource. Report screenshots: `scripts/capture_screens.py`.
+- **Documentation scope** (owner, 2026-10-19): this module's docs mention only plugging into the existing platform, not
+  integrating colleagues' modules; those records live in each colleague's `INTEGRATION.md`.
+- **One documentation file** (owner, 2026-10-19, for Blackboard): everything (report, before/after, prompts, screenshots,
+  tests, guides, spec, log) is in `docs/AI_Assistant_Delivery_Review_Mohamed_Aziz_Selmi.pdf`, built from `docs/REPORT.md`
+  by `scripts/build_report_pdf.py`. Rebuild it after any documentation change.
+- The owner's control center is `../control_center/` (its own microservice, not part of this module).
 - Backend run convention like the other services: `backend/api.py` → `uvicorn api:app --port 8003`;
   `/api/ai/health` includes `ready`.
 - Prompts are versioned files in `backend/app/llm/prompts/`; the version is stored with each result.
@@ -109,7 +118,7 @@ This directory is the **AI Assistant & Delivery Review** module of a freelancer-
 ```powershell
 .\scripts\setup.ps1                  # one-command setup on a new machine (Python, .venv, model, e5, demo data, tests)
 .\scripts\start_all.ps1              # private Ollama + service (+ the gateway if present), each in its own window
-.\scripts\make_handoff.ps1           # handoff\module_assistant_delivery.zip (no .env, no downloaded tools)
+.\scripts\make_handoff.ps1           # handoff\module_assistant_delivery.zip (no .env, no downloaded tools; 147 MB, or 5.4 GB with -IncludeRaftModel)
 .\scripts\setup_backend.ps1          # same as setup.ps1 (kept for older instructions)
 cd frontend; npm.cmd install; npm.cmd run build; cd ..   # build the UI into frontend/dist (once per UI change)
 .\scripts\start_ollama.ps1           # private Ollama on :11435 (separate terminal)
@@ -120,4 +129,9 @@ cd backend; ..\.venv\Scripts\python.exe -m pytest; cd ..
 .\.venv\Scripts\python.exe eval\run_assistant_eval.py --model <ollama tag> --label <name>   # fallback always off
 .\raft\setup_raft.ps1                # training env (CUDA torch + Unsloth), once
 .\scripts\check_protected.ps1        # verify no protected file changed
+.\.venv\Scripts\python.exe scripts\build_report_pdf.py      # docs\REPORT.md + the one-file PDF (both rebuilt)
+.\.venv\Scripts\python.exe scripts\capture_screens.py --prefix after-   # UI screenshots (service on :8003)
+.\.venv\Scripts\python.exe scripts\capture_swagger.py      # Swagger screenshots of real requests (service on :8003)
+.\.venv\Scripts\python.exe scripts\make_report_diagrams.py # the report's three SVG diagrams
+.\.venv\Scripts\python.exe scripts\make_demo_files.py      # the demo kit's DOCX and refused example files
 ```

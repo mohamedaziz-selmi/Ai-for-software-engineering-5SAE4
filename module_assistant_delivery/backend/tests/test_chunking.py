@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from app.rag.chunking import Page, approx_tokens, chunk_code, chunk_pages
+from app.rag.ingest import passage_path
 
 SEED = Path(__file__).resolve().parents[2] / "data" / "seed" / "documents" / "PRJ-DEMO-001_cahier_des_charges.md"
 
@@ -36,6 +37,15 @@ def test_numbered_clause_headings_in_extracted_text_and_pages():
     assert chunks[0].heading_path == "1. Context" and chunks[0].page == 1
     assert chunks[1].heading_path == "1. Context > 3.2 Out of scope"
     assert chunks[-1].page == 2 and chunks[-1].heading_path.endswith("3.2 Out of scope")
+
+
+def test_passages_without_a_title_heading_carry_the_document_title():
+    assert passage_path("CR-01.docx", "docx", "(untitled)") == "CR-01.docx"
+    assert passage_path("CR-01.docx", "docx", "3. Estimate") == "CR-01.docx > 3. Estimate"
+    assert passage_path("notes.txt", "text", "(untitled)") == "notes.txt"
+    # Markdown (path starts with its H1) and code (path is the file name) are unchanged, as in every evaluation.
+    assert passage_path("spec.md", "markdown", "Spec > 4. Rules") == "Spec > 4. Rules"
+    assert passage_path("app.py", "code", "src/app.py") == "src/app.py"
 
 
 def test_code_windows_have_line_provenance():

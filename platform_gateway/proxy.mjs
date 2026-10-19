@@ -22,6 +22,21 @@ function requestHeaders(req, route, upgrade = false) {
   return headers;
 }
 
+// Adds the control center's bubble to a full HTML page: only GET 200 text/html, uncompressed, not the control
+// center's own pages. The page is buffered (up to 5 MB) so its length can be corrected; anything else streams.
+const INJECT_LIMIT = 5 * 1024 * 1024;
+function injectable(config, req, reply, route) {
+  const type = String(reply.headers['content-type'] || '').toLowerCase();
+  return Boolean(config.inject) && req.method === 'GET' && reply.statusCode === 200 && route.service !== config.inject.skipService
+    && type.startsWith('text/html') && !reply.headers['content-encoding'];
+}
+
+export function injectTag(html, tag) {
+  if (html.includes('data-control-base=')) return html;
+  const at = html.toLowerCase().lastIndexOf('</body>');
+  return at < 0 ? html + tag : html.slice(0, at) + tag + html.slice(at);
+}
+
 function json(res, status, data) {
   if (res.destroyed || res.writableEnded) return;
   if (res.headersSent) return res.destroy();
@@ -48,6 +63,21 @@ export function createProxy(config) {
     upstream.on('error', () => json(res, 502, { error: 'upstream_unavailable', service: route.service }));
     upstream.on('response', reply => {
       if (res.destroyed) return reply.destroy();
+      if (injectable(config, req, reply, route)) {
+        const chunks = [];
+        let size = 0;
+        reply.on('data', chunk => { size += chunk.length; chunks.push(chunk); });
+        reply.on('error', () => res.destroy());
+        reply.on('end', () => {
+          const original = Buffer.concat(chunks);
+          const body = size > INJECT_LIMIT ? original : Buffer.from(injectTag(original.toString('utf8'), config.inject.tag), 'utf8');
+          const headers = filteredHeaders(reply.headers);
+          delete headers['content-length'];
+          headers['content-length'] = String(body.length);
+          if (!res.destroyed) { res.writeHead(reply.statusCode, headers); res.end(body); }
+        });
+        return;
+      }
       res.writeHead(reply.statusCode, filteredHeaders(reply.headers));
       res.flushHeaders();
       reply.on('error', () => res.destroy());

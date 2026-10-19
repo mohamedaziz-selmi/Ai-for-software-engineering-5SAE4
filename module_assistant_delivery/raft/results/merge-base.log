@@ -1,0 +1,11 @@
+{
+  "mode": "base",
+  "tag": "assistant-base-requant:qwen2.5-7b",
+  "source": "unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+  "out": "raft\\outputs\\qwen2.5-7b-raft\\merged-base-bf16",
+  "quantize": "int4",
+  "merge": "reused existing merged weights",
+  "ollama_create_returncode": 1,
+  "ollama_create_s": 0.1,
+  "ollama_output_tail": "\u001b[?2026h\u001b[?25l\u001b[1Gimporting safetensors model \u001b[K\u001b[?25h\u001b[?2026l\nError: unsupported MLX architecture: model \"Qwen2ForCausalLM\""
+}

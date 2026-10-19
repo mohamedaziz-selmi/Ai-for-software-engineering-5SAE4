@@ -44,6 +44,12 @@ Defaults work without configuration. To override them, copy `.env.example` to `.
 | `/_gateway/health` | Gateway itself | Liveness only; does not assert backend readiness |
 | `/api/ai` and `/api/ai/*` | Your service, :8003 | Preserved |
 | `/assistant` and `/assistant/*` | Your service, :8003 | Preserved |
+| `/advisor/*` | Freelance Advisor (`agentic-freelance-advisor`), :8004 | `/advisor` prefix removed |
+| `/api/health`, `/api/match`, `/api/budget` | Freelance Marketplace AI (`marketplace_ml`), :8005 | Preserved |
+| `/ollama-match/*` | Freelance Marketplace AI matcher (CPU-only Ollama), :11436 | `/ollama-match` prefix removed |
+| `/business-ai/*` | Cerebro Business AI screens (`cerebro_business_ai`, its own microservice), :8905 | `/business-ai` prefix removed |
+| `/business-ai-api/*` | Cerebro Business AI gateway, :8900 | `/business-ai-api` prefix removed (e.g. `/business-ai-api/api/ai/status`) |
+| `/_control/*` | Control center (`control_center`), :8090 | `/_control` prefix removed. Every HTML page served in gateway mode also gets its floating bubble (`CONTROL_BUBBLE=0` turns it off) |
 | `/ollama/*` | Existing platform -> Ollama | `/ollama` prefix removed |
 | `/rag-api/*` | Existing platform -> retrieval | `/rag-api` prefix removed |
 | `/sentiment-api/*` | Existing platform -> sentiment | `/sentiment-api` prefix removed |

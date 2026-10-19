@@ -1,0 +1,2 @@
+FROM qwen2.5:7b-instruct
+ADAPTER C:/Users/azizs/Downloads/freelance2/freelance2/module_assistant_delivery/raft/outputs/qwen2.5-7b-raft/adapter

@@ -24,8 +24,63 @@ RESULTS = MODULE_ROOT / "raft" / "results"
 OUTPUTS = MODULE_ROOT / "raft" / "outputs"
 
 
-def load(split: str) -> list[dict]:
-    return [json.loads(l) for l in (DATA / f"{split}.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+def gpu_temperature() -> int | None:
+    import subprocess
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=temperature.gpu", "--format=csv,noheader,nounits"],
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+        return int(out.splitlines()[0])
+    except (OSError, ValueError, IndexError, subprocess.SubprocessError):
+        return None
+
+
+HEAT_PAUSE_C, HEAT_RESUME_C = 76, 70  # owner's limit (2026-10-19): the GPU must never exceed 79 degrees C
+
+
+def cool_down(stats: dict) -> None:
+    """If the GPU reached HEAT_PAUSE_C, wait (GPU idle) until it is back at HEAT_RESUME_C. Records the peak."""
+    temp = gpu_temperature()
+    if temp is None:
+        return
+    stats["max_temp_c"] = max(stats.get("max_temp_c", 0), temp)
+    if temp >= HEAT_PAUSE_C:
+        stats["heat_pauses"] = stats.get("heat_pauses", 0) + 1
+        while (temp := gpu_temperature()) is not None and temp > HEAT_RESUME_C:
+            time.sleep(5)
+
+
+def gentle_callback(duty: float, stats: dict):
+    """Laptop-friendly training (owner's request, 2026-10-19): after each micro-batch the GPU rests as long as it
+    worked, so the average load is about `duty`, and the temperature is checked after every micro-batch (pause at
+    76 C until 70 C), so it stays below the owner's 79 C limit."""
+    import torch
+    from transformers import TrainerCallback
+
+    class Gentle(TrainerCallback):
+        def __init__(self) -> None:
+            self.mark = time.perf_counter()
+
+        def _rest(self) -> None:
+            torch.cuda.synchronize()
+            busy = time.perf_counter() - self.mark
+            time.sleep(busy * (1 - duty) / duty)
+            cool_down(stats)
+            self.mark = time.perf_counter()
+
+        def on_substep_end(self, args, state, control, **kwargs):
+            self._rest()
+
+        def on_step_end(self, args, state, control, **kwargs):
+            self._rest()
+
+        def on_prediction_step(self, args, state, control, **kwargs):  # validation passes are throttled too
+            self._rest()
+
+    return Gentle()
+
+
+def load(split: str, data: Path = DATA) -> list[dict]:
+    return [json.loads(l) for l in (data / f"{split}.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 def main() -> None:
@@ -38,7 +93,10 @@ def main() -> None:
     parser.add_argument("--lr", type=float, default=2e-4)
     parser.add_argument("--epochs", type=float, default=2.0)
     parser.add_argument("--smoke", action="store_true", help="4 optimizer steps (4 x grad-accum examples) only: feasibility check")
+    parser.add_argument("--data", default="generated", help="dataset folder under raft/data (run 1: generated, run 2: generated_v2)")
+    parser.add_argument("--duty", type=float, default=1.0, help="average GPU load, e.g. 0.5 = rest as long as it works (cooler laptop, twice slower)")
     args = parser.parse_args()
+    data_dir = MODULE_ROOT / "raft" / "data" / args.data
 
     import torch
     from unsloth import FastLanguageModel  # import before transformers/trl, as Unsloth requires
@@ -75,8 +133,9 @@ def main() -> None:
             kept.append({"text": text})
         return kept, dropped, longest
 
-    train_rows, train_drop, train_longest = to_text(load("train"))
-    val_rows, val_drop, _ = to_text(load("val"))
+    train_rows, train_drop, train_longest = to_text(load("train", data_dir))
+    val_rows, val_drop, _ = to_text(load("val", data_dir))
+    record["data"] = args.data
     if args.smoke:
         val_rows = val_rows[:16]
     record.update({"train_examples": len(train_rows), "train_dropped_too_long": train_drop, "longest_example_tokens": train_longest,
@@ -101,6 +160,10 @@ def main() -> None:
     )
     # Loss on the assistant JSON only (Qwen chat format).
     trainer = train_on_responses_only(trainer, instruction_part="<|im_start|>user\n", response_part="<|im_start|>assistant\n")
+    heat: dict = {}
+    if args.duty < 1.0:
+        trainer.add_callback(gentle_callback(args.duty, heat))
+    record["duty"] = args.duty
 
     torch.cuda.reset_peak_memory_stats()
     t0 = time.perf_counter()
@@ -118,6 +181,7 @@ def main() -> None:
     record["loss_curve"] = [round(h["loss"], 4) for h in trainer.state.log_history if "loss" in h]
     record["val_loss_per_epoch"] = [round(h["eval_loss"], 4) for h in trainer.state.log_history if "eval_loss" in h]
     record["best_checkpoint"] = trainer.state.best_model_checkpoint
+    record["gpu_max_temp_c"], record["heat_pauses"] = heat.get("max_temp_c"), heat.get("heat_pauses", 0)
 
     if record["status"] == "completed":
         metrics = trainer.evaluate()

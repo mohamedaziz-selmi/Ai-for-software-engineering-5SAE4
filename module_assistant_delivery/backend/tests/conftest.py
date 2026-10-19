@@ -115,6 +115,7 @@ def env(tmp_path):
     settings.frontend_dir.mkdir()
     (settings.frontend_dir / "index.html").write_text("<!doctype html><title>Assistant</title>", encoding="utf-8")
     local = FakeModelServer("fake-local")
+    raft = FakeModelServer("fake-raft")  # the RAFT model: a selectable choice and the base model's local backup
     backup = FakeModelServer("fake-backup")
     hosted = FakeModelServer("fake-hosted-review")
 
@@ -128,12 +129,13 @@ def env(tmp_path):
         review_client = {"hosted": hosted.client("review"), "missing": None, "local": local.client("review")}[review]
         llm = LlmService(local=local.client("local"), backup=backup.client("backup") if backup_enabled else None,
                          backup_enabled=backup_enabled, log_call=log_call, review=review_client,
-                         review_served_by="local" if review == "local" else "hosted")
+                         review_served_by="local" if review == "local" else "hosted",
+                         local_models={"raft": raft.client("local-raft")})
         app = create_app(replace(settings, backup_enabled=backup_enabled), embedder=FakeEmbedder(),
                          store=ChromaChunkStore(settings.chroma_path), llm=llm, warm_embedder=False)
         return TestClient(app)
 
-    return {"settings": settings, "local": local, "backup": backup, "hosted": hosted, "make": make}
+    return {"settings": settings, "local": local, "raft": raft, "backup": backup, "hosted": hosted, "make": make}
 
 
 def upload(client: TestClient, user: str, project_id: str, path: Path, name: str | None = None) -> httpx.Response:

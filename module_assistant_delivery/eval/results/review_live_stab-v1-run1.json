@@ -1,0 +1,343 @@
+{
+  "summary": {
+    "label": "stab-v1-run1",
+    "model": "openai/gpt-oss-120b",
+    "served_by": "hosted",
+    "status": "done",
+    "verdict_accuracy": "11/13",
+    "planted_defects_detected": "2/2",
+    "detected": {
+      "NN-1": true,
+      "NN-4": true
+    },
+    "findings": 5,
+    "summary": {
+      "requirements": 13,
+      "review_failed": 0,
+      "coverage": {
+        "violates": 2,
+        "cannot_determine": 9,
+        "conforms": 2
+      },
+      "findings_by_severity": {
+        "blocker": 3,
+        "info": 2
+      },
+      "dropped_unverified_findings": {
+        "quote_not_at_location": 1
+      },
+      "suppressed_findings": {
+        "info_on_undetermined": 8
+      },
+      "files": 6,
+      "excerpts_per_requirement": 4
+    },
+    "wall_s": 157.6,
+    "assistant_model_at_health": "qwen2.5:7b-instruct"
+  },
+  "review": {
+    "id": "rev-87d5809a7794",
+    "deliverable_id": "dlv-d6bd60b4e49e",
+    "status": "done",
+    "model": "openai/gpt-oss-120b",
+    "served_by": "hosted",
+    "prompt_version": "review_judge.v2",
+    "summary": {
+      "requirements": 13,
+      "review_failed": 0,
+      "coverage": {
+        "violates": 2,
+        "cannot_determine": 9,
+        "conforms": 2
+      },
+      "findings_by_severity": {
+        "blocker": 3,
+        "info": 2
+      },
+      "dropped_unverified_findings": {
+        "quote_not_at_location": 1
+      },
+      "suppressed_findings": {
+        "info_on_undetermined": 8
+      },
+      "files": 6,
+      "excerpts_per_requirement": 4
+    },
+    "error": null,
+    "started_at": "2026-10-18T23:46:35+00:00",
+    "finished_at": "2026-10-18T23:49:11+00:00",
+    "requirement_results": [
+      {
+        "code": "NN-1",
+        "priority": "must",
+        "text": "Pickup capacity: a shop accepts at most 20 orders per 15-minute pickup slot, and booking for a slot closes 2 hours before the slot starts.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-b4c82919bd5f",
+        "status": "ok",
+        "model_verdict": "violates",
+        "verdict": "violates",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"tests/test_slots.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "NN-2",
+        "priority": "must",
+        "text": "Accessibility: customer-facing pages meet WCAG 2.1 level AA.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-307264070353",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/accounts.py\", \"line_start\": 1}, {\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 15}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "NN-3",
+        "priority": "must",
+        "text": "Personal data: customer personal data is stored only on servers located in Tunisia or the European Union, and no customer personal data is sent to third-party analytics tools.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-3ec41f2e2f5b",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/accounts.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"src/mailer.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 15}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "NN-4",
+        "priority": "must",
+        "text": "Security: passwords are hashed with Argon2id or bcrypt, and every staff back-office account uses two-factor authentication.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-7be3dd9aebb0",
+        "status": "ok",
+        "model_verdict": "violates",
+        "verdict": "violates",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/accounts.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 15}, {\"path\": \"src/mailer.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "NN-5",
+        "priority": "must",
+        "text": "Performance: the catalogue page reaches Largest Contentful Paint in under 2.5 seconds on a simulated 4G connection.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-25fc5ed27157",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"README.md\", \"line_start\": 3}, {\"path\": \"README.md\", \"line_start\": 7}, {\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-001",
+        "priority": "must",
+        "text": "A customer can create an account with an email address and a password, and can reset a forgotten password by email.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-9f9fb7dd5bb6",
+        "status": "ok",
+        "model_verdict": "conforms",
+        "verdict": "conforms",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/accounts.py\", \"line_start\": 1}, {\"path\": \"src/mailer.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-002",
+        "priority": "must",
+        "text": "A customer can browse the catalogue by category and see each product's price and availability for the chosen day.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-5b16b2d0cfe0",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}, {\"path\": \"src/accounts.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-003",
+        "priority": "must",
+        "text": "A customer can choose a pickup shop and a 15-minute pickup slot; full or closed slots cannot be selected.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-43f21bab6fff",
+        "status": "ok",
+        "model_verdict": "conforms",
+        "verdict": "cannot_determine",
+        "note": "model said conforms but no evidence could be verified",
+        "excerpts": "[{\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"tests/test_slots.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}]",
+        "dropped": "[{\"reason\": \"quote_not_at_location\", \"file_path\": \"src/slots.py\", \"line_start\": 5, \"line_end\": 14, \"evidence_quote\": \"SLOT_MINUTES = 15\\n...\\ndef slot_is_open(slot_start: datetime, now: datetime, orders_in_slot: int) -> bool:\\n    if orders_in_slot >= MAX_ORDERS_PER_SLOT:\\n        return False\\n    return now <= slot_start - BOOKING_CLOSES_BEFORE\"}]"
+      },
+      {
+        "code": "REQ-004",
+        "priority": "must",
+        "text": "A customer receives an email confirmation with the order number, pickup shop and slot within 1 minute of placing the order.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-25e800fd1119",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}, {\"path\": \"src/accounts.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-005",
+        "priority": "must",
+        "text": "Staff can view the daily order list per shop, sorted by pickup slot, and mark each order as ready.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-94bb54ca0de7",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"tests/test_slots.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-006",
+        "priority": "should",
+        "text": "A customer can cancel an order up to 3 hours before the pickup slot.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-e7d060370f02",
+        "status": "ok",
+        "model_verdict": "conforms",
+        "verdict": "conforms",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"tests/test_slots.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-007",
+        "priority": "should",
+        "text": "Staff can export the daily order list as a CSV file.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-f77fa7d7cf00",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"tests/test_slots.py\", \"line_start\": 1}, {\"path\": \"src/mailer.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      },
+      {
+        "code": "REQ-008",
+        "priority": "could",
+        "text": "The catalogue shows a \"best seller\" badge on the five most ordered products of the previous week.",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-589722d1f3cb",
+        "status": "ok",
+        "model_verdict": "cannot_determine",
+        "verdict": "cannot_determine",
+        "note": null,
+        "excerpts": "[{\"path\": \"src/orders.py\", \"line_start\": 1}, {\"path\": \"README.md\", \"line_start\": 3}, {\"path\": \"src/slots.py\", \"line_start\": 1}, {\"path\": \"src/mailer.py\", \"line_start\": 1}]",
+        "dropped": "[]"
+      }
+    ],
+    "findings": [
+      {
+        "id": "fnd-17b9c8308d22",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-b4c82919bd5f",
+        "file_path": "src/slots.py",
+        "line_start": 5,
+        "line_end": 8,
+        "severity": "blocker",
+        "explanation": "The constant MAX_ORDERS_PER_SLOT is set to 25, exceeding the required maximum of 20 orders per slot.",
+        "suggested_fix": "Change MAX_ORDERS_PER_SLOT to 20.",
+        "evidence_quote": "MAX_ORDERS_PER_SLOT = 25",
+        "confidence": 1.0,
+        "client_decision": "pending",
+        "client_comment": null,
+        "decided_by": null,
+        "decided_at": null,
+        "requirement_code": "NN-1",
+        "requirement_priority": "must"
+      },
+      {
+        "id": "fnd-52aa5907473c",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-b4c82919bd5f",
+        "file_path": "src/slots.py",
+        "line_start": 7,
+        "line_end": 8,
+        "severity": "blocker",
+        "explanation": "Booking closes 1 hour before the slot (timedelta(hours=1)) instead of the required 2 hours.",
+        "suggested_fix": "Set BOOKING_CLOSES_BEFORE to timedelta(hours=2).",
+        "evidence_quote": "BOOKING_CLOSES_BEFORE = timedelta(hours=1)",
+        "confidence": 1.0,
+        "client_decision": "pending",
+        "client_comment": null,
+        "decided_by": null,
+        "decided_at": null,
+        "requirement_code": "NN-1",
+        "requirement_priority": "must"
+      },
+      {
+        "id": "fnd-241bb30a6c73",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-7be3dd9aebb0",
+        "file_path": "src/accounts.py",
+        "line_start": 9,
+        "line_end": 11,
+        "severity": "blocker",
+        "explanation": "The password hashing function uses SHA‑256 instead of Argon2id or bcrypt, violating the mandatory security requirement.",
+        "suggested_fix": "Replace the SHA‑256 implementation with a library that provides Argon2id or bcrypt (e.g., argon2-cffi or bcrypt) and store the resulting hash.",
+        "evidence_quote": "def hash_password(password: str) -> str:\n    return hashlib.sha256(password.encode(\"utf-8\")).hexdigest()",
+        "confidence": 0.99,
+        "client_decision": "pending",
+        "client_comment": null,
+        "decided_by": null,
+        "decided_at": null,
+        "requirement_code": "NN-4",
+        "requirement_priority": "must"
+      },
+      {
+        "id": "fnd-a58d161081fd",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-9f9fb7dd5bb6",
+        "file_path": "src/accounts.py",
+        "line_start": 13,
+        "line_end": 21,
+        "severity": "info",
+        "explanation": "The code implements account creation storing email and hashed password, and provides a password‑reset flow that generates a token, stores it, and emails the user a reset link.",
+        "suggested_fix": "No action needed.",
+        "evidence_quote": "def create_account(db, email: str, password: str) -> int:\n    user_id = db.insert(\"customers\", {\"email\": email, \"password_hash\": hash_password(password)})\n    return user_id\n\n\ndef start_password_reset(db, email: str) -> None:\n    token = secrets.token_urlsafe(32)\n    db.insert(\"password_resets\", {\"email\": email, \"token\": token})\n    send_email(email, \"Reset your password\", f\"Use this link within 1 hour: https://atelier.example/reset/{token}\")",
+        "confidence": 0.99,
+        "client_decision": "pending",
+        "client_comment": null,
+        "decided_by": null,
+        "decided_at": null,
+        "requirement_code": "REQ-001",
+        "requirement_priority": "must"
+      },
+      {
+        "id": "fnd-883099cbfe1c",
+        "review_id": "rev-87d5809a7794",
+        "requirement_id": "req-e7d060370f02",
+        "file_path": "src/orders.py",
+        "line_start": 18,
+        "line_end": 22,
+        "severity": "info",
+        "explanation": "The cancel_order function checks that the cancellation request is made at least 3 hours before the slot start and raises an error otherwise, fulfilling the SHOULD requirement.",
+        "suggested_fix": "No change needed.",
+        "evidence_quote": "def cancel_order(db, order, now):\n    \"\"\"REQ-006: cancellation is allowed up to 3 hours before the pickup slot.\"\"\"\n    if (order.slot_start - now).total_seconds() < 3 * 3600:\n        raise ValueError(\"Orders can be cancelled up to 3 hours before pickup.\")",
+        "confidence": 0.97,
+        "client_decision": "pending",
+        "client_comment": null,
+        "decided_by": null,
+        "decided_at": null,
+        "requirement_code": "REQ-006",
+        "requirement_priority": "should"
+      }
+    ],
+    "progress": {
+      "done": 13,
+      "total": 13
+    },
+    "advisory_notice": "Findings are advisory. The client decides whether to accept the delivery."
+  }
+}

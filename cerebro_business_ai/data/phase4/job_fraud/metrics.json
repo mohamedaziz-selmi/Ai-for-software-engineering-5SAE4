@@ -1,0 +1,62 @@
+{
+  "status": "complete",
+  "dataset": "C:\\Users\\yassi\\Desktop\\ai\\data\\phase2\\kaggle\\job_fraud\\fake_job_postings.csv",
+  "rows_after_dedupe": 6000,
+  "train_rows": 3840,
+  "validation_rows": 960,
+  "test_rows": 1200,
+  "positive_rate": 0.04466666666666667,
+  "deduplication_key": "normalized concatenated text + label",
+  "leakage_controls": [
+    "deduplicate before split",
+    "fit TF-IDF/SVD on training only",
+    "stratified train/validation/test split"
+  ],
+  "metrics": {
+    "logistic_regression": {
+      "precision": 0.918918918918919,
+      "recall": 0.6296296296296297,
+      "f1": 0.7472527472527473,
+      "roc_auc": 0.9841154417943249,
+      "pr_auc": 0.8814935806159414,
+      "threshold_selected_on_validation": 0.64
+    },
+    "xgboost": {
+      "precision": 0.6226415094339622,
+      "recall": 0.6111111111111112,
+      "f1": 0.616822429906542,
+      "roc_auc": 0.9546409411156357,
+      "pr_auc": 0.6939081053754418,
+      "threshold_selected_on_validation": 0.32
+    }
+  },
+  "elapsed_seconds": 10.467,
+  "resource_before": {
+    "cpu_percent": 6.0,
+    "ram_percent": 42.2,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 4.014905293782553,
+    "temperature_c": 58.0,
+    "sensor_error": null
+  },
+  "resource_after": {
+    "cpu_percent": 5.5,
+    "ram_percent": 42.2,
+    "logical_cpus": 16,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_percent": 0.0,
+    "vram_percent": 4.014905293782553,
+    "temperature_c": 58.0,
+    "sensor_error": null
+  },
+  "thread_count": 8,
+  "config": {
+    "max_rows": 6000,
+    "tfidf_max_features": 20000,
+    "svd_components": 64,
+    "xgb_estimators": 300,
+    "random_state": 42
+  }
+}

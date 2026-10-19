@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="710" height="320" viewBox="0 0 710 320" font-family="Segoe UI, sans-serif" font-size="12">
+<rect width="710" height="320" fill="#ffffff"/>
+<text x="70" y="22" font-size="14" font-weight="bold" fill="#222">Final test in the real app (33 questions, fallback off)</text>
+<line x1="70" y1="256" x2="690" y2="256" stroke="#e3e3e3"/>
+<text x="62" y="260" text-anchor="end" fill="#666">0%</text>
+<line x1="70" y1="202" x2="690" y2="202" stroke="#e3e3e3"/>
+<text x="62" y="206" text-anchor="end" fill="#666">25%</text>
+<line x1="70" y1="148" x2="690" y2="148" stroke="#e3e3e3"/>
+<text x="62" y="152" text-anchor="end" fill="#666">50%</text>
+<line x1="70" y1="94" x2="690" y2="94" stroke="#e3e3e3"/>
+<text x="62" y="98" text-anchor="end" fill="#666">75%</text>
+<line x1="70" y1="40" x2="690" y2="40" stroke="#e3e3e3"/>
+<text x="62" y="44" text-anchor="end" fill="#666">100%</text>
+<rect x="95" y="49" width="44" height="207" fill="#3b5b92"><title>Correct: 23/24</title></rect>
+<text x="117" y="43" text-anchor="middle" fill="#222">23/24</text>
+<rect x="149" y="85" width="44" height="171" fill="#7a9a3a"><title>Correct: 19/24</title></rect>
+<text x="171" y="79" text-anchor="middle" fill="#222">19/24</text>
+<text x="144" y="276" text-anchor="middle" fill="#222">Correct</text>
+<rect x="245" y="49" width="44" height="207" fill="#3b5b92"><title>Right section cited: 23/24</title></rect>
+<text x="267" y="43" text-anchor="middle" fill="#222">23/24</text>
+<rect x="299" y="67" width="44" height="189" fill="#7a9a3a"><title>Right section cited: 21/24</title></rect>
+<text x="321" y="61" text-anchor="middle" fill="#222">21/24</text>
+<text x="294" y="276" text-anchor="middle" fill="#222">Right section cited</text>
+<rect x="395" y="40" width="44" height="216" fill="#3b5b92"><title>Says 'not in docs': 9/9</title></rect>
+<text x="417" y="34" text-anchor="middle" fill="#222">9/9</text>
+<rect x="449" y="40" width="44" height="216" fill="#7a9a3a"><title>Says 'not in docs': 9/9</title></rect>
+<text x="471" y="34" text-anchor="middle" fill="#222">9/9</text>
+<text x="444" y="276" text-anchor="middle" fill="#222">Says 'not in docs'</text>
+<rect x="545" y="83" width="44" height="173" fill="#3b5b92"><title>Scope verdict: 4/5</title></rect>
+<text x="567" y="77" text-anchor="middle" fill="#222">4/5</text>
+<rect x="599" y="83" width="44" height="173" fill="#7a9a3a"><title>Scope verdict: 4/5</title></rect>
+<text x="621" y="77" text-anchor="middle" fill="#222">4/5</text>
+<text x="594" y="276" text-anchor="middle" fill="#222">Scope verdict</text>
+<rect x="70" y="302" width="12" height="12" fill="#3b5b92"/><text x="88" y="312" fill="#222">Base + RAG</text>
+<rect x="210" y="302" width="12" height="12" fill="#7a9a3a"/><text x="228" y="312" fill="#222">RAFT 2a</text>
+</svg>

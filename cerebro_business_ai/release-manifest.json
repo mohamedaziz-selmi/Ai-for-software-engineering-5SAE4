@@ -1,0 +1,847 @@
+{
+  "format": 1,
+  "platform": "Windows x64",
+  "python": "3.11.9",
+  "files": [
+    {
+      "path": "ai-service/app/__init__.py",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "ai-service/app/anonymizer.py",
+      "bytes": 1094,
+      "sha256": "69d619fa6c4e15e5b6170d34bf6f038dc79ebc74cbcc6510f0adb696d7135939"
+    },
+    {
+      "path": "ai-service/app/llm.py",
+      "bytes": 2183,
+      "sha256": "38cdd560c616fe0a492b3fcbdc9c648a87a1396288578bb3f40cc8c613022bf5"
+    },
+    {
+      "path": "ai-service/app/m5_forecasting.py",
+      "bytes": 1749,
+      "sha256": "999b48ba0d403701b013f53ca2637f003c5f4bd81b67a64503022e00c2b4a30a"
+    },
+    {
+      "path": "ai-service/app/main.py",
+      "bytes": 10006,
+      "sha256": "80b7effa9ed1b9fe063944d622e27854bb9883cc038b2f8d17e4f37dc6e7cf56"
+    },
+    {
+      "path": "ai-service/app/rag.py",
+      "bytes": 4041,
+      "sha256": "34e7218e4159f13c4da5071900f2cfd80b2c6e79f75085a25d47230335f5dee0"
+    },
+    {
+      "path": "ai-service/app/resource_guard.py",
+      "bytes": 5788,
+      "sha256": "0604a3cd15e8bbddf2df60fe2467cefc8e6da6ddb0fbecbd6a24199a2dc29ac8"
+    },
+    {
+      "path": "ai-service/app/schemas.py",
+      "bytes": 2709,
+      "sha256": "ac6229c8c05ba45ca45e28a14ca2daa6ffc838be1d9cec1624b6025d7e74ffa8"
+    },
+    {
+      "path": "ai-service/artifacts/demand_xgboost.joblib",
+      "bytes": 264731,
+      "sha256": "53b2a037eb450a049cfa7c94f825af9484bc18589b18b7eaf105e023b5d4146e"
+    },
+    {
+      "path": "ai-service/artifacts/fraud_xgboost.joblib",
+      "bytes": 428552,
+      "sha256": "3f0564a94f4632f38f1f4e53f63e8393d1ba671d37bc41053b4e2f3756eaa473"
+    },
+    {
+      "path": "ai-service/artifacts/listing_classifier.joblib",
+      "bytes": 24617,
+      "sha256": "4318b516217859d0fc9b90189c60680133788819ac641abe99941c293e81a2d6"
+    },
+    {
+      "path": "ai-service/artifacts/m5_xgboost.joblib",
+      "bytes": 76736,
+      "sha256": "396403e73ce9f9c8cd7bc35a9590159f0d88a430761cec996257e64823a1e12b"
+    },
+    {
+      "path": "ai-service/artifacts/m5_xgboost_200_series.joblib",
+      "bytes": 561471,
+      "sha256": "e15a16fcfc08829e50b93e7dd57ca2081b09acbad929fe8fd3a920ca73c51641"
+    },
+    {
+      "path": "ai-service/artifacts/metrics.json",
+      "bytes": 2945,
+      "sha256": "d3aaae6c67a4c87d9ca536dd054c42f2b4d81b8fd29bf122bac11b4eab54d612"
+    },
+    {
+      "path": "ai-service/artifacts/product_rag.joblib",
+      "bytes": 17032504,
+      "sha256": "2924ca837626e0f0e598fded744de7f955d2ba5c80659595906730e052935518"
+    },
+    {
+      "path": "ai-service/artifacts/real_fraud_metrics.json",
+      "bytes": 831,
+      "sha256": "f384cd17b7a1f84b9a67cbf10a095814707389144ca83057da289dda1ee790e8"
+    },
+    {
+      "path": "ai-service/prompts/cv_v1.txt",
+      "bytes": 799,
+      "sha256": "2a4877e509bde25841ede40cc491f1e4114a6037306296141208660629d63552"
+    },
+    {
+      "path": "ai-service/prompts/description_v1.txt",
+      "bytes": 1017,
+      "sha256": "97731949ee89f7d0d1cd445d85d5a841c747d38ded466e2e3c3f88ab0956c9fe"
+    },
+    {
+      "path": "ai-service/prompts/listing_v1.txt",
+      "bytes": 439,
+      "sha256": "3e2de49bd8f60d0e78d3e908d6269f4bc56ea3a50aaf1952b0321c2c08023129"
+    },
+    {
+      "path": "ai-service/tests/conftest.py",
+      "bytes": 441,
+      "sha256": "8f93ba0a4c63b3265a3e5d8e1609212f0f4b244968abb984bdd34b6768194afa"
+    },
+    {
+      "path": "ai-service/tests/test_anonymizer.py",
+      "bytes": 340,
+      "sha256": "3ad5b75ffc301f59bcc737876312362ab2a9e6a176b00743d1439228b8b527f3"
+    },
+    {
+      "path": "ai-service/tests/test_api.py",
+      "bytes": 487,
+      "sha256": "c3cd97b9c6da34829f5481c02544804518d81c392d6e82ed77bcc545643449bc"
+    },
+    {
+      "path": "ai-service/tests/test_business_intelligence.py",
+      "bytes": 4238,
+      "sha256": "5125b33b4837a50433961593c6c7c36f7f514b7cc2a6dbd108a1a3c483979da4"
+    },
+    {
+      "path": "ai-service/tests/test_currency_scenarios_upgrade.py",
+      "bytes": 4210,
+      "sha256": "fd5a4be583c0521171f3491b09adecf7905d541455ec47506bd0f6f6153f8d18"
+    },
+    {
+      "path": "ai-service/tests/test_forecasting_reliability.py",
+      "bytes": 3539,
+      "sha256": "75e15131b27ca2d029aa8d85f9fbf84ced33743c143f9967c5b15f501904a90b"
+    },
+    {
+      "path": "ai-service/tests/test_job_review_combinations.py",
+      "bytes": 6220,
+      "sha256": "203ce81e2130a04e8fca5464ad1aab7701220a7467c55b03b3591596232d254d"
+    },
+    {
+      "path": "ai-service/tests/test_m5_pipeline.py",
+      "bytes": 896,
+      "sha256": "44401f19f94676137e92d279f755fc034481652e7ac236ea6d428281a04a820f"
+    },
+    {
+      "path": "ai-service/tests/test_microservices.py",
+      "bytes": 1658,
+      "sha256": "6baf56fb54afada37a6db8390162b5b9f74094b298a8c786688ab205b6d5a8c6"
+    },
+    {
+      "path": "ai-service/tests/test_phase2_validation.py",
+      "bytes": 754,
+      "sha256": "c393a658f6b349e4f8e0a013bda01f108cfe966c3d0188d1ff376a6c1a35e78f"
+    },
+    {
+      "path": "ai-service/tests/test_phase3_pipeline.py",
+      "bytes": 782,
+      "sha256": "42d92d84cf0613918dfea5bd0844ed03e757923593d92f8fcdf32392788577be"
+    },
+    {
+      "path": "ai-service/tests/test_phase4_artifacts.py",
+      "bytes": 721,
+      "sha256": "b78ade83b8f11b62145df64f0c343fee3e8b5d119c8599a0b5b379b93628e717"
+    },
+    {
+      "path": "ai-service/tests/test_phase5_features.py",
+      "bytes": 2976,
+      "sha256": "7ca4a4c5751d0533890c2ecf214dcdc1242c0fc2fd183fcbf155fc86a2d6e71d"
+    },
+    {
+      "path": "ai-service/tests/test_reliability_rework.py",
+      "bytes": 2135,
+      "sha256": "92ca3fc97407e6a7114af303ccdc1e672d2469039a5a7a731b3d2c79e2dd6244"
+    },
+    {
+      "path": "ai-service/tests/test_resource_guard.py",
+      "bytes": 971,
+      "sha256": "eaff35fd343727cc49da4c824d36886f05d1bd8a2685ac4f9eefc9be69b873ea"
+    },
+    {
+      "path": "ai-service/tests/test_smart_intake.py",
+      "bytes": 2122,
+      "sha256": "061c5235d8a6acdd96b7bb8c878d0390d8bf0b0bc72472e71f14c39752bd747e"
+    },
+    {
+      "path": "CHECK.cmd",
+      "bytes": 126,
+      "sha256": "d0efad7d9b21bcf6b4e60d16eb2c87e899d0257d231cab36abe6278f5b7381b8"
+    },
+    {
+      "path": "data/build_product_index.py",
+      "bytes": 2146,
+      "sha256": "83e45fa71a917eede2be11b4a3d2715a3e5e168eee97e3d546a06f67e562e6ab"
+    },
+    {
+      "path": "data/download_real.py",
+      "bytes": 673,
+      "sha256": "eb8844075c852f923a47476e813265a7745576aeb0b8a8fbaec612f36f8445b1"
+    },
+    {
+      "path": "data/generate_all.py",
+      "bytes": 3363,
+      "sha256": "4065efbe8b8fb942c0716a5fea25af1233063eccf0d48d70c43179d94e3c8e69"
+    },
+    {
+      "path": "data/m5_pipeline.py",
+      "bytes": 2541,
+      "sha256": "8f5e55c3d5e5fcb8d9839847145b1b34377a25c10dbcdf399f0a09ec6acb7f84"
+    },
+    {
+      "path": "data/phase2_download.py",
+      "bytes": 7556,
+      "sha256": "aaac35989cedc3e8a9378f0725902538bde50e718f0612b749f7130e9b3fa718"
+    },
+    {
+      "path": "data/phase2_hardware.py",
+      "bytes": 561,
+      "sha256": "d9d65fd2872985296b15f7d8cdd4a4dfeaceb94c85298aa16fb8fee3c8935ace"
+    },
+    {
+      "path": "data/phase3_preflight.py",
+      "bytes": 3733,
+      "sha256": "16048bde0a0d3f6a646f6f2426e2f4bf2552da69384b5508052086a4b3b6b39f"
+    },
+    {
+      "path": "data/phase3_validate_full.py",
+      "bytes": 3953,
+      "sha256": "ca4c218af1c164d64cfc3245cddf3bf4a8f05359919aec797a1971db385e4698"
+    },
+    {
+      "path": "data/phase4/job_fraud/experiment.json",
+      "bytes": 130,
+      "sha256": "6ea5d8d1fbd5f8007a9b463436402143cb7d8529a56b8ce96268a47f723f2cbf"
+    },
+    {
+      "path": "data/phase4/job_fraud/metrics.json",
+      "bytes": 1805,
+      "sha256": "4514d5967a50cee66682082151fbcc12108cced1a38378e56a778b0c55aa71e0"
+    },
+    {
+      "path": "data/phase4/job_fraud/tfidf_logistic.joblib",
+      "bytes": 974093,
+      "sha256": "84f5af22a493548cd10ad3e5f4aa2ce08399a12d81625cfe8b0c3c5c7739e108"
+    },
+    {
+      "path": "data/phase4/job_fraud/xgboost_fraud.json",
+      "bytes": 518709,
+      "sha256": "3b3f980704fe7cd4181c5426739c96a09a88c05af223c8a474ebc6e085552424"
+    },
+    {
+      "path": "data/phase4/job_fraud/xgboost_preprocessing.joblib",
+      "bytes": 11055441,
+      "sha256": "476d1cf02535beb08ed7a522ea071821f4f60b8df691006c9d18fb8ca9fd9376"
+    },
+    {
+      "path": "data/phase4/m5_200_series_metrics.json",
+      "bytes": 3778,
+      "sha256": "a69ed169a06c9a16bcb1538179e4eec4eab55e6a9f95a2d36dc9375b3a76c826"
+    },
+    {
+      "path": "data/phase4/m5_200_series_predictions.csv",
+      "bytes": 867277,
+      "sha256": "bc9070565465e43241cc54cff7124d79515f81417c67d385077f5e4c1b903b53"
+    },
+    {
+      "path": "data/phase4/m5_forecast_metrics.json",
+      "bytes": 570,
+      "sha256": "f39a6165aa8dc53744a157b598437f0ead7a2d45987ee31c9d8731509d731886"
+    },
+    {
+      "path": "data/phase4/m5_model_metadata.json",
+      "bytes": 2031,
+      "sha256": "821eff4580468a2594d03cc54a34ffa27af408b98a7667044751f3fa994faa02"
+    },
+    {
+      "path": "data/phase4_m5_200_series.py",
+      "bytes": 7210,
+      "sha256": "5b05ef70829b293d05038292b4aa5f66eb3226c6f056caf5f5a978545f6cbabc"
+    },
+    {
+      "path": "data/phase4_m5_extract_validate.py",
+      "bytes": 3227,
+      "sha256": "f0f0984277deef33f9cb1a6e3c63e61d6c7bb128971fc459ec2fe21857735e33"
+    },
+    {
+      "path": "data/phase4_m5_forecast.py",
+      "bytes": 6306,
+      "sha256": "ee63bee2557645d2b91b49e92e8a17d3defe4cb43942cae13bf5833519a48fe5"
+    },
+    {
+      "path": "data/phase4_validate.py",
+      "bytes": 2167,
+      "sha256": "7fe7e045c62706e5bdc0ee62a9394afc6986c219048009104662a3e9d1416e3a"
+    },
+    {
+      "path": "data/provenance.py",
+      "bytes": 1349,
+      "sha256": "0890dacfc379dfac0162de60e449ecc66058e196aa3e664a3fdaf9aa44c7eeb4"
+    },
+    {
+      "path": "data/validate_phase2.py",
+      "bytes": 2181,
+      "sha256": "8380a4c0dd77289ffbae452d122d163af3cd1b5b7e1f832cbc5390d8299204a1"
+    },
+    {
+      "path": "frontend/dist/assets/index-B20LSq7-.css",
+      "bytes": 24157,
+      "sha256": "d9b8919db9949e5e8bca1c7f1870a1efc535059d4eb6df1885314fe734163709"
+    },
+    {
+      "path": "frontend/dist/assets/index-B3EVe6dO.js",
+      "bytes": 191494,
+      "sha256": "6db49431d67aa1b5007eafd119ba08e5bdc73c664485f227c2453c07848cd130"
+    },
+    {
+      "path": "frontend/dist/cerebro-config.js",
+      "bytes": 63,
+      "sha256": "8295923dba2df4f6c6e19580feee64480c4941da00cea19ac028b8556b3669b1"
+    },
+    {
+      "path": "frontend/dist/index.html",
+      "bytes": 487,
+      "sha256": "5985054026fdc2e9571fc4cf8a953c803c8287af7d7567ce2edc97a512c00865"
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 390,
+      "sha256": "9e2f69d3f34a73a4af9d4d713f0e2274146a1c9edbcdfbe71971934fbba5a7b8"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "bytes": 75002,
+      "sha256": "14024086a542a771115ab77c2f403b69d81a8288ba372037a03c0eb7a7a562df"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 362,
+      "sha256": "5255eaca01fbdb9b0a945f43a53936936b4cae734a73448656418e95eb514cb3"
+    },
+    {
+      "path": "frontend/public/cerebro-config.js",
+      "bytes": 63,
+      "sha256": "8295923dba2df4f6c6e19580feee64480c4941da00cea19ac028b8556b3669b1"
+    },
+    {
+      "path": "frontend/src/apiConfig.ts",
+      "bytes": 238,
+      "sha256": "8a5341be73c8581e337dc9c71949b9c82cbb5acd57b6bf5a9bcb606a91c04bac"
+    },
+    {
+      "path": "frontend/src/App.tsx",
+      "bytes": 5986,
+      "sha256": "a77dd3c7fdf94c33e1e82fe9e37dc9b3acd7fccecb3ac174c69a5ef14a01cd3b"
+    },
+    {
+      "path": "frontend/src/AppModern.tsx",
+      "bytes": 13028,
+      "sha256": "b9f0b893010ec6deaa324fa415962cfcc7b0ba0e24a0d9aeb2b9d2be8a4f1904"
+    },
+    {
+      "path": "frontend/src/AppReliability.tsx",
+      "bytes": 18575,
+      "sha256": "e778a23f220bac0a90e0a71150d8bdd5bc256d81a769c3a6d48c35e20fde1309"
+    },
+    {
+      "path": "frontend/src/AppUpgrade.tsx",
+      "bytes": 17857,
+      "sha256": "6e5f3ee875f81e8962cbaefebf4b90ee9da12d9531d2d102dfd208b5301a279d"
+    },
+    {
+      "path": "frontend/src/business.css",
+      "bytes": 15462,
+      "sha256": "b61fb78c5a336e1e9cc9a4d17a6e8cad142c78bd63ef19e1e6021f794ec881c5"
+    },
+    {
+      "path": "frontend/src/BusinessApp.tsx",
+      "bytes": 4630,
+      "sha256": "3c6a66d5f981a10646e29a672b2bf61e2c0a6075d9061d9ee6df64613fe0f34b"
+    },
+    {
+      "path": "frontend/src/DemandWorkspace.tsx",
+      "bytes": 24444,
+      "sha256": "c3a44b37c5a9d55a5ad62f2f00477a8617481a0f16e6faf30a9139dd489678bb"
+    },
+    {
+      "path": "frontend/src/JobReviewResult.tsx",
+      "bytes": 3178,
+      "sha256": "9620eb936ec4ed83f6da2228672ffa077124949adc37f11e255671c5e9139b1e"
+    },
+    {
+      "path": "frontend/src/JobVerificationWorkspace.tsx",
+      "bytes": 5698,
+      "sha256": "5c12e7215b72d4c27fa2da7c501c79af065b8a5723f7c6c5583db53ba646688c"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "bytes": 208,
+      "sha256": "54239cfa03921f15a62c3a208fd1aabbba832cd29af10dfc61e0ff29399fdb61"
+    },
+    {
+      "path": "frontend/src/modern.css",
+      "bytes": 8859,
+      "sha256": "5684ec299331a003a52df7e1fc4e1a8b6d5b0f179507743b3c33ac384e336a5e"
+    },
+    {
+      "path": "frontend/src/rework.css",
+      "bytes": 2781,
+      "sha256": "d431a48d3ac935b7d6ba53a740323789b5e36295a40d53e2458be53a97fe0f13"
+    },
+    {
+      "path": "frontend/src/ScenarioResults.tsx",
+      "bytes": 3784,
+      "sha256": "2b0b0e6c9d8aa51964c62c3e24d93831e7ef0c4bf9241170c70a42423f188e07"
+    },
+    {
+      "path": "frontend/src/SmartBusinessApp.tsx",
+      "bytes": 11235,
+      "sha256": "e37af27e11195dbbcc35d1716931cd84d4525f1e724ad6f729d70c968bbfc97e"
+    },
+    {
+      "path": "frontend/src/style.css",
+      "bytes": 2419,
+      "sha256": "9c3903164e7c779d43d739a7881af64cff5c3e9aa37928dc1323f01e7eca7f1b"
+    },
+    {
+      "path": "frontend/src/upgrade.css",
+      "bytes": 1799,
+      "sha256": "6d602c3d16a2ff00ceb6b1374aa21b9da8d706773264b19e8e1870e742d031dd"
+    },
+    {
+      "path": "frontend/src/vite-env.d.ts",
+      "bytes": 38,
+      "sha256": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "bytes": 397,
+      "sha256": "09ffbaa40e075ae9d50ead30ff0aed34504732949e85296e2d453a31686edf6f"
+    },
+    {
+      "path": "installer/python-3.11.9-embed-amd64.zip",
+      "bytes": 11249023,
+      "sha256": "009d6bf7e3b2ddca3d784fa09f90fe54336d5b60f0e0f305c37f400bf83cfd3b"
+    },
+    {
+      "path": "installer/wheels/annotated_types-0.8.0-py3-none-any.whl",
+      "bytes": 13427,
+      "sha256": "f072f4d804ea359e4eaf198b1af7a8b0943881a87f31bb764f8bf219bb9419e0"
+    },
+    {
+      "path": "installer/wheels/anyio-4.15.1-py3-none-any.whl",
+      "bytes": 132079,
+      "sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101"
+    },
+    {
+      "path": "installer/wheels/certifi-2026.10.18-py3-none-any.whl",
+      "bytes": 134093,
+      "sha256": "73191c47aaa79da394e8fee2dbc2ec827432cab56311122c9e47abf79e390f62"
+    },
+    {
+      "path": "installer/wheels/charset_normalizer-3.5.2-cp311-cp311-win_amd64.whl",
+      "bytes": 214932,
+      "sha256": "87e50a3e7cb90af586b6c5faf23e302a970415ac73bd7bd90a515a04b427ef96"
+    },
+    {
+      "path": "installer/wheels/click-8.5.0-py3-none-any.whl",
+      "bytes": 125251,
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"
+    },
+    {
+      "path": "installer/wheels/fastapi-0.115.6-py3-none-any.whl",
+      "bytes": 94843,
+      "sha256": "e9240b29e36fa8f4bb7290316988e90c381e5092e0cbe84e7818cc3713bcf305"
+    },
+    {
+      "path": "installer/wheels/h11-0.16.0-py3-none-any.whl",
+      "bytes": 37515,
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+    },
+    {
+      "path": "installer/wheels/httpcore-1.0.9-py3-none-any.whl",
+      "bytes": 78784,
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+    },
+    {
+      "path": "installer/wheels/httpx-0.28.1-py3-none-any.whl",
+      "bytes": 73517,
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+    },
+    {
+      "path": "installer/wheels/idna-3.20-py3-none-any.whl",
+      "bytes": 69583,
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c"
+    },
+    {
+      "path": "installer/wheels/joblib-1.4.2-py3-none-any.whl",
+      "bytes": 301817,
+      "sha256": "06d478d5674cbc267e7496a410ee875abd68e4340feff4490bcb7afb88060ae6"
+    },
+    {
+      "path": "installer/wheels/numpy-2.1.3-cp311-cp311-win_amd64.whl",
+      "bytes": 12869487,
+      "sha256": "d89dd2b6da69c4fff5e39c28a382199ddedc3a5be5390115608345dec660b9e2"
+    },
+    {
+      "path": "installer/wheels/nvidia_ml_py-13.615.71-py3-none-any.whl",
+      "bytes": 58132,
+      "sha256": "959bf4adf6fe1308e4bd739e722236b0d1ec8392e2cefad33ff70c311380b9b6"
+    },
+    {
+      "path": "installer/wheels/pandas-2.2.3-cp311-cp311-win_amd64.whl",
+      "bytes": 11617166,
+      "sha256": "3fc6873a41186404dad67245896a6e440baacc92f5b716ccd1bc9ed2995ab2c5"
+    },
+    {
+      "path": "installer/wheels/pip-26.2.1-py3-none-any.whl",
+      "bytes": 1816632,
+      "sha256": "71138adf1f4ca900cdb7d289c21b7494329f2332b6d85f0e1c42108c0384ed3e"
+    },
+    {
+      "path": "installer/wheels/psutil-7.2.2-cp37-abi3-win_amd64.whl",
+      "bytes": 137737,
+      "sha256": "eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988"
+    },
+    {
+      "path": "installer/wheels/pydantic-2.14.1-py3-none-any.whl",
+      "bytes": 488106,
+      "sha256": "9195d967ec791692a04438115466764fb8b9a27b31f14a760437694f40d6b454"
+    },
+    {
+      "path": "installer/wheels/pydantic_core-2.50.1-cp311-cp311-win_amd64.whl",
+      "bytes": 2176332,
+      "sha256": "0048b6dddc8ef4b64fccaad878bd143b0c3882ea9936279dc11d613f6b7dd1bc"
+    },
+    {
+      "path": "installer/wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl",
+      "bytes": 229892,
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
+    },
+    {
+      "path": "installer/wheels/pytz-2026.5-py2.py3-none-any.whl",
+      "bytes": 506342,
+      "sha256": "e658af3757f9e26a9d25dd2aff38335acd92bc9104f890a894b2c1ba28311b03"
+    },
+    {
+      "path": "installer/wheels/requests-2.32.3-py3-none-any.whl",
+      "bytes": 64928,
+      "sha256": "70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"
+    },
+    {
+      "path": "installer/wheels/scikit_learn-1.5.2-cp311-cp311-win_amd64.whl",
+      "bytes": 11015224,
+      "sha256": "6c16d84a0d45e4894832b3c4d0bf73050939e21b99b01b6fd59cbb0cf39163b6"
+    },
+    {
+      "path": "installer/wheels/scipy-1.17.1-cp311-cp311-win_amd64.whl",
+      "bytes": 36607512,
+      "sha256": "d30e57c72013c2a4fe441c2fcb8e77b14e152ad48b5464858e07e2ad9fbfceff"
+    },
+    {
+      "path": "installer/wheels/six-1.17.0-py2.py3-none-any.whl",
+      "bytes": 11050,
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"
+    },
+    {
+      "path": "installer/wheels/starlette-0.41.3-py3-none-any.whl",
+      "bytes": 73225,
+      "sha256": "44cedb2b7c77a9de33a8b74b2b90e9f50d11fcf25d8270ea525ad71a25374ff7"
+    },
+    {
+      "path": "installer/wheels/threadpoolctl-3.7.0-py3-none-any.whl",
+      "bytes": 26362,
+      "sha256": "cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be"
+    },
+    {
+      "path": "installer/wheels/typing_extensions-4.16.0-py3-none-any.whl",
+      "bytes": 45571,
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+    },
+    {
+      "path": "installer/wheels/typing_inspection-0.4.4-py3-none-any.whl",
+      "bytes": 14750,
+      "sha256": "65b8397ba37ccbce054456aaccddfc91e6e3083c92824df348d96ca832f3f147"
+    },
+    {
+      "path": "installer/wheels/tzdata-2026.5-py2.py3-none-any.whl",
+      "bytes": 347996,
+      "sha256": "b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac"
+    },
+    {
+      "path": "installer/wheels/urllib3-2.8.0-py3-none-any.whl",
+      "bytes": 135717,
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
+    },
+    {
+      "path": "installer/wheels/uvicorn-0.34.0-py3-none-any.whl",
+      "bytes": 62315,
+      "sha256": "023dc038422502fa28a09c7a30bf2b6991512da7dcdb8fd35fe57cfc154126f4"
+    },
+    {
+      "path": "installer/wheels/xgboost-2.1.4-py3-none-win_amd64.whl",
+      "bytes": 124910381,
+      "sha256": "8bbfe4fedc151b83a52edbf0de945fd94358b09a81998f2945ad330fd5f20cd6"
+    },
+    {
+      "path": "MODEL_SOURCES.md",
+      "bytes": 1736,
+      "sha256": "c3c87cbf774c4d7ba83d300cd8ce30c8474caabd95d9a00f1646400cbba0718c"
+    },
+    {
+      "path": "portable/bootstrap_pip.py",
+      "bytes": 519,
+      "sha256": "211e8d29e9b5ecbc3f34fbc73809e8cba2cb82394f8b5584cab1346d21283d42"
+    },
+    {
+      "path": "portable/cerebro.ps1",
+      "bytes": 11601,
+      "sha256": "ae57fabfb6a6602c4ab138ea794a8e8bfaeb42477ba843bab613345ab30adf53"
+    },
+    {
+      "path": "portable/requirements-runtime.txt",
+      "bytes": 209,
+      "sha256": "66334e9791312bca46688ea2eb586b4377e8ab9c614d869b250918afc63cd2c3"
+    },
+    {
+      "path": "portable/serve_frontend.py",
+      "bytes": 1325,
+      "sha256": "de1dad733199c23a3889fe6c0c96a5e4ec6e112056b3b7356954782c3f805edb"
+    },
+    {
+      "path": "portable/verify_api.py",
+      "bytes": 4940,
+      "sha256": "7bbc2223c043f83e3a456eab8e636c1dcb2ecc079cee4ce5ba50345354a3e91e"
+    },
+    {
+      "path": "portable/verify_runtime.py",
+      "bytes": 1301,
+      "sha256": "4171cef5a9800b6632f46121c941b56239c56669c5a9601033b4660d91342f3b"
+    },
+    {
+      "path": "README_FIRST.md",
+      "bytes": 4705,
+      "sha256": "8223bb5ecd9d927d9efe8c5c9a30f3721c31a4926e658c1987e8d24fe421f6ea"
+    },
+    {
+      "path": "sample_sales_histories/01_synthetic_stable_groceries.csv",
+      "bytes": 13933,
+      "sha256": "c654d5d87c354ab01ce81673d7cb354ec7115bf4cfb2396db221f0f4180e1a3f"
+    },
+    {
+      "path": "sample_sales_histories/02_synthetic_weekend_headphones.csv",
+      "bytes": 14473,
+      "sha256": "fc2c086a9ec0d28eb6c263d2365b33b15c3334477d152bc9bb9b08fd5c7cd30b"
+    },
+    {
+      "path": "sample_sales_histories/03_synthetic_growing_protein_powder.csv",
+      "bytes": 14286,
+      "sha256": "9edb52a0f3ed1dfaea22184926be287d56b70574e1c89f565d637faaf7e37abb"
+    },
+    {
+      "path": "sample_sales_histories/04_synthetic_declining_phone_cases.csv",
+      "bytes": 16271,
+      "sha256": "fae3012fa878dc37010a6e54730bd9a2bc0d8118694ed1149c9905e1dffaaecb"
+    },
+    {
+      "path": "sample_sales_histories/05_synthetic_promotional_coffee.csv",
+      "bytes": 14113,
+      "sha256": "f3df4bd37ae5f57cd82be5e4f06cf8751cb552cee47d1ccb176b7460064647ce"
+    },
+    {
+      "path": "sample_sales_histories/06_synthetic_intermittent_spare_parts.csv",
+      "bytes": 13213,
+      "sha256": "c13922b159a4ba2e02af82eb7ca2786563ac65e307e23cfaea82715f7ab8a543"
+    },
+    {
+      "path": "sample_sales_histories/07_synthetic_stockout_sneakers.csv",
+      "bytes": 13737,
+      "sha256": "9997d6435388f612bd637ac9120de6f5b1650fbc036e8f424c8e5ba4d54c2cee"
+    },
+    {
+      "path": "sample_sales_histories/08_synthetic_traffic_driven_skincare.csv",
+      "bytes": 14465,
+      "sha256": "7c04b91ecb59d92c7680bc27f2754336c3386ce162fb3a05cc2286f7c9ed6298"
+    },
+    {
+      "path": "sample_sales_histories/09_synthetic_price_sensitive_speakers.csv",
+      "bytes": 13753,
+      "sha256": "d176a1f7b4232b6bbc944b2a5f2212d18b7d6aeef3cab482ee4d3c441b4cc35d"
+    },
+    {
+      "path": "sample_sales_histories/10_synthetic_sudden_shift_pet_food.csv",
+      "bytes": 13917,
+      "sha256": "e2e86c6ae2a6f5b0ef65cc2294a81c681c7c4c28820e7be8298c5998cdbed95b"
+    },
+    {
+      "path": "sample_sales_histories/manifest.json",
+      "bytes": 4297,
+      "sha256": "3e5ee20e56ed241616822fc7c608aee549bd4f6312dcfc5596f581d33efe8297"
+    },
+    {
+      "path": "sample_sales_histories/README.md",
+      "bytes": 2355,
+      "sha256": "9d3828525c47dff8fd8adae695ee5711afe5deb9a885ad3d7aa8c50525a3305a"
+    },
+    {
+      "path": "services/__init__.py",
+      "bytes": 41,
+      "sha256": "62ae70af2fe516735aa0993ea580064572c616fea2c222644589609787a75be3"
+    },
+    {
+      "path": "services/compensation.py",
+      "bytes": 4289,
+      "sha256": "a19cedef76a96c7fd4823a56e0e7f09498c763e06ac87296a28f2b36d97ea75f"
+    },
+    {
+      "path": "services/config.py",
+      "bytes": 740,
+      "sha256": "85b2100ccf55fc158236134dc9a22aab69811b645d59b0c147f3c3acbd08abac"
+    },
+    {
+      "path": "services/demand/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "services/demand/service.py",
+      "bytes": 6111,
+      "sha256": "334f8073f6557c79d6dea91583bcb7cd5f4937f8d5d5d09897066e14970cdb57"
+    },
+    {
+      "path": "services/evaluate_usability.py",
+      "bytes": 4715,
+      "sha256": "6894330a4c671e9b05e959ca7042b7ce02d576d3d8f3620aa6154af56f942434"
+    },
+    {
+      "path": "services/fraud/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "services/fraud/service.py",
+      "bytes": 4670,
+      "sha256": "2d9b974e0ff50d0988b98c2535321ea1399dcb736bbf4819d660df29cc4081bb"
+    },
+    {
+      "path": "services/gateway.py",
+      "bytes": 10064,
+      "sha256": "67e00e6687d606e975a1e5c29e78724dadd16c7a827781dcf89175130cccb018"
+    },
+    {
+      "path": "services/intelligence.py",
+      "bytes": 10607,
+      "sha256": "df383b44e3e9d5ccec5820d115f3eb67d0903a8775065a009c3dc5933050ca0c"
+    },
+    {
+      "path": "services/job/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "services/job/service.py",
+      "bytes": 6823,
+      "sha256": "b74aabd8751daf62f5e4185a7f28ee5fc44a1dd78d24a3ae89d188431d312c3d"
+    },
+    {
+      "path": "services/job_review.py",
+      "bytes": 11139,
+      "sha256": "5a4a3c68da7a77242e7fc33bbbf215113018db188eb702b6fb4e6c1281a5841c"
+    },
+    {
+      "path": "services/planning.py",
+      "bytes": 16193,
+      "sha256": "a8dbab5f8567dcc931187dbb053ae0dfdc32cad268ca27136a124334cca1aab5"
+    },
+    {
+      "path": "services/product/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "services/product/service.py",
+      "bytes": 4203,
+      "sha256": "0256e21e6a2c3eaa79e854fa5d99092eba9b262e686d8db52ab19463403c3e38"
+    },
+    {
+      "path": "services/registry.py",
+      "bytes": 3874,
+      "sha256": "586bb8ecb5770eae7097955a004cb5e0f6fbeacdd4565a6ee5bafb822dc1eadd"
+    },
+    {
+      "path": "services/retry_usability.py",
+      "bytes": 1505,
+      "sha256": "140581f3fd8df613d1a86ca97ffa7e9cbd13f415553ce393a96c290398b23cff"
+    },
+    {
+      "path": "services/scenarios.py",
+      "bytes": 4361,
+      "sha256": "ed7dfdf78fa410592ff0bb3ac0660f3850124474360a465a25f5c3e57dd91158"
+    },
+    {
+      "path": "services/smart_intake.py",
+      "bytes": 6532,
+      "sha256": "d7538c0fcc341757ee876c3ad4172da0fca83929614c5a14745988223a5f412f"
+    },
+    {
+      "path": "services/summarize_usability.py",
+      "bytes": 1869,
+      "sha256": "ea02d4f01d99b9e24c48276f5f662ae4139fc0dd52f4f3ad282576abd0f8c012"
+    },
+    {
+      "path": "services/upgrade_logic.py",
+      "bytes": 12213,
+      "sha256": "5fae1da6f4ea0015c989c4943ea0fe5da9aeafaed73938b5ad0008af657b2457"
+    },
+    {
+      "path": "services/verify_business.py",
+      "bytes": 2264,
+      "sha256": "01d87bffbbb164030c89ca9c45ec6b48648d042b67f4b4532420bfa9510aa912"
+    },
+    {
+      "path": "services/verify_forecast_reliability.py",
+      "bytes": 3599,
+      "sha256": "d39fe7a09f67de5e5ee5d246b71be6d3a68ee578484203ebecb1e0061aedb012"
+    },
+    {
+      "path": "services/verify_scenario_currency.py",
+      "bytes": 5358,
+      "sha256": "ece24e66c9b25e4ff6f9a5542b1c88c99e14da32c99933d7599da9b1f5ec938a"
+    },
+    {
+      "path": "SETUP.cmd",
+      "bytes": 273,
+      "sha256": "df37aa5679cd8e4d848936be81f1239a81b09679472c64699ce895a66bb6c522"
+    },
+    {
+      "path": "START.cmd",
+      "bytes": 196,
+      "sha256": "5f082dd3e989e62dd6bfc425a17e6cd4f4b058ac7206c35999d5dc8cb6f1b2d9"
+    },
+    {
+      "path": "STOP.cmd",
+      "bytes": 155,
+      "sha256": "33e197e2b0d1b9cb332ff9dd48bfe7149d942c67e79807d2fb0242e79a89ce65"
+    },
+    {
+      "path": "VALIDATION.md",
+      "bytes": 4283,
+      "sha256": "4341a6f50e34d46d1e0bb719e9c8030a21b4d739e9b49c0e0079d5bea1e41130"
+    }
+  ]
+}

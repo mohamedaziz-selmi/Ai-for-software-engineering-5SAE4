@@ -160,6 +160,16 @@ CREATE TABLE IF NOT EXISTS support_requests (
     updated_at TEXT NOT NULL
 );
 
+-- Replies on a support request, from its author or an admin.
+CREATE TABLE IF NOT EXISTS support_messages (
+    id TEXT PRIMARY KEY,
+    request_id TEXT NOT NULL REFERENCES support_requests(id) ON DELETE CASCADE,
+    author_id TEXT NOT NULL,
+    author_role TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
+
 -- Metadata only: never prompt or response text (spec 8.4).
 CREATE TABLE IF NOT EXISTS llm_call_log (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -190,7 +200,14 @@ def connect(path: Path) -> sqlite3.Connection:
     return conn
 
 
-MIGRATIONS = {("requirement_results", "dropped"): "ALTER TABLE requirement_results ADD COLUMN dropped TEXT"}
+MIGRATIONS = {
+    ("requirement_results", "dropped"): "ALTER TABLE requirement_results ADD COLUMN dropped TEXT",
+    # The client's decision on a whole delivery (spec: the client accepts or rejects the delivery).
+    ("deliverables", "client_decision"): "ALTER TABLE deliverables ADD COLUMN client_decision TEXT NOT NULL DEFAULT 'pending'",
+    ("deliverables", "client_comment"): "ALTER TABLE deliverables ADD COLUMN client_comment TEXT",
+    ("deliverables", "decided_by"): "ALTER TABLE deliverables ADD COLUMN decided_by TEXT",
+    ("deliverables", "decided_at"): "ALTER TABLE deliverables ADD COLUMN decided_at TEXT",
+}
 
 
 def init_db(path: Path) -> None:

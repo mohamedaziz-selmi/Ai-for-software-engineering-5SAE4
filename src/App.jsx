@@ -5,6 +5,11 @@ import brandLogo from "../logo.png";
 import chatPreview from "./chat-preview.svg";
 import biPreview from "./bi-preview.svg";
 import assistantPreview from "../module_assistant_delivery/frontend/tile-preview.svg";
+import advisorPreview from "./advisor-preview.svg";
+import AdvisorDialog, { AdvisorPill } from "./AdvisorDialog.jsx";
+import { useAdvisorRun } from "./advisor-run.js";
+import marketplaceAiPreview from "./marketplace-ai-preview.svg";
+import cerebroBusinessAiPreview from "./cerebro-business-ai-preview.svg";
 
 const projects = [
 	{
@@ -62,6 +67,22 @@ const projects = [
 	},
 ];
 
+const marketplaceAiProject = {
+	id: "freelance-marketplace-ai",
+	name: "Freelance Marketplace AI",
+	year: 2026,
+	employerLabel: "Project",
+	employer: "AI features for a freelance marketplace",
+	description:
+		"Built reproducible machine-learning workflows for a freelance marketplace. The matching demo uses a lightweight local Qwen model through Ollama, with a TF-IDF baseline. Random Forest and XGBoost estimate project budgets from the supplied Upwork data. Matching metrics currently use category-based proxy labels and need human relevance judgments before production use.",
+	frontendLabel: "Freelancer matching",
+	frontend: "Qwen2.5 0.5B (Ollama) + TF-IDF",
+	backendLabel: "Budget prediction",
+	backend: "Random Forest + XGBoost",
+	recognition: "Dataset-driven ML prototype",
+	images: [marketplaceAiPreview],
+};
+
 const galleryProjects = [
 	projects[0],
 	projects[1],
@@ -82,8 +103,53 @@ const galleryProjects = [
 		images: [assistantPreview],
 		href: "/assistant/",
 	},
+	{
+		id: "freelance-advisor",
+		name: "Freelance Advisor",
+		images: [advisorPreview],
+	},
+	marketplaceAiProject,
+	// Cerebro Business AI (cerebro_business_ai/, its own microservice, started with its START.cmd): its screens through the gateway.
+	{
+		id: "cerebro-business-ai",
+		name: "Cerebro Business AI",
+		images: [cerebroBusinessAiPreview],
+		href: "/business-ai/",
+	},
 	{ ...projects[0], id: "bee-tickets-copy-2" },
 ];
+
+const sampleFreelancers = [
+	{
+		rank: 1,
+		freelancer_id: "SAMPLE-01",
+		category: "Data Analyst",
+		excerpt: "Python, SQL, Tableau, business intelligence, analytics dashboards, and reporting.",
+		search_text: "python sql tableau business intelligence analytics dashboard reporting data analysis",
+	},
+	{
+		rank: 2,
+		freelancer_id: "SAMPLE-02",
+		category: "Machine Learning Engineer",
+		excerpt: "Machine learning, Python, scikit-learn, data pipelines, model deployment, and APIs.",
+		search_text: "machine learning python scikit-learn data pipelines model deployment api",
+	},
+	{
+		rank: 3,
+		freelancer_id: "SAMPLE-03",
+		category: "Data Visualization Specialist",
+		excerpt: "Power BI, Tableau, data visualization, SQL, KPI dashboards, and stakeholder reporting.",
+		search_text: "power bi tableau data visualization sql kpi dashboard reporting",
+	},
+];
+
+const sampleProjectBudget = {
+	model: "Static sample",
+	estimated_budget: 0,
+	currency: "USD",
+	note: "Example project input is loaded. Submit to run a model, or use the illustrative sample range below.",
+	source: "sample",
+};
 
 function ArrowIcon({ direction = "right" }) {
 	return (
@@ -201,7 +267,7 @@ function ProjectDialog({ project, onClose }) {
 					</div>
 					<dl className="project-facts">
 						<div>
-							<dt>Employer</dt>
+							<dt>{project.employerLabel ?? "Employer"}</dt>
 							<dd>{project.employer}</dd>
 						</div>
 						<div>
@@ -213,11 +279,11 @@ function ProjectDialog({ project, onClose }) {
 							<dd>{project.description}</dd>
 						</div>
 						<div>
-							<dt>Frontend</dt>
+							<dt>{project.frontendLabel ?? "Frontend"}</dt>
 							<dd>{project.frontend}</dd>
 						</div>
 						<div>
-							<dt>Backend</dt>
+							<dt>{project.backendLabel ?? "Backend"}</dt>
 							<dd>{project.backend}</dd>
 						</div>
 						{project.recognition && (
@@ -233,6 +299,514 @@ function ProjectDialog({ project, onClose }) {
 						</a>
 					)}
 				</div>
+			</section>
+		</div>
+	);
+}
+
+function MarketplaceAIDialog({ onClose }) {
+	const [activeFeature, setActiveFeature] = useState("matching");
+	const [apiStatus, setApiStatus] = useState("checking");
+	const [ollamaStatus, setOllamaStatus] = useState("checking");
+	const [matchModel, setMatchModel] = useState("ollama");
+	const [matchBrief, setMatchBrief] = useState("Build a Python analytics dashboard using SQL data pipelines, Tableau visualizations, and clear business reporting.");
+	const [matchResult, setMatchResult] = useState({
+		model: "Static sample resumes · select Find freelancers to rank",
+		source: "sample",
+		candidates: sampleFreelancers.map(({ search_text, ...profile }) => profile),
+	});
+	const [matchError, setMatchError] = useState("");
+	const [budgetModel, setBudgetModel] = useState("random_forest");
+	const [budgetForm, setBudgetForm] = useState({
+		title: "Analytics dashboard for an online store",
+		description: "Build a Python and SQL dashboard for sales and customer engagement, with Tableau visualizations and clear business reporting.",
+		category: "Data Analysis",
+		skills: "Python, SQL, Tableau",
+		experience_level: "Intermediate",
+		payment_type: "Fixed-price",
+	});
+	const [budgetResult, setBudgetResult] = useState(sampleProjectBudget);
+	const [budgetError, setBudgetError] = useState("");
+	const [isRunning, setIsRunning] = useState(false);
+	const dialogRef = useRef(null);
+	const requestRef = useRef(null);
+
+	useEffect(() => {
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = "hidden";
+		dialogRef.current?.focus();
+		const controller = new AbortController();
+		void fetch("/api/health", { signal: controller.signal })
+			.then((response) => {
+				if (!response.ok) throw new Error(`API returned HTTP ${response.status}.`);
+				return response.json();
+			})
+			.then((result) => setApiStatus(result.status === "ready" ? "ready" : "missing"))
+			.catch((error) => {
+				if (error.name !== "AbortError") setApiStatus("offline");
+			});
+		void fetch("/ollama-match/api/tags", { signal: controller.signal })
+			.then((response) => {
+				if (!response.ok) throw new Error(`Ollama returned HTTP ${response.status}.`);
+				return response.json();
+			})
+			.then((result) => {
+				const hasSmallModel = Array.isArray(result.models)
+					&& result.models.some((model) => model.name === "qwen2.5:0.5b");
+				setOllamaStatus(hasSmallModel ? "ready" : "missing");
+			})
+			.catch((error) => {
+				if (error.name !== "AbortError") setOllamaStatus("offline");
+			});
+		const onKeyDown = (event) => {
+			if (event.key === "Escape") onClose();
+		};
+		window.addEventListener("keydown", onKeyDown);
+		return () => {
+			document.body.style.overflow = previousOverflow;
+			window.removeEventListener("keydown", onKeyDown);
+			controller.abort();
+			requestRef.current?.abort();
+		};
+	}, [onClose]);
+
+	const runRequest = async (endpoint, payload, onSuccess, onError, onOfflineDemo, timeoutMs = 10000) => {
+		if (apiStatus !== "ready") {
+			onOfflineDemo();
+			onError(
+				apiStatus === "checking"
+					? "The model API is still checking. Showing the static sample; retry when the API is connected."
+					: "The local model API is offline. Showing the static sample instead.",
+			);
+			return;
+		}
+
+		requestRef.current?.abort();
+		const controller = new AbortController();
+		requestRef.current = controller;
+		const timeoutId = window.setTimeout(() => {
+			controller.abort(new DOMException("Model request timed out.", "TimeoutError"));
+		}, timeoutMs);
+		setIsRunning(true);
+		onError("");
+		try {
+			const response = await fetch(endpoint, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(payload),
+				signal: controller.signal,
+			});
+			if (response.status >= 500 && !response.headers.get("content-type")?.includes("application/json")) {
+				throw Object.assign(new Error(`Local model API returned HTTP ${response.status}.`), { useDemo: true });
+			}
+			if (response.status === 503) {
+				const result = await response.json();
+				throw Object.assign(
+					new Error(typeof result.detail === "string" ? result.detail : "Model artifacts are unavailable."),
+					{ useDemo: true },
+				);
+			}
+			const result = await response.json();
+			if (!response.ok) {
+				throw new Error(typeof result.detail === "string" ? result.detail : `Model API returned HTTP ${response.status}.`);
+			}
+			onSuccess(result);
+		} catch (error) {
+			const didTimeout = error.name === "TimeoutError" || controller.signal.reason?.name === "TimeoutError";
+			if (error.name !== "AbortError" || didTimeout) {
+				if (didTimeout || error.useDemo || error instanceof TypeError) {
+					setApiStatus(error.useDemo ? "missing" : "offline");
+					onOfflineDemo();
+					onError(
+						didTimeout
+							? "Model request timed out. Showing static sample data instead."
+							: `${error.message || "Local model API is unavailable."} Showing static sample data instead.`,
+					);
+				} else {
+					onError(error.message || "The model request failed.");
+				}
+			}
+		} finally {
+			window.clearTimeout(timeoutId);
+			if (requestRef.current === controller) {
+				requestRef.current = null;
+				setIsRunning(false);
+			}
+		}
+	};
+
+	const submitMatch = (event) => {
+		event.preventDefault();
+		setMatchResult(null);
+		const projectTerms = new Set((matchBrief.toLowerCase().match(/[a-z0-9+#.-]{2,}/g) || []));
+		const sampleCandidates = sampleFreelancers
+			.map(({ search_text, ...profile }) => ({
+				...profile,
+				overlap: (search_text.match(/[a-z0-9+#.-]{2,}/g) || [])
+					.filter((term) => projectTerms.has(term)).length,
+			}))
+			.sort((first, second) => second.overlap - first.overlap || first.rank - second.rank)
+			.map((profile, index) => ({ ...profile, rank: index + 1 }));
+		if (matchModel === "tfidf") {
+			setMatchError("");
+			setMatchResult({
+				model: "Keyword-overlap sample ranking",
+				source: "sample",
+				candidates: sampleCandidates,
+			});
+			return;
+		}
+		if (ollamaStatus !== "ready") {
+			setMatchResult({
+				model: "Offline sample ranking · shared-keyword overlap",
+				source: "sample",
+				candidates: sampleCandidates,
+			});
+			setMatchError(
+				ollamaStatus === "checking"
+					? "Ollama is still checking. Showing the sample ranking; retry once the local model is ready."
+					: ollamaStatus === "missing"
+						? "Qwen2.5 0.5B is not installed on the CPU Ollama service. Showing the sample ranking."
+						: "CPU Ollama is offline. Showing the sample ranking instead.",
+			);
+			return;
+		}
+
+		requestRef.current?.abort();
+		const controller = new AbortController();
+		requestRef.current = controller;
+		const timeoutId = window.setTimeout(() => {
+			controller.abort(new DOMException("Local model request timed out.", "TimeoutError"));
+		}, 60000);
+		setIsRunning(true);
+		setMatchError("");
+		const profiles = sampleFreelancers.map(({ freelancer_id, category, excerpt }) => ({
+			id: freelancer_id,
+			category,
+			summary: excerpt,
+		}));
+		const prompt = JSON.stringify({
+			project: matchBrief,
+			profiles,
+		});
+		void fetch("/ollama-match/api/chat", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				model: "qwen2.5:0.5b",
+				messages: [
+					{
+						role: "system",
+						content: "Rank the supplied freelancer profiles for the project. Return exactly one JSON key named ranked_ids whose value is an array of the supplied profile IDs, in best-to-worst order. Do not use IDs as object keys or add scores or explanations.",
+					},
+					{ role: "user", content: prompt },
+				],
+				format: {
+					type: "object",
+					properties: {
+						ranked_ids: {
+							type: "array",
+							items: { type: "string", enum: profiles.map((profile) => profile.id) },
+						},
+					},
+					required: ["ranked_ids"],
+					additionalProperties: false,
+				},
+				stream: false,
+				keep_alive: "10m",
+				options: { num_ctx: 1024, num_predict: 48, temperature: 0 },
+			}),
+			signal: controller.signal,
+		})
+			.then(async (response) => {
+				const result = await response.json();
+				if (!response.ok) {
+					throw new Error(typeof result.error === "string" ? result.error : `Ollama returned HTTP ${response.status}.`);
+				}
+				const ranking = JSON.parse(result.message?.content ?? "");
+				if (!Array.isArray(ranking.ranked_ids)) {
+					throw new Error("Qwen returned an invalid ranking.");
+				}
+				const byId = new Map(sampleFreelancers.map(({ freelancer_id, category, excerpt }) => [
+					freelancer_id,
+					{ freelancer_id, category, excerpt },
+				]));
+				const rankedIds = [...new Set(ranking.ranked_ids)]
+					.filter((id) => byId.has(id));
+				if (rankedIds.length !== sampleFreelancers.length) {
+					throw new Error("Qwen did not return every sample profile exactly once.");
+				}
+				setMatchResult({
+					model: "Qwen2.5 0.5B · Ollama CPU",
+					source: "ollama",
+					candidates: rankedIds.map((id, index) => ({ ...byId.get(id), rank: index + 1 })),
+				});
+			})
+			.catch((error) => {
+				if (error.name === "AbortError" && controller.signal.reason?.name !== "TimeoutError") return;
+				const timedOut = controller.signal.reason?.name === "TimeoutError";
+				if (error instanceof TypeError) setOllamaStatus("offline");
+				setMatchResult({
+					model: "Sample ranking · local model unavailable",
+					source: "sample",
+					candidates: sampleCandidates,
+				});
+				setMatchError(
+					timedOut
+						? "Qwen took too long to respond. Showing the quick sample ranking instead."
+						: `${error.message || "Ollama matching failed."} Showing the quick sample ranking instead.`,
+				);
+			})
+			.finally(() => {
+				window.clearTimeout(timeoutId);
+				if (requestRef.current === controller) {
+					requestRef.current = null;
+					setIsRunning(false);
+				}
+			});
+	};
+
+	const submitBudget = (event) => {
+		event.preventDefault();
+		setBudgetResult(null);
+		void runRequest(
+			"/api/budget",
+			{ ...budgetForm, model: budgetModel },
+			setBudgetResult,
+			setBudgetError,
+			() => setBudgetResult({
+				...sampleProjectBudget,
+				estimated_budget: 1200,
+				note: "No model API is connected. The sample project is shown with a static $800–$1,500 reference range; this is not a model prediction.",
+			}),
+		);
+	};
+
+	const updateBudgetField = (event) => {
+		const { name, value } = event.target;
+		setBudgetForm((current) => ({ ...current, [name]: value }));
+	};
+
+	return (
+		<div
+			className="dialog-backdrop dialog-backdrop--marketplace"
+			onMouseDown={(event) => {
+				if (event.target === event.currentTarget) onClose();
+			}}
+		>
+			<section
+				ref={dialogRef}
+				className="marketplace-lab"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="marketplace-lab-title"
+				tabIndex={-1}
+			>
+				<header className="marketplace-lab__header">
+					<div className="marketplace-lab__brand">
+						<span className="marketplace-lab__mark" aria-hidden="true">M</span>
+						<div>
+							<p className="marketplace-lab__eyebrow">CEREBRO · MACHINE LEARNING LAB</p>
+							<h2 id="marketplace-lab-title">Freelance Marketplace AI</h2>
+						</div>
+					</div>
+					<div className="marketplace-lab__header-actions">
+						<span className={`marketplace-lab__status marketplace-lab__status--${activeFeature === "matching" ? ollamaStatus : apiStatus}`}>
+							<span aria-hidden="true" />
+							{activeFeature === "matching"
+								? ollamaStatus === "checking" ? "Checking Ollama" : ollamaStatus === "ready" ? "Qwen 0.5B · CPU" : ollamaStatus === "missing" ? "Model missing" : "Ollama offline"
+								: apiStatus === "checking" ? "Checking ML API" : apiStatus === "ready" ? "ML API connected" : apiStatus === "missing" ? "Artifacts missing" : "ML API offline"}
+						</span>
+						<button className="project-dialog__close" aria-label="Close AI lab" onClick={onClose}>×</button>
+					</div>
+				</header>
+
+				<div className="marketplace-lab__tabs" role="tablist" aria-label="Choose an AI feature">
+					<button
+						id="matching-tab"
+						role="tab"
+						aria-selected={activeFeature === "matching"}
+						aria-controls="matching-panel"
+						className={activeFeature === "matching" ? "is-active" : ""}
+						onClick={() => setActiveFeature("matching")}
+					>
+						<span>01</span><strong>Freelancer matching</strong><small>Rank resumes for a project</small>
+					</button>
+					<button
+						id="budget-tab"
+						role="tab"
+						aria-selected={activeFeature === "budget"}
+						aria-controls="budget-panel"
+						className={activeFeature === "budget" ? "is-active" : ""}
+						onClick={() => setActiveFeature("budget")}
+					>
+						<span>02</span><strong>Budget prediction</strong><small>Estimate a project budget</small>
+					</button>
+				</div>
+
+				<div className="marketplace-lab__content">
+					{activeFeature === "matching" ? (
+						<div id="matching-panel" role="tabpanel" aria-labelledby="matching-tab" className="marketplace-feature">
+							<div className="marketplace-feature__intro">
+								<p className="marketplace-lab__eyebrow">PROFILE RETRIEVAL · 2 APPROACHES</p>
+								<h3>Find the right people for the brief.</h3>
+								<p>Use a small local language model to rank sample profiles, or switch to instant keyword matching.</p>
+								<div className="marketplace-model-picker" aria-label="Choose matching model">
+									<button className={matchModel === "ollama" ? "is-selected" : ""} aria-pressed={matchModel === "ollama"} type="button" onClick={() => setMatchModel("ollama")}>
+										<span>01</span><strong>Qwen2.5 0.5B</strong><small>Local Ollama · CPU</small>
+									</button>
+									<button className={matchModel === "tfidf" ? "is-selected" : ""} aria-pressed={matchModel === "tfidf"} type="button" onClick={() => setMatchModel("tfidf")}>
+										<span>02</span><strong>Keyword overlap</strong><small>Instant sample baseline</small>
+									</button>
+								</div>
+								<p className="marketplace-feature__explain">
+									{matchModel === "ollama"
+									? "Runs locally. First request loads the compact model; later requests should be faster."
+										: "Ranks profiles by shared words and phrases. Useful as a transparent baseline."}
+								</p>
+							</div>
+							<div className="marketplace-feature__workspace">
+								<form className="marketplace-form" onSubmit={submitMatch}>
+									<label>
+										<span>Sample project brief · edit or select the text</span>
+										<textarea
+											value={matchBrief}
+											onChange={(event) => setMatchBrief(event.target.value)}
+											placeholder="e.g. Build a Python analytics dashboard with SQL data pipelines and clear reporting."
+											rows={6}
+											minLength={3}
+											required
+										/>
+									</label>
+									<div className="marketplace-form__footer">
+										<span>3 sample profiles · ranked locally</span>
+										<button type="submit" disabled={!matchBrief.trim() || isRunning}>
+											{isRunning ? "Ranking…" : "Find freelancers"} <ArrowIcon />
+										</button>
+									</div>
+								</form>
+								{matchError && <p className="marketplace-lab__error" role="alert">{matchError}</p>}
+								{matchResult ? (
+									<div className="marketplace-results" aria-live="polite">
+										<div className="marketplace-results__heading">
+											<h4>Recommended profiles</h4><span>{matchResult.model}</span>
+										</div>
+										{matchResult.candidates.map((candidate) => (
+											<article className="marketplace-candidate" key={candidate.freelancer_id}>
+												<span className="marketplace-candidate__rank">{String(candidate.rank).padStart(2, "0")}</span>
+												<div className="marketplace-candidate__details">
+													<strong>{candidate.category}</strong>
+													<p>{candidate.excerpt}</p>
+													<small>{candidate.freelancer_id.startsWith("SAMPLE-") ? "Static sample profile" : `Profile #${candidate.freelancer_id}`}</small>
+												</div>
+												<span
+													className={`marketplace-candidate__score${matchResult.source === "sample" ? " marketplace-candidate__score--sample" : ""}`}
+													title={matchResult.source === "ollama"
+														? "Position in the local Qwen ranking; not a confidence score"
+														: "Static sample data; not a model confidence score"}
+												>
+																{matchResult.source === "ollama"
+																	? "QWEN"
+																	: candidate.overlap === undefined ? "SAMPLE" : `${candidate.overlap} words`}
+												</span>
+											</article>
+										))}
+									</div>
+								) : (
+									<div className="marketplace-empty">
+										<span aria-hidden="true">↗</span>
+										<strong>Your shortlist appears here</strong>
+										<p>{activeFeature === "matching"
+											? ollamaStatus === "ready" ? "Ollama is ready. Enter a brief and run local Qwen ranking." : "Start the CPU-only Ollama service and install Qwen2.5 0.5B. See the README commands."
+											: apiStatus === "ready" ? "Enter a project brief and run the estimator." : "Start the local ML API and train the model artifacts. See the README commands."}</p>
+									</div>
+								)}
+							</div>
+						</div>
+					) : (
+						<div id="budget-panel" role="tabpanel" aria-labelledby="budget-tab" className="marketplace-feature">
+							<div className="marketplace-feature__intro">
+								<p className="marketplace-lab__eyebrow">PROJECT ESTIMATION · 2 MODELS</p>
+								<h3>Explore a data-backed budget estimate.</h3>
+								<p>Describe a listing and compare two regressors trained on historical project budgets.</p>
+								<div className="marketplace-model-picker" aria-label="Choose budget model">
+									<button className={budgetModel === "random_forest" ? "is-selected" : ""} aria-pressed={budgetModel === "random_forest"} type="button" onClick={() => setBudgetModel("random_forest")}>
+										<span>01</span><strong>Random Forest</strong><small>Ensemble of decision trees</small>
+									</button>
+									<button className={budgetModel === "xgboost" ? "is-selected" : ""} aria-pressed={budgetModel === "xgboost"} type="button" onClick={() => setBudgetModel("xgboost")}>
+										<span>02</span><strong>XGBoost</strong><small>Gradient-boosted trees</small>
+									</button>
+								</div>
+								<p className="marketplace-feature__explain">
+									These estimates are experimental: validation performance on the supplied dataset was weak, so results are for exploration—not pricing advice.
+								</p>
+							</div>
+							<div className="marketplace-feature__workspace">
+								<form className="marketplace-form marketplace-form--budget" onSubmit={submitBudget}>
+									<label className="marketplace-form__wide">
+									<span>Sample project title · edit or select the text</span>
+										<input name="title" value={budgetForm.title} onChange={updateBudgetField} placeholder="e.g. Analytics dashboard for an online store" minLength={2} required />
+									</label>
+									<label className="marketplace-form__wide">
+										<span>Project description</span>
+										<textarea name="description" value={budgetForm.description} onChange={updateBudgetField} placeholder="Describe the expected work, deliverables, and scope…" rows={4} minLength={10} required />
+									</label>
+									<label>
+										<span>Category</span>
+										<input name="category" value={budgetForm.category} onChange={updateBudgetField} placeholder="e.g. Data Analysis" minLength={2} required />
+									</label>
+									<label>
+										<span>Skills <small>comma separated</small></span>
+										<input name="skills" value={budgetForm.skills} onChange={updateBudgetField} placeholder="Python, SQL, Tableau" />
+									</label>
+									<label>
+										<span>Experience level</span>
+										<select name="experience_level" value={budgetForm.experience_level} onChange={updateBudgetField}>
+											<option>Entry level</option><option>Intermediate</option><option>Expert</option>
+										</select>
+									</label>
+									<label>
+										<span>Payment type</span>
+										<select name="payment_type" value={budgetForm.payment_type} onChange={updateBudgetField}>
+											<option>Fixed-price</option><option>Hourly</option>
+										</select>
+									</label>
+									<div className="marketplace-form__footer marketplace-form__wide">
+										<span>{budgetModel === "random_forest" ? "Random Forest" : "XGBoost"} · historical data</span>
+										<button type="submit" disabled={isRunning}>
+											{isRunning ? "Estimating…" : "Estimate budget"} <ArrowIcon />
+										</button>
+									</div>
+								</form>
+								{budgetError && <p className="marketplace-lab__error" role="alert">{budgetError}</p>}
+								{budgetResult ? (
+									<div className="marketplace-budget-result" aria-live="polite">
+										<div>
+										<p className="marketplace-lab__eyebrow">{budgetResult.source === "sample" ? "SAMPLE PROJECT · NOT A MODEL PREDICTION" : `MODEL ESTIMATE · ${budgetResult.model}`}</p>
+										<strong>
+											{budgetResult.source === "sample"
+												? budgetResult.estimated_budget === 0 ? "Input ready" : "$800–$1,500"
+												: new Intl.NumberFormat("en-US", { style: "currency", currency: budgetResult.currency, maximumFractionDigits: 0 }).format(budgetResult.estimated_budget)}
+										</strong>
+										<p>{budgetResult.note}</p>
+									</div>
+									<span aria-hidden="true">$</span>
+									</div>
+								) : (
+									<div className="marketplace-empty marketplace-empty--budget">
+										<span aria-hidden="true">$</span>
+										<strong>Your estimate appears here</strong>
+										<p>{apiStatus === "ready" ? "Complete the listing details and run the selected model." : "Start the local ML API and train the model artifacts. See the README commands."}</p>
+									</div>
+								)}
+							</div>
+						</div>
+					)}
+				</div>
+				<footer className="marketplace-lab__footer">
+					<span>RESEARCH DEMO · NOT A PRODUCTION RECOMMENDER</span>
+					<span>Resume categories are proxies; budget model validation is weak.</span>
+				</footer>
 			</section>
 		</div>
 	);
@@ -1144,6 +1718,19 @@ export default function App() {
 	const closeProject = useCallback(() => setActiveProject(null), []);
 	const closePanel = useCallback(() => setActivePanel(null), []);
 
+	// A research run outlives its dialog, so a pill on the gallery says it is still running (or has finished).
+	const advisor = useAdvisorRun();
+	const advisorProject = galleryProjects.find((project) => project.id === "freelance-advisor");
+	const advisorOpen = activeProject?.id === "freelance-advisor";
+	const [advisorSeen, setAdvisorSeen] = useState(true);
+	useEffect(() => {
+		if (advisor.phase === "running") setAdvisorSeen(false);
+	}, [advisor.phase]);
+	useEffect(() => {
+		if (advisorOpen) setAdvisorSeen(true);
+	}, [advisorOpen, advisor.phase]);
+	const advisorPillVisible = advisor.phase === "running" || (advisor.phase === "done" && !advisorSeen);
+
 	return (
 		<main className={`portfolio${dark ? " portfolio--dark" : ""}`}>
 			<div className={`project-backdrop${hoveredProject ? " project-backdrop--active" : ""}`} aria-hidden="true">
@@ -1208,13 +1795,33 @@ export default function App() {
 						))}
 					</div>
 				</div>
+				<div className="gallery-ai-launch">
+					<div>
+						<p className="eyebrow">TWO MODELS · ONE LAB</p>
+						<strong>Freelance Marketplace AI</strong>
+					</div>
+					<button
+						type="button"
+						onClick={() => setActiveProject(marketplaceAiProject)}
+						aria-label="Open the interactive freelancer matching and budget prediction models"
+					>
+						Open AI lab <ArrowIcon />
+					</button>
+				</div>
 			</section>
 
 			{activeProject && (activeProject.id === "cerebro-chat"
 				? <ProposalReviewWorkspace onClose={closeProject} />
 				: activeProject.id === "business-intelligence"
 					? <BusinessIntelligenceWorkspace onClose={closeProject} />
-					: <ProjectDialog project={activeProject} onClose={closeProject} />)}
+					: activeProject.id === "freelance-advisor"
+						? <AdvisorDialog onClose={closeProject} />
+						: activeProject.id === "freelance-marketplace-ai"
+							? <MarketplaceAIDialog onClose={closeProject} />
+							: <ProjectDialog project={activeProject} onClose={closeProject} />)}
+			{!advisorOpen && advisorPillVisible && (
+				<AdvisorPill run={advisor} onOpen={() => setActiveProject(advisorProject)} />
+			)}
 			{activePanel && <InfoPanel panel={activePanel} onClose={closePanel} />}
 		</main>
 	);

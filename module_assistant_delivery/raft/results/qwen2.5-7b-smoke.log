@@ -1,0 +1,152 @@
+W1018 14:05:27.019000 26668 Lib\site-packages\torch\utils\_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+W1018 14:05:27.110000 26668 Lib\site-packages\torch\utils\_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+Unsloth: xformers is installed but cannot load with torch 2.14.1+cu130 (it was built for 2.10.0+cu128), so PyTorch attention is used instead.
+To install a matching xformers, run `unsloth install-kernels xformers`, or `pip uninstall xformers` to hide this. UNSLOTH_ENABLE_LOGGING=1 shows the full error.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+==((====))==  Unsloth 2026.10.6: Fast Qwen2 patching. Transformers: 5.17.0.
+   \\   /|    NVIDIA GeForce RTX 4060 Laptop GPU. Num GPUs = 1. Max memory: 7.996 GB. Platform: Windows.
+O^O/ \_/ \    Torch: 2.14.1+cu130. CUDA: 8.9. CUDA Toolkit: 13.0. Triton: 3.8.0
+\        /    Bfloat16 = TRUE. FA [Xformers = None. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:00<01:23,  4.05it/s]
+Loading weights:   1%|          | 4/339 [00:00<00:28, 11.55it/s]
+Loading weights:   4%|▍         | 14/339 [00:00<00:08, 37.01it/s]
+Loading weights:   7%|▋         | 24/339 [00:00<00:05, 53.33it/s]
+Loading weights:  10%|█         | 34/339 [00:00<00:04, 62.37it/s]
+Loading weights:  14%|█▎        | 46/339 [00:00<00:03, 73.46it/s]
+Loading weights:  17%|█▋        | 57/339 [00:00<00:03, 78.67it/s]
+Loading weights:  20%|██        | 69/339 [00:01<00:03, 81.73it/s]
+Loading weights:  24%|██▍       | 81/339 [00:01<00:02, 86.34it/s]
+Loading weights:  27%|██▋       | 90/339 [00:01<00:03, 81.61it/s]
+Loading weights:  30%|███       | 102/339 [00:01<00:02, 84.21it/s]
+Loading weights:  33%|███▎      | 113/339 [00:01<00:02, 90.43it/s]
+Loading weights:  37%|███▋      | 124/339 [00:01<00:02, 89.32it/s]
+Loading weights:  40%|████      | 137/339 [00:01<00:02, 84.57it/s]
+Loading weights:  44%|████▍     | 150/339 [00:02<00:02, 90.03it/s]
+Loading weights:  47%|████▋     | 161/339 [00:02<00:02, 88.44it/s]
+Loading weights:  51%|█████     | 172/339 [00:02<00:01, 85.00it/s]
+Loading weights:  54%|█████▎    | 182/339 [00:02<00:01, 87.78it/s]
+Loading weights:  57%|█████▋    | 192/339 [00:02<00:01, 87.06it/s]
+Loading weights:  59%|█████▉    | 201/339 [00:02<00:01, 82.16it/s]
+Loading weights:  62%|██████▏   | 210/339 [00:02<00:01, 73.44it/s]
+Loading weights:  64%|██████▍   | 218/339 [00:02<00:01, 66.71it/s]
+Loading weights:  67%|██████▋   | 228/339 [00:03<00:01, 71.93it/s]
+Loading weights:  70%|██████▉   | 237/339 [00:03<00:01, 71.43it/s]
+Loading weights:  72%|███████▏  | 245/339 [00:03<00:01, 68.72it/s]
+Loading weights:  74%|███████▍  | 252/339 [00:03<00:01, 65.55it/s]
+Loading weights:  78%|███████▊  | 264/339 [00:03<00:01, 71.52it/s]
+Loading weights:  81%|████████  | 274/339 [00:03<00:00, 77.05it/s]
+Loading weights:  83%|████████▎ | 282/339 [00:03<00:00, 73.56it/s]
+Loading weights:  86%|████████▌ | 290/339 [00:03<00:00, 67.94it/s]
+Loading weights:  88%|████████▊ | 298/339 [00:04<00:00, 69.83it/s]
+Loading weights:  91%|█████████ | 309/339 [00:04<00:00, 79.28it/s]
+Loading weights:  94%|█████████▍| 318/339 [00:04<00:00, 78.23it/s]
+Loading weights: 100%|██████████| 339/339 [00:04<00:00, 78.63it/s]
+Unsloth 2026.10.6 patched 28 layers with 28 QKV layers, 28 O layers and 28 MLP layers.
+Unsloth: Offloading embeddings to RAM to save 1.02 GB.
+
+Unsloth: Tokenizing ["text"]:   0%|          | 0/1056 [00:00<?, ? examples/s]
+Unsloth: Tokenizing ["text"]:  95%|█████████▍| 1000/1056 [00:01<00:00, 741.24 examples/s]
+Unsloth: Tokenizing ["text"]: 100%|██████████| 1056/1056 [00:01<00:00, 738.80 examples/s]
+
+Unsloth: Tokenizing ["text"]:   0%|          | 0/16 [00:00<?, ? examples/s]
+Unsloth: Tokenizing ["text"]: 100%|██████████| 16/16 [00:00<00:00, 597.22 examples/s]
+🦥 Unsloth: Padding-free auto-enabled, enabling faster training.
+
+Map:   0%|          | 0/1056 [00:00<?, ? examples/s]
+Map:  95%|█████████▍| 1000/1056 [00:00<00:00, 4167.58 examples/s]
+Map: 100%|██████████| 1056/1056 [00:00<00:00, 4154.32 examples/s]
+
+Map:   0%|          | 0/16 [00:00<?, ? examples/s]
+Map: 100%|██████████| 16/16 [00:00<?, ? examples/s]
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None}.
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 2
+   \\   /|    Num examples = 1,056 | Num Epochs = 1 | Total steps = 4
+O^O/ \_/ \    Batch size per device = 1 | Gradient accumulation steps = 8
+\        /    Data Parallel GPUs = 1 | Total batch size (1 x 8 x 1) = 8
+ "-____-"     Trainable parameters = 40,370,176 of 7,655,986,688 (0.53% trained)
+
+  0%|          | 0/4 [00:00<?, ?it/s]
+ 25%|██▌       | 1/4 [00:23<01:10, 23.52s/it]
+                                             
+
+ 25%|██▌       | 1/4 [00:23<01:10, 23.52s/it]
+ 50%|█████     | 2/4 [00:39<00:38, 19.28s/it]
+                                             
+
+ 50%|█████     | 2/4 [00:39<00:38, 19.28s/it]
+ 75%|███████▌  | 3/4 [00:56<00:18, 18.08s/it]
+                                             
+
+ 75%|███████▌  | 3/4 [00:56<00:18, 18.08s/it]
+100%|██████████| 4/4 [01:13<00:00, 17.48s/it]
+                                             
+
+100%|██████████| 4/4 [01:13<00:00, 17.48s/it]
+                                             
+
+100%|██████████| 4/4 [01:13<00:00, 17.48s/it]
+100%|██████████| 4/4 [01:13<00:00, 18.30s/it]
+Unsloth: Will smartly offload gradients to save VRAM!
+Unsloth: Double buffering enabled (parallel H2D + compute) for backward pass.
+{'loss': '0.5927', 'grad_norm': '0.9288', 'learning_rate': '0', 'epoch': '0.007576'}
+{'loss': '0.8148', 'grad_norm': '1.252', 'learning_rate': '0.0001', 'epoch': '0.01515'}
+{'loss': '0.7224', 'grad_norm': '1.111', 'learning_rate': '0.0002', 'epoch': '0.02273'}
+{'loss': '0.7792', 'grad_norm': '1.057', 'learning_rate': '0.0001', 'epoch': '0.0303'}
+{'train_runtime': '73.18', 'train_samples_per_second': '0.437', 'train_steps_per_second': '0.055', 'train_loss': '0.7273', 'epoch': '0.0303'}
+
+Filter:   0%|          | 0/16 [00:00<?, ? examples/s]
+Filter: 100%|██████████| 16/16 [00:00<00:00, 1357.52 examples/s]
+Unsloth: Not an error, but `num_items_in_batch` could not be counted for Qwen2ForCausalLM's labels, so each micro-batch loss is a mean.
+Using gradient accumulation will be very slightly less accurate.
+Read more on gradient accumulation issues here: https://unsloth.ai/blog/gradient
+
+  0%|          | 0/16 [00:00<?, ?it/s]
+ 12%|█▎        | 2/16 [00:00<00:04,  2.89it/s]
+ 19%|█▉        | 3/16 [00:01<00:06,  2.09it/s]
+ 25%|██▌       | 4/16 [00:02<00:06,  1.84it/s]
+ 31%|███▏      | 5/16 [00:02<00:06,  1.69it/s]
+ 38%|███▊      | 6/16 [00:03<00:06,  1.61it/s]
+ 44%|████▍     | 7/16 [00:04<00:05,  1.54it/s]
+ 50%|█████     | 8/16 [00:04<00:05,  1.48it/s]
+ 56%|█████▋    | 9/16 [00:05<00:05,  1.40it/s]
+ 62%|██████▎   | 10/16 [00:06<00:04,  1.35it/s]
+ 69%|██████▉   | 11/16 [00:07<00:03,  1.30it/s]
+ 75%|███████▌  | 12/16 [00:08<00:03,  1.28it/s]
+ 81%|████████▏ | 13/16 [00:08<00:02,  1.29it/s]
+ 88%|████████▊ | 14/16 [00:09<00:01,  1.28it/s]
+ 94%|█████████▍| 15/16 [00:10<00:00,  1.28it/s]
+100%|██████████| 16/16 [00:11<00:00,  1.27it/s]
+100%|██████████| 16/16 [00:11<00:00,  1.38it/s]
+{
+  "run": "qwen2.5-7b-smoke",
+  "model": "unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+  "max_seq": 2048,
+  "lora_rank": 16,
+  "grad_accum": 8,
+  "lr": 0.0002,
+  "epochs": 2.0,
+  "smoke": true,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "started_at": "2026-10-18T13:05:37+00:00",
+  "vram_free_before_mib": 7054,
+  "vram_total_mib": 8187,
+  "load_s": 12.0,
+  "vram_after_load_mib": 5444,
+  "train_examples": 1056,
+  "train_dropped_too_long": 0,
+  "longest_example_tokens": 1299,
+  "val_examples": 16,
+  "val_dropped_too_long": 0,
+  "status": "completed",
+  "train_loss": 0.7273,
+  "optimizer_steps": 4,
+  "train_s": 74.2,
+  "peak_vram_allocated_mib": 5206,
+  "peak_vram_reserved_mib": 5582,
+  "val_loss": 0.5207,
+  "finished_at": "2026-10-18T13:07:21+00:00"
+}

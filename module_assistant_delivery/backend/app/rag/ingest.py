@@ -20,6 +20,16 @@ def embedding_text(heading_path: str, text: str) -> str:
     return f"{heading_path}\n{text}"
 
 
+def passage_path(title: str, kind: str, heading_path: str) -> str:
+    """The path embedded with a passage. TXT, DOCX and PDF text has no title heading, so the document title leads it;
+    otherwise their passages do not say which document they belong to (found by the demo-kit test: a DOCX table row
+    lost to the specification's "Change requests" clause). Markdown paths already start with the H1 title and code
+    paths are the file name, so those, and every evaluation run on Markdown, are unchanged."""
+    if kind in ("markdown", "code"):
+        return heading_path
+    return title if heading_path == "(untitled)" else f"{title} > {heading_path}"
+
+
 def ingest_document(
     conn: sqlite3.Connection,
     embedder: Embedder,
@@ -45,7 +55,7 @@ def ingest_document(
     kind, chunks = load_chunks(source_name, raw, count=embedder.count_tokens)
     if not chunks:
         raise ValueError("The document contains no text to index.")
-    texts = [embedding_text(c.heading_path, c.text) for c in chunks]
+    texts = [embedding_text(passage_path(title, kind, c.heading_path), c.text) for c in chunks]
     vectors = embedder.embed_passages(texts)
 
     version = (current["version"] + 1) if current else 1

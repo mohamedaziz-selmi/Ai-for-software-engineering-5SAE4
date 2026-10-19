@@ -38,8 +38,30 @@ def test_support_requests_are_scoped_and_admin_triaged(env):
     assert client.get("/api/ai/support-requests", headers={"X-Demo-User": OTHER}).json()["support_requests"] == []
     assert len(client.get("/api/ai/support-requests", headers={"X-Demo-User": ADMIN}).json()["support_requests"]) == 1
     rid = created.json()["id"]
-    assert client.patch(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": FREELANCER}, json={"status": "closed"}).status_code == 403
+    assert client.patch(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": FREELANCER}, json={"status": "in_progress"}).status_code == 403
+    assert client.patch(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": OTHER}, json={"status": "closed"}).status_code == 404
     assert client.patch(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": ADMIN}, json={"status": "closed"}).json()["status"] == "closed"
+
+
+def test_support_thread_admin_reads_and_replies_author_answers(env):
+    client = env["make"]()
+    rid = client.post("/api/ai/support-requests", headers={"X-Demo-User": FREELANCER},
+                      json={"subject": "Upload fails", "body": "PDF upload says no text.", "category": "bug"}).json()["id"]
+    detail = client.get(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": ADMIN}).json()
+    assert detail["support_request"]["body"] == "PDF upload says no text." and detail["messages"] == []
+    assert client.get(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": OTHER}).status_code == 404
+    assert client.post(f"/api/ai/support-requests/{rid}/messages", headers={"X-Demo-User": OTHER}, json={"body": "hi"}).status_code == 404
+    # The admin's first reply moves the request to "in progress".
+    assert client.post(f"/api/ai/support-requests/{rid}/messages", headers={"X-Demo-User": ADMIN},
+                       json={"body": "Is the PDF a scan?"}).json()["status"] == "in_progress"
+    mine = client.get("/api/ai/support-requests", headers={"X-Demo-User": FREELANCER}).json()["support_requests"][0]
+    assert mine["replies"] == 1 and mine["status"] == "in_progress"
+    # The author closes it, then writing again reopens it.
+    assert client.patch(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": FREELANCER}, json={"status": "closed"}).json()["status"] == "closed"
+    assert client.post(f"/api/ai/support-requests/{rid}/messages", headers={"X-Demo-User": FREELANCER},
+                       json={"body": "It is a scan, yes."}).json()["status"] == "open"
+    thread = client.get(f"/api/ai/support-requests/{rid}", headers={"X-Demo-User": FREELANCER}).json()["messages"]
+    assert [(m["author_role"], m["body"]) for m in thread] == [("admin", "Is the PDF a scan?"), ("requester", "It is a scan, yes.")]
 
 
 def test_explain_finding_uses_the_assistant_with_document_citations(env):

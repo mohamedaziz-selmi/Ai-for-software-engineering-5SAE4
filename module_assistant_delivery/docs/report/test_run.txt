@@ -1,0 +1,16 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0
+rootdir: C:\Users\azizs\Downloads\freelance2\freelance2\module_assistant_delivery\backend
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1, platformdirs-4.13.4
+collected 61 items
+
+tests\test_api.py ........................                               [ 39%]
+tests\test_chunking.py ......                                            [ 49%]
+tests\test_clients.py .....                                              [ 57%]
+tests\test_review.py .............                                       [ 78%]
+tests\test_support.py .....                                              [ 86%]
+tests\test_verify_and_masking.py ........                                [100%]
+
+============================= 61 passed in 15.57s =============================

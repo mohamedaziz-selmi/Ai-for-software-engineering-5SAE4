@@ -8,7 +8,9 @@
 #
 # Requires: storage\tools\llama.cpp-v0.5.0-src\extracted (llama.cpp v0.5.0 source, released 2026-09-23),
 # the private Ollama running (scripts\start_ollama.ps1), and the trained adapter in raft\outputs\<Run>\adapter.
-param([string]$Run = "qwen2.5-7b-raft", [string]$BaseTag = "qwen2.5:7b-instruct")
+#     -Modes raft -RaftTag assistant-raft2a:qwen2.5-7b     exports only the RAFT model (run 2, 2026-10-19)
+param([string]$Run = "qwen2.5-7b-raft", [string]$BaseTag = "qwen2.5:7b-instruct", [string[]]$Modes = @("base", "raft"),
+      [string]$RaftTag = "assistant-raft:qwen2.5-7b")
 $ErrorActionPreference = "Stop"
 $moduleRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $moduleRoot
@@ -19,8 +21,8 @@ $converter = "storage\tools\llama.cpp-v0.5.0-src\extracted\convert_hf_to_gguf.py
 $out = "raft\outputs\$Run"
 $template = (ollama show --modelfile $BaseTag) | Where-Object { $_ -notmatch '^FROM ' }
 
-foreach ($mode in "base", "raft") {
-    $tag = if ($mode -eq "base") { "assistant-base-requant:qwen2.5-7b" } else { "assistant-raft:qwen2.5-7b" }
+foreach ($mode in $Modes) {
+    $tag = if ($mode -eq "base") { "assistant-base-requant:qwen2.5-7b" } else { $RaftTag }
     & $py raft\merge_export.py --mode $mode --run $Run --tag $tag --no-import
     if ($LASTEXITCODE) { throw "merge $mode failed" }
     if (-not (Test-Path "$out\$mode-bf16.gguf")) {

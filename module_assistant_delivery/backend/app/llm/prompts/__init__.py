@@ -43,7 +43,9 @@ def render_assistant_messages(chunks: list[ContextChunk], question: str, version
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
-REVIEW_PROMPT_VERSION = "review_judge.v1"
+# v2: explicit verdict definitions and order; absence of code is not evidence.
+# v3 (tried 2026-10-19, NOT used): measured worse than v2 (more flipping verdicts); kept for traceability.
+REVIEW_PROMPT_VERSION = "review_judge.v2"
 
 
 @dataclass(frozen=True)

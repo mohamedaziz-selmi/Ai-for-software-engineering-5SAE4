@@ -63,5 +63,22 @@ def test_provider_options_and_key_are_sent_in_the_request():
         seen["auth"] = request.headers.get("authorization")
         return httpx.Response(200, json=OK)
 
-    client(handler, api_key="test-key", extra_body={"reasoning_effort": "low"}).complete_json(MESSAGES, {}, schema_name="s")
+    client(handler, api_key="test-key", extra_body={"reasoning_effort": "low", "seed": 7}).complete_json(MESSAGES, {}, schema_name="s")
     assert seen["body"]["reasoning_effort"] == "low" and seen["auth"] == "Bearer test-key"
+    assert seen["body"]["seed"] == 7 and seen["body"]["temperature"] == 0.0  # repeatable review sampling
+
+
+def test_warm_up_sends_one_token_request_and_never_raises():
+    seen = {}
+
+    def handler(request):
+        seen["body"] = json.loads(request.content)
+        return httpx.Response(200, json=OK)
+
+    assert client(handler).warm_up() is True
+    assert seen["body"]["max_tokens"] == 1 and seen["body"]["model"] == "m"
+
+    def down(request):
+        raise httpx.ConnectError("refused")
+
+    assert client(down).warm_up() is False

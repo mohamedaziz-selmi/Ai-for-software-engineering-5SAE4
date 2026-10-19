@@ -76,7 +76,23 @@ def verify_finding(finding: dict, files_by_path: dict[str, str]) -> str | None:
         return None if substantial else "quote_not_at_location"
     # Formatting only (fences, gutter) is removed; the wording itself must match exactly.
     quote = clean_quote(finding["evidence_quote"])
-    return None if quote_in_text(quote, window) else "quote_not_at_location"
+    if quote_in_text(quote, window):
+        return None
+    # Multi-line quote that skips lines (a docstring, a blank line) or drops a trailing comment without marking it,
+    # as observed on 2026-10-19: every quoted line must occur inside a real line of the window, in order, each in a
+    # different line. Text that is not in the file, or lines out of order, cannot pass.
+    window_lines = [normalize(line) for line in window.split("\n")]
+    quoted = [normalize(line) for line in quote.split("\n")]
+    quoted = [line for line in quoted if line and line.strip(". ") != ""]
+    if len(quoted) >= 2 and any(len(line) >= 8 for line in quoted):
+        position = 0
+        for line in quoted:
+            position = next((i + 1 for i in range(position, len(window_lines)) if line in window_lines[i]), -1)
+            if position < 0:
+                break
+        else:
+            return None
+    return "quote_not_at_location"
 
 
 def run_review(conn: sqlite3.Connection, embedder: Embedder, llm: LlmService, review_id: str) -> dict:

@@ -1,0 +1,7 @@
+{
+  "max_rows": 6000,
+  "tfidf_max_features": 20000,
+  "svd_components": 64,
+  "xgb_estimators": 300,
+  "random_state": 42
+}
